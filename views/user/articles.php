@@ -46,7 +46,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-5">
                             <h1 class="text-gray-700 font-medium text-sm">Par Marie Dubois</h1>
-                            <a href="#" class="text-pink-600">Lire la Suite →</a>
+                            <a href="./details.php" class="text-pink-600">Lire la Suite →</a>
                         </div>
                     </div>
                     <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
@@ -63,7 +63,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-5">
                             <h1 class="text-gray-700 font-medium text-sm">Par Marie Dubois</h1>
-                            <a href="#" class="text-pink-600">Lire la Suite →</a>
+                            <a href="./details.php" class="text-pink-600">Lire la Suite →</a>
                         </div>
                     </div>
                     <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
@@ -80,7 +80,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-5">
                             <h1 class="text-gray-700 font-medium text-sm">Par Marie Dubois</h1>
-                            <a href="#" class="text-pink-600">Lire la Suite →</a>
+                            <a href="./details.php" class="text-pink-600">Lire la Suite →</a>
                         </div>
                     </div>
                     <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
@@ -97,7 +97,7 @@
                         </div>
                         <div class="flex justify-between items-center mt-5">
                             <h1 class="text-gray-700 font-medium text-sm">Par Marie Dubois</h1>
-                            <a href="#" class="text-pink-600">Lire la Suite →</a>
+                            <a href="./details.php" class="text-pink-600">Lire la Suite →</a>
                         </div>
                     </div>
                     <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
