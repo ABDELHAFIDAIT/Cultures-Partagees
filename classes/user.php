@@ -12,7 +12,8 @@ class User{
     protected $database ;
 
 
-    public function __construct(){
+    public function __construct($role){
+        $this->role = $role;
         $this->database= new Database(); 
     }
 
@@ -21,31 +22,24 @@ class User{
     // GETTERS
     public function getId():int{
         return $this->id;
-
     }
     public function getNom():string{
         return $this->nom;
-
     } 
     public function getPrenom():string{
         return $this->prenom;
-
     } 
     public function getTelephone():string{
         return $this->telephone;
-
     } 
     public function getEmail():string{
         return $this->email;
-
     } 
     public function getPassword():string{
         return $this->password;
-
     }
     public function getRole():string{
         return $this->role;
-
     }
 
     
@@ -53,19 +47,19 @@ class User{
 
 
     //SETTERS
-    function setNom(string $nom):void{
+    public function setNom(string $nom):void{
         $this->nom = $nom;
     }
-    function setPrenom(string $prenom):void{
+    public function setPrenom(string $prenom):void{
         $this->prenom = $prenom;
     }
-    function setTelephone(string $telephone):void{
+    public function setTelephone(string $telephone):void{
         $this->telephone = $telephone ;
     }
-    function setEmail(string $email):void{
+    public function setEmail(string $email):void{
         $this->email = $email;
     }
-    function setPassword(string $password):void{
+    public function setPassword(string $password):void{
         $this->password = password_hash($password,PASSWORD_DEFAULT);
     }
 
