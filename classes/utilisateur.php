@@ -35,4 +35,21 @@
                 return "Erreur lors de l'inscription : " . $e->getMessage();
             }
         }
+
+        // SHOW ARTICLES
+        public function showArticles(){
+            try {
+                $sql = "SELECT * FROM article ORDER BY date_publication DESC";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll();
+                    return $result;
+                }else{
+                    return "Aucun article trouvé";
+                }
+            } catch (PDOException $e) {
+                return "Erreur lors de la récupération des articles : " . $e->getMessage();
+            }
+        }
     }
