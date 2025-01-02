@@ -47,7 +47,7 @@
         // SHOW ALL ARTICLES
         public function allArticles(){
             try{
-                $query = "SELECT * FROM articles";
+                $query = "SELECT * FROM article";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
@@ -64,7 +64,7 @@
         // SHOW ONE ARTICLE
         public function showArticle(int $id){
             try{
-                $query = "SELECT * FROM articles WHERE id_article = :id";
+                $query = "SELECT * FROM article WHERE id_article = :id";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->bindValue(":id", (int)$id, PDO::PARAM_INT);
                 $stmt->execute();

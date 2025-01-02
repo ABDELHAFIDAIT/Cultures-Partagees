@@ -43,4 +43,26 @@
         public function setDate(string $date){
             $this->date = $date;
         }
+
+
+
+        // SHOW ALL CATEGORIES
+        public function allCategories(){
+            try{
+                $query = "SELECT * FROM categorie";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur lors de la Récupération des Catégories". $e->getMessage();
+            }
+        }
+
+        
+
     }
