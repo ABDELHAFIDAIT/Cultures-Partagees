@@ -40,18 +40,37 @@
                 <div class="bg-white p-5 rounded-sm shadow-md h-min">
                     <div class="flex flex-col gap-3">
                         <h1 class="text-pink-500 text-2xl font-semibold">A Propos</h1>
-                        <h2 class="text-lg text-gray-800"><span class="font-semibold">• Auteur :</span> Marie Dubois</h2>
-                        <h2 class="text-lg text-gray-800"><span class="font-semibold">• Catégorie :</span> Peinture</h2>
-                        <h2 class="text-lg text-gray-800"><span class="font-semibold">• Date de Publication :</span> 2025-01-01</h2>
+                        <?php
+                            require_once '../../classes/article.php';
+                            $id = $_GET['id'];
+                            $article = new Article();
+                            $result = $article->showArticle($id);
+
+                            if($result){
+                                echo "<h2 class='text-lg text-gray-800'><span class='font-semibold'>• Auteur :</span> ".$result['prenom']. ' ' .$result['nom']."</h2>";
+                                echo "<h2 class='text-lg text-gray-800'><span class='font-semibold'>• Catégorie :</span> ".$result['nom_categorie']."</h2>";
+                                echo "<h2 class='text-lg text-gray-800'><span class='font-semibold'>• Date de Publication :</span> ".$result['date_publication']."</h2>";
+                            }
+                        ?>
+
                     </div>
                 </div>
                 <div class="bg-white p-5 rounded-sm shadow-md h-min">
                     <div class="flex flex-col gap-3">
                         <h1 class="text-pink-500 text-2xl font-semibold">Autres Articles</h1>
-                        <a href="#"><p class="text-sm text-gray-900">• Lorem ipsum dolor sit, amet consectetur.</p></a>
-                        <a href="#"><p class="text-sm text-gray-900">• Lorem ipsum dolor sit, amet consectetur.</p></a>
-                        <a href="#"><p class="text-sm text-gray-900">• Lorem ipsum dolor sit, amet consectetur.</p></a>
-                        <a href="#"><p class="text-sm text-gray-900">• Lorem ipsum dolor sit, amet consectetur.</p></a>
+
+                        <?php
+                            require_once '../../classes/article.php';
+
+                            $article = new Article();
+                            $articles = $article->allArticles();
+
+                            if($articles){
+                                foreach($articles as $art){
+                                    echo '<a href="?id='. $art['id_article'] .'"><p class="text-sm text-gray-900">• '. $art['titre'] .'</p></a>';
+                                }
+                            }
+                        ?>
                     </div>
                 </div>
             </div>
@@ -59,12 +78,23 @@
             <div class="col-span-2 flex gap-5 flex-wrap">
                 <article class="bg-white shadow-md rounded-md">
                     <div>
-                        <img src="https://images.unsplash.com/photo-1579541671172-43429ce17aca?q=80&w=2065&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-t-md" alt="Couverture de l'Article">
+                        <img src="../../assets/img/default-image.png" class="rounded-t-md w-full" alt="Couverture de l'Article">
                     </div>
                     <div class="p-4">
                         <div class="pt-5">
-                            <h1 class="text-gray-900 font-semibold text-xl mb-3">L'Art Moderne au 21ème Siècle</h1>
-                            <p class="text-gray-700 font-medium text-md">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatum doloremque amet minus at minima, tenetur suscipit, quo cupiditate itaque explicabo inventore maiores modi quod! Ducimus porro quis numquam ratione explicabo. Provident nisi rerum ut omnis autem eligendi hic eius laboriosam animi dolores cum quos mollitia, perspiciatis eaque et ipsum tempore quasi neque inventore eum illum? Nisi ea exercitationem beatae quasi doloremque, in quo totam tempore perferendis minima debitis reprehenderit. Itaque voluptates numquam animi culpa fuga minus inventore consequuntur unde optio? Suscipit, vel fuga! Amet reprehenderit ullam eaque nemo, nisi ipsum reiciendis facere quisquam nihil odit sunt illum laboriosam corporis adipisci?Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic odio nostrum amet soluta laboriosam, rem adipisci, perferendis at dolorum labore consequatur. Recusandae explicabo quisquam quidem odit ullam officiis autem tempore accusantium? Sed ab quae eveniet, iste officia quisquam harum ducimus repudiandae laboriosam. Ipsam, mollitia! Maiores, esse eveniet? Eveniet, id eligendi!</p>
+
+
+                            <?php
+                                require_once '../../classes/article.php';
+                                $id = $_GET['id'];
+                                $article = new Article();
+                                $result = $article->showArticle($id);
+
+                                if($result){
+                                    echo '<h1 class="text-gray-900 font-semibold text-xl mb-3">'. $result['titre'] .'</h1>';
+                                    echo '<p class="text-gray-700 font-medium text-md">'. $result['contenu'] .'</p>';
+                                }
+                            ?>
                         </div>
                     </div>
                 </article>

@@ -48,8 +48,9 @@
         public function allArticles(){
             try{
                 $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
-                        JOIN users U ON U.id_user = A.id_auteur ORDER BY A.date_publication DESC";
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.etat = :etat ORDER BY A.date_publication DESC";
                 $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -65,7 +66,7 @@
         // SHOW ONE ARTICLE
         public function showArticle(int $id){
             try{
-                $query = "SELECT * FROM article WHERE id_article = :id";
+                $query = "SELECT * FROM article A JOIN users U ON A.id_auteur = U.id_user JOIN categorie C ON A.id_categorie = C.id_categorie WHERE A.id_article = :id";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->bindValue(":id", (int)$id, PDO::PARAM_INT);
                 $stmt->execute();

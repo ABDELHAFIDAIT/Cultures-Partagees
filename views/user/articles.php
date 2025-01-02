@@ -49,74 +49,39 @@
         <div class="grid grid-cols-4 gap-5 mt-10">
             <!-- Articles -->
             <div class="col-span-3 flex gap-5 flex-wrap lg:grid lg:grid-cols-2">
-                <article class="relative bg-white shadow-md rounded-md">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1579541671172-43429ce17aca?q=80&w=2065&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-t-md" alt="Couverture de l'Article">
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-800 font-medium text-sm">2025-01-01 •</p>
-                        <div class="pt-5">
-                            <h1 class="text-gray-900 font-semibold text-xl mb-3">L'Art Moderne au 21ème Siècle</h1>
-                            <p class="text-gray-700 font-medium text-md">Une exploration des tendances actuelles dans l'art moderne...</p>
-                        </div>
-                        <div class="flex justify-between items-center mt-5">
-                            <h1 class="text-gray-700 font-medium text-sm">Par Marie Dubois</h1>
-                            <a href="./details.php" class="text-pink-600">Lire la Suite →</a>
-                        </div>
-                    </div>
-                    <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
-                </article>
-                <article class="relative bg-white shadow-md rounded-md">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1514320291840-2e0a9bf2a9ae?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fG11c2lxdWV8ZW58MHwwfDB8fHwy" class="rounded-t-md" alt="Couverture de l'Article">
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-800 font-medium text-sm">2025-01-01 •</p>
-                        <div class="pt-5">
-                            <h1 class="text-gray-900 font-semibold text-xl mb-3">L'Art Moderne au 21ème Siècle</h1>
-                            <p class="text-gray-700 font-medium text-md">Une exploration des tendances actuelles dans l'art moderne...</p>
-                        </div>
-                        <div class="flex justify-between items-center mt-5">
-                            <h1 class="text-gray-700 font-medium text-sm">Par Marie Dubois</h1>
-                            <a href="./details.php" class="text-pink-600">Lire la Suite →</a>
-                        </div>
-                    </div>
-                    <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
-                </article>
-                <article class="relative bg-white shadow-md rounded-md">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1513106580091-1d82408b8cd6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8VGglQzMlQTlhdHJlfGVufDB8MHwwfHx8Mg%3D%3D" class="rounded-t-md" alt="Couverture de l'Article">
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-800 font-medium text-sm">2025-01-01 •</p>
-                        <div class="pt-5">
-                            <h1 class="text-gray-900 font-semibold text-xl mb-3">L'Art Moderne au 21ème Siècle</h1>
-                            <p class="text-gray-700 font-medium text-md">Une exploration des tendances actuelles dans l'art moderne...</p>
-                        </div>
-                        <div class="flex justify-between items-center mt-5">
-                            <h1 class="text-gray-700 font-medium text-sm">Par Marie Dubois</h1>
-                            <a href="./details.php" class="text-pink-600">Lire la Suite →</a>
-                        </div>
-                    </div>
-                    <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
-                </article>
-                <article class="relative bg-white shadow-md rounded-md">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1542509058-4b08b0a5a828?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8Y2luJUMzJUE5bWF8ZW58MHwwfDB8fHwy" class="rounded-t-md" alt="Couverture de l'Article">
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-800 font-medium text-sm">2025-01-01 •</p>
-                        <div class="pt-5">
-                            <h1 class="text-gray-900 font-semibold text-xl mb-3">L'Art Moderne au 21ème Siècle</h1>
-                            <p class="text-gray-700 font-medium text-md">Une exploration des tendances actuelles dans l'art moderne...</p>
-                        </div>
-                        <div class="flex justify-between items-center mt-5">
-                            <h1 class="text-gray-700 font-medium text-sm">Par Marie Dubois</h1>
-                            <a href="./details.php" class="text-pink-600">Lire la Suite →</a>
-                        </div>
-                    </div>
-                    <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
-                </article>
+
+                <?php
+                
+                    require_once '../../classes/article.php';
+
+                    $article = new Article();
+                    $articles = $article->allArticles();
+
+                    // print_r($articles);
+                    if($articles){
+                        foreach($articles as $art){
+                            echo '<article class="relative bg-white shadow-md rounded-md">';
+                            echo'<div>
+                                    <img src="../../assets/img/default-image.png" class="rounded-t-md" alt="Couverture de l\'Article">
+                                </div>';
+                            echo '<div class="p-4">';
+                                    echo '<p class="text-gray-800 font-medium text-sm">'. $art['date_publication'] .' •</p>';
+                            echo '<div class="pt-5">
+                                        <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">'. $art['titre'] .'</h1></a>
+                                        <p class="text-gray-700 font-medium text-md">'. substr($art['contenu'], 0, 100) .'...</p>
+                                    </div>
+                                    <div class="flex justify-between items-center mt-5">
+                                        <h1 class="text-gray-700 font-medium text-sm">Par '. $art['prenom'] . ' ' . $art['nom'] .'</h1>
+                                        <a href="./details.php?id='. $art['id_article'] .'" class="text-pink-600">Lire la Suite →</a>
+                                    </div>
+                                </div>
+                                <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">'. $art['nom_categorie'] .'</p>
+                            </article>';
+                        }
+                    }else{
+                        echo "<h1 class='text-gray-900 font-semibold text-xl mb-3'>Aucun Article Trouvé</h1>";
+                    }
+                ?>
             </div>
             <!-- Authors -->
             <div class="bg-white p-5 rounded-sm shadow-md h-min">
