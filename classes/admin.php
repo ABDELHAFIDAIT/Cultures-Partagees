@@ -4,6 +4,23 @@
 
     class Admin extends User{
 
+        // SHOW ALL CATEGORIES METHOD
+        public function showCategories(){
+            try {
+                $sql = "SELECT * FROM categorie";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $categories = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $categories;
+                }else{
+                    return "Aucune catégorie trouvée";
+                }
+            } catch (PDOException $e) {
+                return "Erreur lors de l'affichage des catégories : " . $e->getMessage();
+            }
+        }
+
         // ADD CATEGORIE METHOD
         public function addCategorie(int $id_admin, string $nom, string $description){
             try {
@@ -57,6 +74,19 @@
                 header("location: ../views/admin/dashboard.php");
             } catch (PDOException $e) {
                 return "Erreur lors de la confirmation d'Article : ". $e->getMessage();
+            }
+        }
+
+        // REJECT ARTICLE METHOD
+        public function rejectArticle(int $id_article){
+            try {
+                $sql = "UPDATE article SET etat = 'Refusé' WHERE id_article = :id";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(":id", $id_article, PDO::PARAM_INT);
+                $stmt->execute();
+                header("location: ../views/admin/dashboard.php");
+            } catch (PDOException $e) {
+                return "Erreur lors de la Refuse d'Article : ". $e->getMessage();
             }
         }
 
