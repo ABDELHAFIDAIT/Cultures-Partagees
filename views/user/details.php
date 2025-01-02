@@ -1,3 +1,12 @@
+<?php
+    session_start();
+    if($_SESSION['role'] !== 'Utilisateur'){
+        header("Location: ../".$_SESSION['role']."/dashboard.php");
+        exit;
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 
