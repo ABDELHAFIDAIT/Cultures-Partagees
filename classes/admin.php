@@ -47,4 +47,17 @@
             }
         }
 
+        // APPROVE ARTICLE METHOD
+        public function approveArticle($id_article){
+            try {
+                $sql = "UPDATE article SET etat = 'Accepté' WHERE id_article = :id";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(":id", $id_article, PDO::PARAM_INT);
+                $stmt->execute();
+                header("location: ../views/admin/dashboard.php");
+            } catch (PDOException $e) {
+                return "Erreur lors de la confirmation d'Article : ". $e->getMessage();
+            }
+        }
+
     }
