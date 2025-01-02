@@ -1,47 +1,3 @@
-<?php
-    session_start();
-
-    require_once "../../classes/user.php";
-
-    if($_SERVER['REQUEST_METHOD']==='POST'){
-        if(isset($_POST['login'])){
-            $email = trim($_POST['email']);
-            $password = $_POST['password'];
-
-            if (empty($email) || empty($password)) {
-                echo "Veuillez remplir tous les champs.";
-            }else {
-                
-                $user = new User();
-    
-                $loggedInUser = $user->login( $email, $password);
-    
-                if ($loggedInUser) {
-                    $_SESSION['id_user'] = $loggedInUser->getId();
-                    $_SESSION['prenom'] = $loggedInUser->getPrenom();
-                    $_SESSION['nom'] = $loggedInUser->getNom();
-                    $_SESSION['email'] = $loggedInUser->getEmail();
-                    $_SESSION['phone'] = $loggedInUser->getTelephone();
-                    $_SESSION['role'] = $loggedInUser->getRole();
-
-                    if($_SESSION['user_role'] ==='Admin'){
-                        header("Location: ../admin/dashboard.php");
-                    }else if($_SESSION['user_role'] ==='Auteur'){
-                        header("Location: ../auteur/dashboard.php");
-                    }else{
-                        header("Location: ../user/dashboard.php");
-                    }
-                    exit;
-                } else {
-                    echo "Identifiants incorrects.";
-                }
-            }
-            
-        }
-    }
-?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -69,7 +25,7 @@
                     </a>
                 </p>
             </div>
-            <form method="POST" action="" id="loginForm" class="mt-8 space-y-6">
+            <form method="POST" action="../../actions/login.php" id="loginForm" class="mt-8 space-y-6">
                 <div class="rounded-md shadow-sm flex flex-col gap-5">
                     <div>
                         <label for="email" class="sr-only">Adresse email</label>
