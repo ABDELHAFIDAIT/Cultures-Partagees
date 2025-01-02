@@ -3,10 +3,10 @@
     require_once '../config/db.php';
 
     class Article{
-        private $id;
-        private $title;
-        private $content;
-        private $date_pub;
+        private int $id;
+        private string $title;
+        private string $content;
+        private string $date_pub;
         private $database;
 
         // CONSTRUCTOR
@@ -30,16 +30,16 @@
 
 
         // SETTERS
-        public function setId($id){
+        public function setId(int $id){
             $this->id = $id;
         }
-        public function setTitle($title){
+        public function setTitle(string $title){
             $this->title = $title;
         }
-        public function setContent($content){
+        public function setContent(string $content){
             $this->content = $content;
         }
-        public function setDate($date){
+        public function setDate(string $date){
             $this->date_pub = $date;
         }
 
