@@ -2,9 +2,11 @@
     session_start();
     if($_SESSION['role'] !== 'Auteur'){
         if($_SESSION['role'] === 'Admin'){
-            header("Location: ../".$_SESSION['role']."/dashboard.php");
-        }else{
+            header("Location: ../admin/dashboard.php");
+        }else if($_SESSION['role'] === 'Utilisateur'){
             header("Location: ../user/articles.php");
+        }else{
+            header("Location: ../../index.php");
         }
         exit;
     }
@@ -80,7 +82,7 @@
                         <div class="flex items-center">
                             <div class="ml-4">
                                 <h2 class="text-xl font-semibold text-gray-800">Dashboard</h2>
-                                <p class="text-sm text-gray-600">Bienvenue, Marie Dubois</p>
+                                <p class="text-sm text-gray-600">Bienvenue, <?php echo $_SESSION['prenom'] . " " . $_SESSION['nom'] ?></p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">

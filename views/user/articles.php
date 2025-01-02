@@ -1,7 +1,13 @@
 <?php
     session_start();
     if($_SESSION['role'] !== 'Utilisateur'){
-        header("Location: ../".$_SESSION['role']."/dashboard.php");
+        if($_SESSION['role'] === 'Admin'){
+            header("Location: ../admin/dashboard.php");
+        }else if($_SESSION['role'] === 'Auteur'){
+            header("Location: ../auteur/dashboard.php");
+        }else{
+            header("Location: ../../index.php");
+        }
         exit;
     }
 ?>
