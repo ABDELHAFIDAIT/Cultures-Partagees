@@ -281,91 +281,42 @@
             </div>
 
             <!-- articles -->
-            <div class="p-10 flex items-center gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
-                <article class="relative bg-white shadow-md rounded-md">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1579541671172-43429ce17aca?q=80&w=2065&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-t-md" alt="Couverture de l'Article">
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-800 font-medium text-sm">2025-01-01 •</p>
-                        <div class="pt-5">
-                            <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">L'Art Moderne au 21ème Siècle</h1></a>
-                            <p class="text-gray-700 font-medium text-md">Une exploration des tendances actuelles dans l'art moderne...</p>
-                        </div>
-                        <div class="flex justify-end items-center gap-5 mt-5">
-                            <a href="#">
-                                <button type="button" class="py-2 px-5 rounded-sm text-white bg-blue-500 text-sm duration-500 hover:bg-blue-700">Modifier</button>
-                            </a>
-                            <a href="#">
-                                <button type="button" class="py-2 px-5 rounded-sm text-white bg-red-500 text-sm  duration-500 hover:bg-red-700">Supprimer</button>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
-                </article>
-                <article class="relative bg-white shadow-md rounded-md">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1579541671172-43429ce17aca?q=80&w=2065&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-t-md" alt="Couverture de l'Article">
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-800 font-medium text-sm">2025-01-01 •</p>
-                        <div class="pt-5">
-                            <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">L'Art Moderne au 21ème Siècle</h1></a>
-                            <p class="text-gray-700 font-medium text-md">Une exploration des tendances actuelles dans l'art moderne...</p>
-                        </div>
-                        <div class="flex justify-end items-center gap-5 mt-5">
-                            <a href="#">
-                                <button type="button" class="py-2 px-5 rounded-sm text-white bg-blue-500 text-sm duration-500 hover:bg-blue-700">Modifier</button>
-                            </a>
-                            <a href="#">
-                                <button type="button" class="py-2 px-5 rounded-sm text-white bg-red-500 text-sm duration-500 hover:bg-red-700">Supprimer</button>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
-                </article>
-                <article class="relative bg-white shadow-md rounded-md">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1579541671172-43429ce17aca?q=80&w=2065&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-t-md" alt="Couverture de l'Article">
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-800 font-medium text-sm">2025-01-01 •</p>
-                        <div class="pt-5">
-                            <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">L'Art Moderne au 21ème Siècle</h1></a>
-                            <p class="text-gray-700 font-medium text-md">Une exploration des tendances actuelles dans l'art moderne...</p>
-                        </div>
-                        <div class="flex justify-end items-center gap-5 mt-5">
-                            <a href="#">
-                                <button type="button" class="py-2 px-5 rounded-sm text-white bg-blue-500 text-sm duration-500 hover:bg-blue-700">Modifier</button>
-                            </a>
-                            <a href="#">
-                                <button type="button" class="py-2 px-5 rounded-sm text-white bg-red-500 text-sm duration-500 hover:bg-red-700">Supprimer</button>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
-                </article>
-                <article class="relative bg-white shadow-md rounded-md">
-                    <div>
-                        <img src="https://images.unsplash.com/photo-1579541671172-43429ce17aca?q=80&w=2065&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" class="rounded-t-md" alt="Couverture de l'Article">
-                    </div>
-                    <div class="p-4">
-                        <p class="text-gray-800 font-medium text-sm">2025-01-01 •</p>
-                        <div class="pt-5">
-                            <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">L'Art Moderne au 21ème Siècle</h1></a>
-                            <p class="text-gray-700 font-medium text-md">Une exploration des tendances actuelles dans l'art moderne...</p>
-                        </div>
-                        <div class="flex justify-end items-center gap-5 mt-5">
-                            <a href="#">
-                                <button type="button" class="py-2 px-5 rounded-sm text-white bg-blue-500 text-sm duration-500 hover:bg-blue-700">Modifier</button>
-                            </a>
-                            <a href="#">
-                                <button type="button" class="py-2 px-5 rounded-sm text-white bg-red-500 text-sm duration-500 hover:bg-red-700">Supprimer</button>
-                            </a>
-                        </div>
-                    </div>
-                    <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">Peinture</p>
-                </article>
+            <div class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
+                <?php
+                
+                    require_once '../../classes/auteur.php';
+
+                    $auteur = new Auteur();
+                    $articles = $auteur->ownArticles((int)$_SESSION['id_user']);
+
+                    // print_r($articles);
+
+                    foreach($articles as $art){
+                        echo '<article class="relative bg-white shadow-md rounded-md">';
+                        echo'<div>
+                                <img src="../../assets/img/default-image.png" class="rounded-t-md" alt="Couverture de l\'Article">
+                            </div>';
+                        echo '<div class="p-4">';
+                                echo '<p class="text-gray-800 font-medium text-sm">'. $art['date_publication'] .' •</p>';
+                        echo '<div class="pt-5">
+                                    <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">'. $art['titre'] .'</h1></a>
+                                    <p class="text-gray-700 font-medium text-md">'. substr($art['contenu'], 0, 100) .'...</p>
+                                </div>
+                                <div class="flex justify-end items-center gap-5 mt-5">
+                                    <a href="#">
+                                        <button type="button" class="py-2 px-5 rounded-sm text-white bg-blue-500 text-sm duration-500 hover:bg-blue-700">Modifier</button>
+                                    </a>
+                                    <a href="#">
+                                        <button type="button" class="py-2 px-5 rounded-sm text-white bg-red-500 text-sm  duration-500 hover:bg-red-700">Supprimer</button>
+                                    </a>
+                                </div>
+                            </div>
+                            <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">'. $art['nom_categorie'] .'</p>
+                        </article>';
+                    }
+                
+                ?>
+
             </div>
         </section>
     </main>
