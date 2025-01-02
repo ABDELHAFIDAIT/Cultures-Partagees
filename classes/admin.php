@@ -19,4 +19,19 @@
             }
         }
 
+        // MODIFY CATEGORIE METHOD
+        public function editCategorie(int $id, string $nom, string $description){
+            try {
+                $sql = "UPDATE categorie SET description = :description AND  nom_categorie = :nom WHERE id_categorie = :id";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                $stmt->bindParam(":nom", $nom, PDO::PARAM_STR);
+                $stmt->bindParam("description", $description, PDO::PARAM_STR);
+                $stmt->execute();
+                header("location: ../views/admin/dashboard.php");
+            } catch (PDOException $e) {
+                return "Erreur lors de Modification de la catégorie :". $e->getMessage();
+            }
+        }
+
     }
