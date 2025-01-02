@@ -1,6 +1,6 @@
 <?php
 
-    require_once './user.php';
+    require_once 'user.php';
 
     class Utilisateur extends User{
 
@@ -12,7 +12,7 @@
             $stmt->execute();
             
             if($stmt->rowCount() > 0){
-                die("<script>alert('Email déjà utilisé !')</script>");
+                header("location: ../views/auth/signup.php");
             }
             
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -29,7 +29,7 @@
         
                 $stmt->execute();
         
-                header("location: ../views/login.php");
+                header("location: ../views/auth/login.php");
         
             } catch (PDOException $e) {
                 return "Erreur lors de l'inscription : " . $e->getMessage();
