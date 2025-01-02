@@ -63,6 +63,23 @@
             }
         }
 
-        
+
+        // SHOW ONE CATEGORY
+        public function showCategorie(int $id){
+            try{
+                $query = "SELECT * FROM categorie WHERE id_categorie = :id";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "". $e->getMessage();
+            }
+        }
 
     }
