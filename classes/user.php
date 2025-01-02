@@ -73,46 +73,51 @@ class User{
 
 
     // LOGIN FUNCTION
-    public function login($email, $password):bool|User {
-        $query = "SELECT * FROM users WHERE email = :email";
-        $stmt = $this->database->getConnection()->prepare($query);
+    public function login($email, $password) {
+        try{
+            $query = "SELECT * FROM users WHERE email = :email";
+            $stmt = $this->database->getConnection()->prepare($query);
 
-        $stmt->bindParam(':email', $email, PDO::PARAM_STR);
+            $stmt->bindParam(':email', $email, PDO::PARAM_STR);
 
-        $stmt->execute();
+            $stmt->execute();
 
-        if ($stmt->rowCount() > 0) {
-            $row = $stmt->fetch(PDO::FETCH_ASSOC);
+            if ($stmt->rowCount() > 0) {
+                $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-            if (password_verify($password, $row['password'])) {
-                $this->id = $row['id_user'];
-                $this->prenom = $row['prenom'];
-                $this->nom = $row['nom'];
-                $this->email = $row['email'];
-                $this->telephone = $row['telephone'];
-                $this->role = $row['role'];
+                if (password_verify($password, $row['password'])) {
+                    $this->id = $row['id_user'];
+                    $this->prenom = $row['prenom'];
+                    $this->nom = $row['nom'];
+                    $this->email = $row['email'];
+                    $this->telephone = $row['telephone'];
+                    $this->role = $row['role'];
 
-                return $this;
+                    return $this;
+                }
             }
-        }
 
-        return false;
+            return false;
+        } catch (PDOException $e) {
+            return "Erreur lors de l'authentification : " . $e->getMessage();
+        }
     }
 
     // GET USER INFOS
     public function profile($id) {
-        $stmt = $this->database->getConnection()->prepare("SELECT * FROM users WHERE id_user = :id");
-    
-        $stmt->bindValue(":id", (int)$id, PDO::PARAM_INT); 
-    
-        $stmt->execute();
-    
-        $result = $stmt->fetch(PDO::FETCH_ASSOC); 
-    
-        if ($result) {
+        try{
+            $stmt = $this->database->getConnection()->prepare("SELECT * FROM users WHERE id_user = :id");
+        
+            $stmt->bindValue(":id", (int)$id, PDO::PARAM_INT); 
+        
+            $stmt->execute();
+        
+            $result = $stmt->fetch(PDO::FETCH_ASSOC); 
+        
             return $result;
-        } else {
-            return null; 
+            
+        } catch (PDOException $e) {
+            return "Erreur lors de la Récupération des Données". $e->getMessage();
         }
     }
 }
