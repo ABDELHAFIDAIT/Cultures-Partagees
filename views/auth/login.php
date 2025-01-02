@@ -1,3 +1,47 @@
+<?php
+    session_start();
+
+    require_once "../../classes/user.php";
+
+    if($_SERVER['REQUEST_METHOD']==='POST'){
+        if(isset($_POST['login'])){
+            $email = trim($_POST['email']);
+            $password = $_POST['password'];
+
+            if (empty($email) || empty($password)) {
+                echo "Veuillez remplir tous les champs.";
+            }else {
+                
+                $user = new User();
+    
+                $loggedInUser = $user->login( $email, $password);
+    
+                if ($loggedInUser) {
+                    $_SESSION['id_user'] = $loggedInUser->getId();
+                    $_SESSION['prenom'] = $loggedInUser->getPrenom();
+                    $_SESSION['nom'] = $loggedInUser->getNom();
+                    $_SESSION['email'] = $loggedInUser->getEmail();
+                    $_SESSION['phone'] = $loggedInUser->getTelephone();
+                    $_SESSION['role'] = $loggedInUser->getRole();
+
+                    if($_SESSION['user_role'] ==='Admin'){
+                        header("Location: ../admin/dashboard.php");
+                    }else if($_SESSION['user_role'] ==='Auteur'){
+                        header("Location: ../auteur/dashboard.php");
+                    }else{
+                        header("Location: ../user/dashboard.php");
+                    }
+                    exit;
+                } else {
+                    echo "Identifiants incorrects.";
+                }
+            }
+            
+        }
+    }
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -53,7 +97,7 @@
                 </div>
 
                 <div>
-                    <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                    <button type="submit" name="login" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                         <span class="absolute left-0 inset-y-0 flex items-center pl-3">
                             <i class="fas fa-lock"></i>
                         </span>
