@@ -4,8 +4,9 @@
             Culture<span class="text-black">Connect</span>
         </div>
         <div class="flex">
-            <button
-                class="border border-white text-white py-1 px-4 text-sm duration-300 hover:border-none hover:bg-black hover:scale-105">Déconnexion</button>
+            <a href="../../actions/logout.php">
+                <button class="border border-white text-white py-1 px-4 text-sm duration-300 hover:border-none hover:bg-black hover:scale-105">Déconnexion</button>
+            </a>
         </div>
     </div>
 </nav>

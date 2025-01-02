@@ -50,7 +50,7 @@
                     <i class="fas fa-user-circle mr-3"></i>
                     Profil
                 </a>
-                <a href="login.html"
+                <a href="../../actions/logout.php"
                     class="flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Déconnexion
