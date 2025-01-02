@@ -47,7 +47,8 @@
         // SHOW ALL ARTICLES
         public function allArticles(){
             try{
-                $query = "SELECT * FROM article";
+                $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
+                        JOIN users U ON U.id_user = A.id_auteur ORDER BY A.date_publication DESC";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
