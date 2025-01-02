@@ -52,4 +52,23 @@
                 return "Erreur lors de la récupération des articles : " . $e->getMessage();
             }
         }
+
+
+        // FILTER ARTICLES
+        public function filterArticles(string $categorie){
+            try {
+                $sql = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie WHERE C.nom_categorie = :categorie ORDER BY A.date_publication DESC";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(':categorie', $categorie, PDO::PARAM_STR);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll();
+                    return $result;
+                }else{
+                    return "Aucun Article Trouvé !";
+                }
+            } catch (PDOException $e) {
+                return "Erreur lors de la récupération des articles : " . $e->getMessage();
+            }
+        }
     }
