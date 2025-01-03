@@ -102,7 +102,7 @@
             </nav>
 
             <!-- Dashboard -->
-            <div class="p-8 bg-gray-200">
+            <div style="display:none;" class="p-8 bg-gray-200">
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <div
@@ -269,7 +269,7 @@
             </div>
 
             <!-- articles -->
-            <div style="display:none;" class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
+            <div class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
                 <?php
                 
                     require_once '../../classes/auteur.php';
@@ -294,7 +294,7 @@
                                     <a href="#">
                                         <button type="button" class="py-2 px-5 rounded-sm text-white bg-blue-500 text-sm duration-500 hover:bg-blue-700">Modifier</button>
                                     </a>
-                                    <a href="#">
+                                    <a href="../../actions/deleteArticle.php?id='. $art['id_article'] .'">
                                         <button type="button" class="py-2 px-5 rounded-sm text-white bg-red-500 text-sm  duration-500 hover:bg-red-700">Supprimer</button>
                                     </a>
                                 </div>

@@ -45,7 +45,7 @@
                 $stmt = $this->database->getConnection()->prepare($sql);
                 $stmt->bindParam(":id_article", $id_article, PDO::PARAM_INT);
                 $stmt->execute();
-                header("location: ../views/admin/dashboard.php");
+                header("location: ../views/auteur/dashboard.php");
             } catch (PDOException $e) {
                 return "Erreur lors de la suppression de l'Article : ". $e->getMessage();
             }
