@@ -39,11 +39,25 @@
             <h1 class="font-semibold text-2xl">Catégories</h1>
             <ul class="flex items-center gap-5 flex-wrap">
                 <li class="bg-purple-700 text-white rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Toutes</li>
-                <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Peinture</li>
+
+                <?php
+                    require_once '../../classes/categorie.php';
+
+                    $categorie = new Categorie();
+                    $categories = $categorie->allCategories();
+
+                    if($categories){
+                        foreach($categories as $cat){
+                            echo '<li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">'. $cat['nom_categorie'] .'</li>';
+                        }
+                    }
+                ?>
+
+                <!-- <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Peinture</li>
                 <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Musique</li>
                 <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Littérature</li>
                 <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Théâtre</li>
-                <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Cinéma</li>
+                <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Cinéma</li> -->
             </ul>
         </div>
         <div class="grid grid-cols-4 gap-5 mt-10">

@@ -1,6 +1,6 @@
 <?php
 
-    require_once '../config/db.php';
+    include_once __DIR__ .'./../config/db.php';
 
     class Categorie{
         private int $id;
