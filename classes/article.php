@@ -63,6 +63,44 @@
             }
         }
 
+        // SHOW REFUSED ARTICLES
+        public function refusedArticles(){
+            try{
+                $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.etat = :etat ORDER BY A.date_publication DESC";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindValue(":etat", 'Refusé', PDO::PARAM_STR);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur lors de la Récupération des Articles". $e->getMessage();
+            }
+        }
+
+        // SHOW REFUSED ARTICLES
+        public function pendingArticles(){
+            try{
+                $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.etat = :etat ORDER BY A.date_publication DESC";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindValue(":etat", 'En Attente', PDO::PARAM_STR);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur lors de la Récupération des Articles". $e->getMessage();
+            }
+        }
+
         // SHOW ONE ARTICLE
         public function showArticle(int $id){
             try{

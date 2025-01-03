@@ -269,7 +269,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Articles -->
-            <div id="admin-manage-articles" style="display: none;" class="py-10 px-8 bg-gray-200">
+            <div id="admin-manage-articles" style="display: block;" class="py-10 px-8 bg-gray-200">
                 <!-- Articles En Attente -->
                 <div class="flex flex-col justify-center mb-10">
                     <h1 class="font-semibold text-2xl mb-6">Articles <span class="text-yellow-500">En Attente</span></h1>
@@ -281,22 +281,36 @@ if ($_SESSION['role'] !== 'Admin') {
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contenu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Publication</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 text-xs">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
-                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Admin</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
-                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
-                                    <button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button>
-                                    <button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button>
-                                </td>
-                            </tr>
+
+                            <?php
+                                require_once '../../classes/article.php';
+
+                                $art = new Article();
+                                $articles = $art->pendingArticles();
+
+                                if (is_array($articles)) {
+                                    foreach ($articles as $article) {
+                                        echo '<tr>
+                                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . substr($article['titre'], 0, 20) . '...</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . substr($article['contenu'], 0, 30) . '...</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $article['nom_categorie'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
+                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button>
+                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button>
+                                                </td>
+                                            </tr>';
+                                    }
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -306,27 +320,40 @@ if ($_SESSION['role'] !== 'Admin') {
                     <h1 class="font-semibold text-2xl mb-6">Articles <span class="text-red-500">Refusés</span></h1>
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
-                            <tr class="bg-purple-700 text-white">
+                        <tr class="bg-purple-700 text-white">
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Couverture</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Titre</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contenu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Publication</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 text-xs">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
-                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Admin</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
-                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
-                                    <button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button>
-                                </td>
-                            </tr>
+                            <?php
+                                require_once '../../classes/article.php';
+
+                                $art = new Article();
+                                $articles = $art->refusedArticles();
+
+                                if (is_array($articles)) {
+                                    foreach ($articles as $article) {
+                                        echo '<tr>
+                                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . substr($article['titre'], 0, 20) . '...</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . substr($article['contenu'], 0, 30) . '...</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $article['nom_categorie'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
+                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button>
+                                                </td>
+                                            </tr>';
+                                    }
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -336,27 +363,40 @@ if ($_SESSION['role'] !== 'Admin') {
                     <h1 class="font-semibold text-2xl mb-6">Articles <span class="text-green-500">Acceptés</span></h1>
                     <table class="min-w-full divide-y divide-gray-200">
                         <thead>
-                            <tr class="bg-purple-700 text-white">
+                        <tr class="bg-purple-700 text-white">
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Couverture</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Titre</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contenu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Publication</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
                         <tbody class="bg-white divide-y divide-gray-200 text-xs">
-                            <tr>
-                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
-                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Admin</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
-                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
-                                    <button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button>
-                                </td>
-                            </tr>
+                            <?php
+                                require_once '../../classes/article.php';
+
+                                $art = new Article();
+                                $articles = $art->allArticles();
+
+                                if (is_array($articles)) {
+                                    foreach ($articles as $article) {
+                                        echo '<tr>
+                                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . substr($article['titre'], 0, 20) . '...</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . substr($article['contenu'], 0, 30) . '...</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $article['nom_categorie'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
+                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button>
+                                                </td>
+                                            </tr>';
+                                    }
+                                }
+                            ?>
                         </tbody>
                     </table>
                 </div>
