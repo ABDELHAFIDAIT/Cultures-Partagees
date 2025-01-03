@@ -111,7 +111,6 @@
             }
         }
 
-
         // SHOW ALL AUTHORS
         public function showAuthors(){
             try{

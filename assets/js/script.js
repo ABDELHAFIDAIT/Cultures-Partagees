@@ -16,25 +16,14 @@ openForm.addEventListener('click', function() {
 //================================================================================================
 
 
-//my-articles
-//author-statistics
-//author-profile
-
-// active : bg-purple-700 border-r-4 border-white
-// non active : 
-
-
 const optionAuthorStatistics = document.querySelector('#author-statistics');
 const optionAuthorProfile = document.querySelector('#author-profile');
 const optionAuthorArticles = document.querySelector('#author-articles');
 
-
-// auth-stat
-// auth-art
-
 const manageAuthorStatistics = document.querySelector('#auth-stat');
 const manageAuthorArticles = document.querySelector('#auth-art');
 const viewAllArticles = document.querySelector('#view-all-articles');
+const manageProfile = document.querySelector('#auth-profile');
 
 
 optionAuthorStatistics.addEventListener('click', function() {
@@ -44,6 +33,7 @@ optionAuthorStatistics.addEventListener('click', function() {
 
     manageAuthorStatistics.style.display = 'block';
     manageAuthorArticles.style.display = 'none';
+    manageProfile.style.display = 'none';
 });
 
 optionAuthorProfile.addEventListener('click', function() {
@@ -53,6 +43,7 @@ optionAuthorProfile.addEventListener('click', function() {
 
     manageAuthorStatistics.style.display = 'none';
     manageAuthorArticles.style.display = 'none';
+    manageProfile.style.display = 'flex';
 });
 
 optionAuthorArticles.addEventListener('click', function() {
@@ -62,6 +53,7 @@ optionAuthorArticles.addEventListener('click', function() {
 
     manageAuthorStatistics.style.display = 'none';
     manageAuthorArticles.style.display = 'grid';
+    manageProfile.style.display = 'none';
 });
 
 viewAllArticles.addEventListener('click', function() {
@@ -71,4 +63,5 @@ viewAllArticles.addEventListener('click', function() {
 
     manageAuthorStatistics.style.display = 'none';
     manageAuthorArticles.style.display = 'grid';
+    manageProfile.style.display = 'none';
 });
