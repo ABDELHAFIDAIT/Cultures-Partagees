@@ -69,4 +69,23 @@
                 return "Erreur lors de la Récupération des Articles". $e->getMessage();
             }
         }
+
+
+        // SHOW ALL AUTHORS
+        public function showAuthors(){
+            try{
+                $query = "SELECT * FROM users WHERE role = :role";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindValue(":role", 'Auteur', PDO::PARAM_STR);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur lors de la Récupération des Auteurs". $e->getMessage();
+            }
+        }
     }

@@ -85,45 +85,36 @@
             </div>
             <!-- Authors -->
             <div class="bg-white p-5 rounded-sm shadow-md h-min">
-                <div>
-                    <h1 class="text-purple-900 font-semibold text-xl mb-4 ">Amelia Anderson</h1>
-                    <ul class="flex flex-col text-gray-700 font-medium text-sm gap-1">
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                    </ul>
-                </div>
-                <hr class="border border-gray-300 my-4">
-                <div>
-                    <h1 class="text-purple-900 font-semibold text-xl mb-4 ">Amelia Anderson</h1>
-                    <ul class="flex flex-col text-gray-700 font-medium text-sm gap-1">
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                    </ul>
-                </div>
-                <hr class="border border-gray-300 my-4">
-                <div>
-                    <h1 class="text-purple-900 font-semibold text-xl mb-4 ">Amelia Anderson</h1>
-                    <ul class="flex flex-col text-gray-700 font-medium text-sm gap-1">
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                    </ul>
-                </div>
-                <hr class="border border-gray-300 my-4">
-                <div>
-                    <h1 class="text-purple-900 font-semibold text-xl mb-4 ">Amelia Anderson</h1>
-                    <ul class="flex flex-col text-gray-700 font-medium text-sm gap-1">
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                    </ul>
-                </div>
-                <hr class="border border-gray-300 my-4">
-                <div>
-                    <h1 class="text-purple-900 font-semibold text-xl mb-4 ">Amelia Anderson</h1>
-                    <ul class="flex flex-col text-gray-700 font-medium text-sm gap-1">
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                        <li>• Lorem ipsum dolor sit amet.</li>
-                    </ul>
-                </div>
+
+
+                <?php
+                
+                    require_once '../../classes/auteur.php';
+
+                    $auteur = new Auteur();
+                    $authors = $auteur->showAuthors();
+                    
+
+                    if($authors){
+                        foreach($authors as $author){
+                            $articles = $auteur->ownArticles($author['id_user']);
+                                echo '
+                                    <div>
+                                        <h1 class="text-purple-900 font-semibold text-xl mb-4 ">'. $author['prenom'] . ' ' . $author['nom'] .'</h1>
+                                        <ul class="flex flex-col text-gray-700 font-medium text-sm gap-2">';
+                                        if(count($articles) == 0){
+                                            echo '<li>AUcun Article n\'est trouvé !</li>';
+                                        }
+                                        for ($i=0; $i < count($articles) ; $i++) { 
+                                             echo '<li>• '. $articles[$i]['titre'] .'</li>';
+                                        }
+                                echo '</ul>
+                                    </div>
+                                    <hr class="border border-gray-300 my-4">';
+                        }
+                    }
+                
+                ?>
             </div>
         </div>
     </main>
