@@ -1,15 +1,15 @@
 <?php
-    session_start();
-    if($_SESSION['role'] !== 'Auteur'){
-        if($_SESSION['role'] === 'Admin'){
-            header("Location: ../admin/dashboard.php");
-        }else if($_SESSION['role'] === 'Utilisateur'){
-            header("Location: ../user/articles.php");
-        }else{
-            header("Location: ../../index.php");
-        }
-        exit;
+session_start();
+if ($_SESSION['role'] !== 'Auteur') {
+    if ($_SESSION['role'] === 'Admin') {
+        header("Location: ../admin/dashboard.php");
+    } else if ($_SESSION['role'] === 'Utilisateur') {
+        header("Location: ../user/articles.php");
+    } else {
+        header("Location: ../../index.php");
     }
+    exit;
+}
 ?>
 
 
@@ -54,7 +54,7 @@
                     <i class="fas fa-pencil-alt mr-3"></i>
                     Mes Articles
                 </a>
-                <a href="#" class="flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                <a id="open-add-article"class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-plus-circle mr-3"></i>
                     Nouvel Article
                 </a>
@@ -82,7 +82,8 @@
                         <div class="flex items-center">
                             <div class="ml-4">
                                 <h2 class="text-xl font-semibold text-gray-800">Dashboard</h2>
-                                <p class="text-sm text-gray-600">Bienvenue, <?php echo $_SESSION['prenom'] . " " . $_SESSION['nom'] ?></p>
+                                <p class="text-sm text-gray-600">Bienvenue,
+                                    <?php echo $_SESSION['prenom'] . " " . $_SESSION['nom'] ?></p>
                             </div>
                         </div>
                         <div class="flex items-center space-x-4">
@@ -111,11 +112,11 @@
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">Total</p>
                                 <?php
-                                    require_once '../../classes/article.php';
+                                require_once '../../classes/article.php';
 
-                                    $article = new Article();
-                                    $nbr = $article->countArticles((int)$_SESSION['id_user']);
-                                    echo '<h3 class="text-2xl font-bold text-gray-800">'. $nbr['nbr_articles'] .'</h3>';
+                                $article = new Article();
+                                $nbr = $article->countArticles((int) $_SESSION['id_user']);
+                                echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
                                 ?>
                             </div>
                             <div class="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
@@ -130,11 +131,11 @@
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">Approuvés</p>
                                 <?php
-                                    require_once '../../classes/article.php';
-                                    $etat = 'Accepté';
-                                    $article = new Article();
-                                    $nbr = $article->statusArticles((int)$_SESSION['id_user'], $etat);
-                                    echo '<h3 class="text-2xl font-bold text-gray-800">'. $nbr['nbr_articles'] .'</h3>';
+                                require_once '../../classes/article.php';
+                                $etat = 'Accepté';
+                                $article = new Article();
+                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
+                                echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
                                 ?>
                             </div>
                             <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
@@ -149,11 +150,11 @@
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">En Attente</p>
                                 <?php
-                                    require_once '../../classes/article.php';
-                                    $etat = 'En Attente';
-                                    $article = new Article();
-                                    $nbr = $article->statusArticles((int)$_SESSION['id_user'], $etat);
-                                    echo '<h3 class="text-2xl font-bold text-gray-800">'. $nbr['nbr_articles'] .'</h3>';
+                                require_once '../../classes/article.php';
+                                $etat = 'En Attente';
+                                $article = new Article();
+                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
+                                echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
                                 ?>
                             </div>
                             <div class="h-12 w-12 rounded-full bg-yellow-100 flex items-center justify-center">
@@ -168,11 +169,11 @@
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">Refusés</p>
                                 <?php
-                                    require_once '../../classes/article.php';
-                                    $etat = 'En Attente';
-                                    $article = new Article();
-                                    $nbr = $article->statusArticles((int)$_SESSION['id_user'], $etat);
-                                    echo '<h3 class="text-2xl font-bold text-gray-800">'. $nbr['nbr_articles'] .'</h3>';
+                                require_once '../../classes/article.php';
+                                $etat = 'En Attente';
+                                $article = new Article();
+                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
+                                echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
                                 ?>
                             </div>
                             <div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
@@ -193,14 +194,14 @@
                             <div class="flex flex-col gap-4">
 
                                 <?php
-                                    require_once '../../classes/categorie.php';
+                                require_once '../../classes/categorie.php';
 
-                                    $cat = new Categorie();
-                                    $result = $cat->distributeCategories((int)$_SESSION['id_user']);
+                                $cat = new Categorie();
+                                $result = $cat->distributeCategories((int) $_SESSION['id_user']);
 
-                                    if(count($result) > 0) {
-                                        foreach($result as $row) {
-                                            echo '
+                                if (count($result) > 0) {
+                                    foreach ($result as $row) {
+                                        echo '
                                                 <div class="p-4 bg-gray-50 rounded-lg">
                                                     <div class="flex items-center justify-between">
                                                         <div class="flex items-center">
@@ -208,14 +209,14 @@
                                                                 class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
                                                                 <i class="fa-solid fa-thumbtack text-blue-600"></i>
                                                             </div>
-                                                            <span class="ml-3 font-medium text-gray-700">'. $row['nom_categorie'] .'</span>
+                                                            <span class="ml-3 font-medium text-gray-700">' . $row['nom_categorie'] . '</span>
                                                         </div>
-                                                        <span class="text-sm text-gray-500">'. $row['nbr_articles'] .' articles</span>
+                                                        <span class="text-sm text-gray-500">' . $row['nbr_articles'] . ' articles</span>
                                                     </div>
                                                 </div>
                                             ';
-                                        }
                                     }
+                                }
 
                                 ?>
                             </div>
@@ -232,36 +233,36 @@
                         <div class="space-y-4">
 
                             <?php
-                                require_once '../../classes/auteur.php';
+                            require_once '../../classes/auteur.php';
 
-                                $auteur = new Auteur();
-                                $articles = $auteur->ownArticles((int)$_SESSION['id_user']);
+                            $auteur = new Auteur();
+                            $articles = $auteur->ownArticles((int) $_SESSION['id_user']);
 
-                                if(count($articles) > 0) {
-                                    foreach($articles as $article) {
-                                        echo '
+                            if (count($articles) > 0) {
+                                foreach ($articles as $article) {
+                                    echo '
                                             <div
                                                 class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
                                                 <img src="../../assets/img/default-image.png" alt="Article"
                                                     class="h-16 w-16 rounded-lg object-cover">
                                                 <div class="ml-4 flex-1 flex flex-col justify-between">
-                                                    <h4 class="text-sm font-semibold text-gray-800">'. $article['titre'] .'</h4>
-                                                    <p class="text-sm text-gray-600">'. $article['date_publication'] .'</p>
+                                                    <h4 class="text-sm font-semibold text-gray-800">' . $article['titre'] . '</h4>
+                                                    <p class="text-sm text-gray-600">' . $article['date_publication'] . '</p>
                                                     <div class="flex items-center mt-1">';
 
-                                                    if($article['etat'] == 'Accepté') {
-                                                        echo '<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">'. $article['etat'] .'</span>';
-                                                    }else if($article['etat'] == 'En Attente') {
-                                                        echo '<span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">'. $article['etat'] .'</span>';
-                                                    }else{
-                                                        echo '<span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">'. $article['etat'] .'</span>';
-                                                    }
-                                                    echo '</div>
+                                    if ($article['etat'] == 'Accepté') {
+                                        echo '<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $article['etat'] . '</span>';
+                                    } else if ($article['etat'] == 'En Attente') {
+                                        echo '<span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $article['etat'] . '</span>';
+                                    } else {
+                                        echo '<span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $article['etat'] . '</span>';
+                                    }
+                                    echo '</div>
                                                 </div>
                                             </div>
                                         ';
-                                    }
                                 }
+                            }
                             ?>
                         </div>
                     </div>
@@ -269,45 +270,97 @@
             </div>
 
             <!-- articles -->
-            <div class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
+            <div style="display:none;" class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
                 <?php
+
+                require_once '../../classes/auteur.php';
+
+                $auteur = new Auteur();
+                $articles = $auteur->ownArticles((int) $_SESSION['id_user']);
+
+                // print_r($articles);
                 
-                    require_once '../../classes/auteur.php';
-
-                    $auteur = new Auteur();
-                    $articles = $auteur->ownArticles((int)$_SESSION['id_user']);
-
-                    // print_r($articles);
-
-                    foreach($articles as $art){
-                        echo '<article class="relative bg-white shadow-md rounded-md">';
-                        echo'<div>
+                foreach ($articles as $art) {
+                    echo '<article class="relative bg-white shadow-md rounded-md">';
+                    echo '<div>
                                 <img src="../../assets/img/default-image.png" class="rounded-t-md" alt="Couverture de l\'Article">
                             </div>';
-                        echo '<div class="p-4">';
-                                echo '<p class="text-gray-800 font-medium text-sm">'. $art['date_publication'] .' •</p>';
-                        echo '<div class="pt-5">
-                                    <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">'. $art['titre'] .'</h1></a>
-                                    <p class="text-gray-700 font-medium text-md">'. substr($art['contenu'], 0, 100) .'...</p>
+                    echo '<div class="p-4">';
+                    echo '<p class="text-gray-800 font-medium text-sm">' . $art['date_publication'] . ' •</p>';
+                    echo '<div class="pt-5">
+                                    <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">' . $art['titre'] . '</h1></a>
+                                    <p class="text-gray-700 font-medium text-md">' . substr($art['contenu'], 0, 100) . '...</p>
                                 </div>
                                 <div class="flex justify-end items-center gap-5 mt-5">
                                     <a href="#">
                                         <button type="button" class="py-2 px-5 rounded-sm text-white bg-blue-500 text-sm duration-500 hover:bg-blue-700">Modifier</button>
                                     </a>
-                                    <a href="../../actions/deleteArticle.php?id='. $art['id_article'] .'">
+                                    <a href="../../actions/deleteArticle.php?id=' . $art['id_article'] . '">
                                         <button type="button" class="py-2 px-5 rounded-sm text-white bg-red-500 text-sm  duration-500 hover:bg-red-700">Supprimer</button>
                                     </a>
                                 </div>
                             </div>
-                            <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">'. $art['nom_categorie'] .'</p>
+                            <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">' . $art['nom_categorie'] . '</p>
                         </article>';
-                    }
-                
+                }
+
                 ?>
 
             </div>
+
+            <!-- New Article Form -->
+            <div style="display:none;" class="fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center">
+                <div class="max-w-4xl w-full space-y-8 bg-white px-8 py-5 rounded-lg shadow-lg animate__animated animate__fadeIn">
+                    <div>
+                        <h2 class="text-center text-3xl font-extrabold text-gray-900">
+                            Ajouter un Nouvel Article
+                        </h2>
+                    </div>
+                    <form method="POST" action="../../actions/addArticle.php" id="addArticleForm" class="mt-8 space-y-6">
+                        <div class="rounded-md shadow-sm flex flex-col gap-5">
+                            <div>
+                                <label for="titre" class="sr-only">Titre</label>
+                                <input id="titre" name="titre" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Titre de l'Article">
+                            </div>
+                            <div>
+                                <label for="categorie" class="sr-only">Categorie</label>
+                                <select id="categorie" name="categorie" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm">
+                                    <?php
+                                        require_once '../../classes/categorie.php';
+
+                                        $cat = new Categorie();
+                                        $categories = $cat->allCategories();
+
+                                        if (count($categories) > 0) {
+                                            foreach ($categories as $categorie) {
+                                                echo '<option value="' . $categorie['id_categorie'] . '">' . $categorie['nom_categorie'] . '</option>';
+                                            }
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="contenu" class="sr-only">Contenu</label>
+                                <textarea id="contenu" name="contenu" required class="appearance-none rounded-none relative block w-full h-[45vh] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Entrer le Contenu de votre Article ici.."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-10">
+                            <button type="submit" name="add-article" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium  text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                                Enregister
+                            </button>
+                            <button type="button" name="cancel-article" class="group relative w-full flex justify-center py-2 px-4 border border-gray-800 text-sm font-medium text-black bg-transparent duration-500 hover:bg-red-700 hover:border-none hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
+                                Annuler
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
         </section>
     </main>
+
+    <script src="../../assets/js/script.js"></script>
 </body>
 
 </html>
