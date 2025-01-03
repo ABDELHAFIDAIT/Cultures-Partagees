@@ -1,8 +1,8 @@
 <?php
 session_start();
-if ($_SESSION['role'] !== 'Auteur') {
-    if ($_SESSION['role'] === 'Admin') {
-        header("Location: ../admin/dashboard.php");
+if ($_SESSION['role'] !== 'Admin') {
+    if ($_SESSION['role'] === 'Auteur') {
+        header("Location: ../auteur/dashboard.php");
     } else if ($_SESSION['role'] === 'Utilisateur') {
         header("Location: ../user/articles.php");
     } else {
@@ -36,7 +36,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                 <div class="flex items-center space-x-3">
                     <div>
                         <h1 class="text-2xl font-bold">Culture<span class="text-black">Connect</span></h1>
-                        <p class="text-purple-300 text-sm">Espace Auteur</p>
+                        <p class="text-purple-300 text-sm">Espace Admin</p>
                     </div>
                 </div>
             </div>
@@ -46,19 +46,24 @@ if ($_SESSION['role'] !== 'Auteur') {
                     <p class="text-xs uppercase text-purple-300">Menu Principal</p>
                 </div>
 
-                <div id="author-statistics" class="cursor-pointer flex items-center px-6 py-3 bg-purple-700 border-r-4 border-white hover:bg-purple-700 transition-colors duration-200">
+                <div id="admin-statistics" class="cursor-pointer flex items-center px-6 py-3 bg-purple-700 border-r-4 border-white hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-chart-line mr-3"></i>
                     Dashboard
                 </div>
 
-                <div id="author-articles" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                <div id="admin-articles" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-pencil-alt mr-3"></i>
-                    Mes Articles
+                    Gestion des Articles
                 </div>
 
-                <div id="open-add-article" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                <div id="admin-authors" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-plus-circle mr-3"></i>
-                    Nouvel Article
+                    Les Auteurs
+                </div>
+
+                <div id="admin-users" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                    <i class="fas fa-plus-circle mr-3"></i>
+                    Les Utilisateurs
                 </div>
 
                 <div class="px-6 py-3 mt-6">
@@ -70,11 +75,11 @@ if ($_SESSION['role'] !== 'Auteur') {
                     Profil
                 </div>
 
-                <a href="../../actions/logout.php"
+                <div href="../../actions/logout.php"
                     class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Déconnexion
-                <a>
+                <div>
             </nav>
         </aside>
 
