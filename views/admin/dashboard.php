@@ -71,11 +71,11 @@ if ($_SESSION['role'] !== 'Admin') {
                     Les Utilisateurs
                 </div>
 
-                <div class="px-6 py-3 mt-6">
+                <div class="px-6 py-3 mt-2">
                     <p class="text-xs uppercase text-purple-300">Paramètres</p>
                 </div>
 
-                <div id="author-profile" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                <div id="admin-profile" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-user-circle mr-3"></i>
                     Profil
                 </div>
@@ -89,7 +89,7 @@ if ($_SESSION['role'] !== 'Admin') {
         </aside>
 
         <!-- Main Content -->
-        <section class="flex-1 overflow-x-hidden overflow-y-auto">
+        <section style="" class="flex-1 overflow-x-hidden overflow-y-auto">
             <!-- Top Navigation -->
             <nav class="bg-white shadow-md">
                 <div class="mx-auto px-8 py-4">
@@ -118,7 +118,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </nav>
 
             <!-- Dashboard -->
-            <div id="auth-stat" class="p-8 bg-gray-200">
+            <div id="admin-manage-statistics" class="p-8 bg-gray-200">
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <div
@@ -126,13 +126,7 @@ if ($_SESSION['role'] !== 'Admin') {
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">Total</p>
-                                <?php
-                                require_once '../../classes/article.php';
-
-                                $article = new Article();
-                                $nbr = $article->countArticles((int) $_SESSION['id_user']);
-                                echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
-                                ?>
+                                
                             </div>
                             <div class="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
                                 <i class="fas fa-newspaper text-purple-600 text-xl"></i>
@@ -144,14 +138,7 @@ if ($_SESSION['role'] !== 'Admin') {
                         class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
                         <div class="flex items-center justify-between">
                             <div>
-                                <p class="text-sm text-gray-500 mb-1">Approuvés</p>
-                                <?php
-                                require_once '../../classes/article.php';
-                                $etat = 'Accepté';
-                                $article = new Article();
-                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
-                                echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
-                                ?>
+                                
                             </div>
                             <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
                                 <i class="fas fa-check-circle text-green-600 text-xl"></i>
@@ -164,13 +151,7 @@ if ($_SESSION['role'] !== 'Admin') {
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">En Attente</p>
-                                <?php
-                                require_once '../../classes/article.php';
-                                $etat = 'En Attente';
-                                $article = new Article();
-                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
-                                echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
-                                ?>
+                    
                             </div>
                             <div class="h-12 w-12 rounded-full bg-yellow-100 flex items-center justify-center">
                                 <i class="fas fa-hourglass-half text-yellow-600 text-xl"></i>
@@ -183,13 +164,7 @@ if ($_SESSION['role'] !== 'Admin') {
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">Refusés</p>
-                                <?php
-                                require_once '../../classes/article.php';
-                                $etat = 'Refusé';
-                                $article = new Article();
-                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
-                                echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
-                                ?>
+                                
                             </div>
                             <div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
                                 <i class="fa-solid fa-ban text-red-600 text-xl"></i>
@@ -207,33 +182,6 @@ if ($_SESSION['role'] !== 'Admin') {
                                 <h3 class="text-lg font-semibold text-gray-800">Distribution par Catégorie</h3>
                             </div>
                             <div class="flex flex-col gap-4">
-
-                                <?php
-                                require_once '../../classes/categorie.php';
-
-                                $cat = new Categorie();
-                                $result = $cat->distributeCategories((int) $_SESSION['id_user']);
-
-                                if (count($result) > 0) {
-                                    foreach ($result as $row) {
-                                        echo '
-                                                <div class="p-4 bg-gray-50 rounded-lg">
-                                                    <div class="flex items-center justify-between">
-                                                        <div class="flex items-center">
-                                                            <div
-                                                                class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
-                                                                <i class="fa-solid fa-thumbtack text-blue-600"></i>
-                                                            </div>
-                                                            <span class="ml-3 font-medium text-gray-700">' . $row['nom_categorie'] . '</span>
-                                                        </div>
-                                                        <span class="text-sm text-gray-500">' . $row['nbr_articles'] . ' articles</span>
-                                                    </div>
-                                                </div>
-                                            ';
-                                    }
-                                }
-
-                                ?>
                             </div>
                         </div>
                     </div>
@@ -247,140 +195,276 @@ if ($_SESSION['role'] !== 'Admin') {
                         </div>
                         <div class="space-y-4">
 
-                            <?php
-                            require_once '../../classes/auteur.php';
-
-                            $auteur = new Auteur();
-                            $articles = $auteur->recentArticles((int)$_SESSION['id_user']);
-
-                            if (count($articles) > 0) {
-                                foreach ($articles as $article) {
-                                    echo '
-                                            <div
-                                                class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-                                                <img src="../../assets/img/default-image.png" alt="Article"
-                                                    class="h-16 w-16 rounded-lg object-cover">
-                                                <div class="ml-4 flex-1 flex flex-col justify-between">
-                                                    <h4 class="text-sm font-semibold text-gray-800">' . $article['titre'] . '</h4>
-                                                    <p class="text-sm text-gray-600">' . $article['date_publication'] . '</p>
-                                                    <div class="flex items-center mt-1">';
-
-                                    if ($article['etat'] == 'Accepté') {
-                                        echo '<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $article['etat'] . '</span>';
-                                    } else if ($article['etat'] == 'En Attente') {
-                                        echo '<span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $article['etat'] . '</span>';
-                                    } else {
-                                        echo '<span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $article['etat'] . '</span>';
-                                    }
-                                    echo '</div>
-                                                </div>
-                                            </div>
-                                        ';
-                                }
-                            }
-                            ?>
+                            
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- articles -->
-            <div style="display:none;" id="auth-art" class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
-                <?php
+            <!-- Categories -->
+            <div id="admin-manage-categories" style="display: none;" class="p-8 bg-gray-200">
+                <!-- add category button & search bar -->
+                <div class="flex justify-between items-center mb-10">
+                    <button type="button" id="open-add-cat" class="py-2 px-5 bg-purple-800 text-white hover:bg-purple-700 transition-colors duration-200">
+                        Ajouter une Catégorie
+                        <i class="fas fa-plus ml-1"></i>
+                    </button>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
 
-                require_once '../../classes/auteur.php';
-
-                $auteur = new Auteur();
-                $articles = $auteur->ownArticles((int) $_SESSION['id_user']);
-
-                // print_r($articles);
-                
-                foreach ($articles as $art) {
-                    echo '<article class="relative bg-white shadow-md rounded-md">';
-                    echo '<div>
-                                <img src="../../assets/img/default-image.png" class="rounded-t-md" alt="Couverture de l\'Article">
-                            </div>';
-                    echo '<div class="p-4">';
-                    echo '<p class="text-gray-800 font-medium text-sm">' . $art['date_publication'] . ' •</p>';
-                    echo '<div class="pt-5">
-                                    <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">' . $art['titre'] . '</h1></a>
-                                    <p class="text-gray-700 font-medium text-md">' . substr($art['contenu'], 0, 100) . '...</p>
-                                </div>
-                                <div class="flex justify-end items-center gap-5 mt-5">
-                                    <a href="#">
-                                        <button type="button" class="py-2 px-5 rounded-sm text-white bg-blue-500 text-sm duration-500 hover:bg-blue-700">Modifier</button>
-                                    </a>
-                                    <a href="../../actions/deleteArticle.php?id=' . $art['id_article'] . '">
-                                        <button type="button" class="py-2 px-5 rounded-sm text-white bg-red-500 text-sm  duration-500 hover:bg-red-700">Supprimer</button>
-                                    </a>
-                                </div>
-                            </div>
-                            <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">' . $art['nom_categorie'] . '</p>';
-                            if ($art['etat'] == 'Accepté') {
-                                echo '<span class="absolute top-2 left-2 text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $art['etat'] . '</span>';
-                            } else if ($art['etat'] == 'En Attente') {
-                                echo '<span class="absolute top-2 left-2 text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $art['etat'] . '</span>';
-                            } else {
-                                echo '<span class="absolute top-2 left-2 text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $art['etat'] . '</span>';
-                            }
-                        echo '</article>';
-                }
-
-                ?>
-
+                        <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300" placeholder="Search">
+                    </div>
+                </div>
+                <!-- categories table -->
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead>
+                        <tr class="bg-gradient-to-r from-pink-600 to-purple-700 text-white">
+                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Description</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre Articles</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
+                            <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
+                            <td class="px-6 py-4 whitespace-nowrap">Admin</td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <button class="px-4 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Modifier</button>
+                                <button class="ml-2 px-4 py-1 text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Supprimer</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
 
-            <!-- New Article Form -->
-            <div style="display:none;" class="z-10 fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center ">
-                <div class="max-w-4xl w-full space-y-8 bg-white px-8 py-5 rounded-lg shadow-lg animate__animated animate__fadeIn">
-                    <div>
-                        <h2 class="text-center text-3xl font-extrabold text-gray-900">
-                            Ajouter un Nouvel Article
-                        </h2>
+            <!-- Articles -->
+            <div id="admin-manage-articles" style="display: none;" class="py-10 px-8 bg-gray-200">
+                <!-- Articles En Attente -->
+                <div class="flex flex-col justify-center mb-10">
+                    <h1 class="font-semibold text-2xl mb-6">Articles <span class="text-yellow-500">En Attente</span></h1>
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                            <tr class="bg-purple-700 text-white">
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Couverture</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Titre</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contenu</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-xs">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
+                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Admin</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
+                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button>
+                                    <button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Articles Refusés -->
+                <div class="flex flex-col justify-center mb-10">
+                    <h1 class="font-semibold text-2xl mb-6">Articles <span class="text-red-500">Refusés</span></h1>
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                            <tr class="bg-purple-700 text-white">
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Couverture</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Titre</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contenu</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-xs">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
+                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Admin</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
+                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Articles Accptés -->
+                <div class="flex flex-col justify-center mb-10">
+                    <h1 class="font-semibold text-2xl mb-6">Articles <span class="text-green-500">Acceptés</span></h1>
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                            <tr class="bg-purple-700 text-white">
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Couverture</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Titre</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contenu</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200 text-xs">
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
+                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Admin</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
+                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
+                                    <button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Authors -->
+            <div id="admin-manage-authors" style="display: none;" class="p-8 bg-gray-200 h-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                                <p class="text-sm text-gray-600">Articles: 10</p>
+                            </div>
+                        </div>
                     </div>
-                    <form method="POST" action="../../actions/addArticle.php" id="addArticleForm" class="mt-8 space-y-6">
-                        <div class="rounded-md shadow-sm flex flex-col gap-5">
-                            <div>
-                                <label for="titre" class="sr-only">Titre</label>
-                                <input id="titre" name="titre" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Titre de l'Article">
-                            </div>
-                            <div>
-                                <label for="categorie" class="sr-only">Categorie</label>
-                                <select id="categorie" name="categorie" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm">
-                                    <?php
-                                        require_once '../../classes/categorie.php';
-
-                                        $cat = new Categorie();
-                                        $categories = $cat->allCategories();
-
-                                        if (count($categories) > 0) {
-                                            foreach ($categories as $categorie) {
-                                                echo '<option value="' . $categorie['id_categorie'] . '">' . $categorie['nom_categorie'] . '</option>';
-                                            }
-                                        }
-                                    ?>
-                                </select>
-                            </div>
-                            <div>
-                                <label for="contenu" class="sr-only">Contenu</label>
-                                <textarea id="contenu" name="contenu" required class="appearance-none rounded-none relative block w-full h-[45vh] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Entrer le Contenu de votre Article ici.."></textarea>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                                <p class="text-sm text-gray-600">Articles: 10</p>
                             </div>
                         </div>
-
-                        <div class="flex items-center gap-10">
-                            <button type="submit" name="add-article" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium  text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
-                                Enregister
-                            </button>
-                            <button type="button" name="cancel-article" id="cancel-article" class="group relative w-full flex justify-center py-2 px-4 border border-gray-800 text-sm font-medium text-black bg-transparent duration-500 hover:bg-red-700 hover:border-none hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
-                                Annuler
-                            </button>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                                <p class="text-sm text-gray-600">Articles: 10</p>
+                            </div>
                         </div>
-                    </form>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                                <p class="text-sm text-gray-600">Articles: 10</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                                <p class="text-sm text-gray-600">Articles: 10</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                                <p class="text-sm text-gray-600">Articles: 10</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Users -->
+            <div id="admin-manage-users" style="display: none;" class="p-8 bg-gray-200 h-full">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                        <div class="flex items-center justify-center">
+                            <div class="flex flex-col items-center">
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
+                                <p class="text-sm text-gray-600">john.doe@example.com</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
             <!-- Profile Section -->
-            <div style="display:none;" id="auth-profile" class="flex justify-center bg-gray-200 p-10">
+            <div id="admin-manage-profile" style="display: none;" class="flex justify-center bg-gray-200 p-10">
                 <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full overflow-hidden transition-all duration-300 hover:shadow-indigo-500/50 ">
                     <?php
                         require_once '../../classes/user.php';
@@ -389,7 +473,7 @@ if ($_SESSION['role'] !== 'Admin') {
                         $auteur = $user->profile((int)$_SESSION['id_user']);
 
                     ?>
-                    <div class="relative h-32 bg-gradient-to-r from-indigo-600 to-blue-700">
+                    <div class="relative h-32 bg-gradient-to-r from-pink-600 to-purple-700">
                         <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg" alt="<?php echo $auteur['prenom'] . ' ' . $auteur['nom']; ?>" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-24 h-24 rounded-full border-4 border-white transition-transform duration-300 hover:scale-105 z-0">
                     </div>
                     
@@ -416,17 +500,51 @@ if ($_SESSION['role'] !== 'Admin') {
                         </div>
                     </div>
                     <div class="bg-gray-50 px-6 py-4">
-                        <button class="w-full bg-indigo-800 text-white py-2 rounded-lg font-semibold hover:bg-blue-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2">
+                        <button class="w-full bg-purple-700 text-white py-2 rounded-lg font-semibold hover:bg-purple-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2">
                             Modifier
                         </button>
                     </div>
                 </div>
             </div>
 
+            <!-- Add New Category -->
+            <div style="display:none;" class="z-10 fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center ">
+                <div class="max-w-md w-full space-y-8 bg-white px-8 py-5 rounded-lg shadow-lg animate__animated animate__fadeIn">
+                    <div>
+                        <h2 class="text-center text-3xl font-extrabold text-gray-900">
+                            Nouvelle Catégorie
+                        </h2>
+                    </div>
+                    <form method="POST" action="../../actions/addArticle.php" id="addCategoryForm" class="mt-8 space-y-6">
+                        <div class="rounded-md shadow-sm flex flex-col gap-5">
+                            <div>
+                                <label for="nom-cat" class="sr-only">Nom</label>
+                                <input id="nom-cat" name="nom-cat" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Nom de Catégorie">
+                            </div>
+                            <div>
+                                <label for="description" class="sr-only">Description</label>
+                                <textarea id="description" name="description" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Entrer le Contenu de votre Article ici.."></textarea>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-10">
+                            <button type="submit" name="add-cat" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium  text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                                Enregister
+                            </button>
+                            <button type="button" name="cancel-cat" id="cancel-cat" class="group relative w-full flex justify-center py-2 px-4 border border-gray-800 text-sm font-medium text-black bg-transparent duration-500 hover:bg-red-700 hover:border-none hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
+                                Annuler
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+
         </section>
+            
     </main>
 
-    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/admin.js"></script>
 </body>
 
 </html>

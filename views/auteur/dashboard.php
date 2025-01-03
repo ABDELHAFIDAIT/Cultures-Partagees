@@ -416,7 +416,7 @@ if ($_SESSION['role'] !== 'Auteur') {
         </section>
     </main>
 
-    <script src="../../assets/js/script.js"></script>
+    <script src="../../assets/js/auteur.js"></script>
 </body>
 
 </html>
