@@ -74,7 +74,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                     class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Déconnexion
-                <a>
+                </a>
             </nav>
         </aside>
 
@@ -96,7 +96,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                                 <i class="fas fa-bell text-xl"></i>
                             </button>
                             <div class="relative">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Profile"
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile"
                                     class="h-10 w-10 rounded-full object-cover">
                                 <div
                                     class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-400 border-2 border-white">
@@ -379,7 +379,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                         $auteur = $user->profile((int)$_SESSION['id_user']);
 
                     ?>
-                    <div class="relative h-32 bg-gradient-to-r from-indigo-600 to-blue-700">
+                    <div class="relative h-32 bg-gradient-to-r from-pink-600 to-purple-700">
                         <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg" alt="<?php echo $auteur['prenom'] . ' ' . $auteur['nom']; ?>" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-24 h-24 rounded-full border-4 border-white transition-transform duration-300 hover:scale-105 z-0">
                     </div>
                     
@@ -406,7 +406,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                         </div>
                     </div>
                     <div class="bg-gray-50 px-6 py-4">
-                        <button class="w-full bg-indigo-800 text-white py-2 rounded-lg font-semibold hover:bg-blue-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2">
+                        <button class="w-full bg-purple-700 text-white py-2 rounded-lg font-semibold hover:bg-purple-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2">
                             Modifier
                         </button>
                     </div>

@@ -51,18 +51,23 @@ if ($_SESSION['role'] !== 'Admin') {
                     Dashboard
                 </div>
 
+                <div id="admin-categories" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                    <i class="fa-solid fa-layer-group mr-3"></i>
+                    Les Catégories
+                </div>
+
                 <div id="admin-articles" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
-                    <i class="fas fa-pencil-alt mr-3"></i>
-                    Gestion des Articles
+                    <i class="fa-solid fa-newspaper mr-3"></i>
+                    Les Articles
                 </div>
 
                 <div id="admin-authors" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
-                    <i class="fas fa-plus-circle mr-3"></i>
+                    <i class="fa-solid fa-user-pen mr-3"></i>
                     Les Auteurs
                 </div>
 
                 <div id="admin-users" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
-                    <i class="fas fa-plus-circle mr-3"></i>
+                    <i class="fa-solid fa-users mr-3"></i>
                     Les Utilisateurs
                 </div>
 
@@ -75,11 +80,11 @@ if ($_SESSION['role'] !== 'Admin') {
                     Profil
                 </div>
 
-                <div href="../../actions/logout.php"
+                <a href="../../actions/logout.php"
                     class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Déconnexion
-                <div>
+                </a>
             </nav>
         </aside>
 
@@ -101,7 +106,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                 <i class="fas fa-bell text-xl"></i>
                             </button>
                             <div class="relative">
-                                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330" alt="Profile"
+                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile"
                                     class="h-10 w-10 rounded-full object-cover">
                                 <div
                                     class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-400 border-2 border-white">
