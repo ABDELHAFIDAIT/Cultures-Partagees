@@ -1,13 +1,13 @@
 <?php
 
-    require_once './user.php';
+    require_once __DIR__ .'./user.php';
 
     class Admin extends User{
 
         // SHOW ALL CATEGORIES METHOD
         public function showCategories(){
             try {
-                $sql = "SELECT * FROM categorie";
+                $sql = "SELECT * , COUNT(A.id_article) AS nbr_articles FROM categorie C JOIN article A ON C.id_categorie = A.id_categorie GROUP BY C.id_categorie";
                 $stmt = $this->database->getConnection()->prepare($sql);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){

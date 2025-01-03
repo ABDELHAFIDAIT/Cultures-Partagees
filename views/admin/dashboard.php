@@ -89,7 +89,7 @@ if ($_SESSION['role'] !== 'Admin') {
         </aside>
 
         <!-- Main Content -->
-        <section style="" class="flex-1 overflow-x-hidden overflow-y-auto">
+        <section style="" class="flex-1">
             <!-- Top Navigation -->
             <nav class="bg-white shadow-md">
                 <div class="mx-auto px-8 py-4">
@@ -220,27 +220,52 @@ if ($_SESSION['role'] !== 'Admin') {
                     </div>
                 </div>
                 <!-- categories table -->
-                <table class="min-w-full divide-y divide-gray-200">
-                    <thead>
-                        <tr class="bg-gradient-to-r from-pink-600 to-purple-700 text-white">
-                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Description</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre Articles</th>
-                            <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
-                        <tr>
-                            <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
-                            <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
-                            <td class="px-6 py-4 whitespace-nowrap">Admin</td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <button class="px-4 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Modifier</button>
-                                <button class="ml-2 px-4 py-1 text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Supprimer</button>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <div class="min-w-max overflow-visible">
+                    <table class="divide-y divide-gray-200">
+                        <thead>
+                            <tr class="bg-gradient-to-r from-pink-600 to-purple-700 text-white">
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Description</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre Articles</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                            
+                            <?php
+                                require_once '../../classes/admin.php';
+
+                                $admin = new Admin();
+                                $categories = $admin->showCategories();
+
+                                if (is_array($categories)) {
+                                    foreach ($categories as $categorie) {
+                                        echo '<tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $categorie['nom_categorie'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $categorie['description'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $categorie['nbr_articles'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <a href="#"><button class="px-4 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Modifier</button></a>
+                                                    <a href="#"><button class="ml-2 px-4 py-1 text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Supprimer</button></a>
+                                                </td>
+                                            </tr>';
+                                    }
+                                }
+                            ?>
+
+
+                            <!-- <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
+                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Admin</td>
+                                <td class="px-6 py-4 whitespace-nowrap">
+                                    <button class="px-4 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Modifier</button>
+                                    <button class="ml-2 px-4 py-1 text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Supprimer</button>
+                                </td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
 
             <!-- Articles -->
