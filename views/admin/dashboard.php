@@ -269,7 +269,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Articles -->
-            <div id="admin-manage-articles" style="display: block;" class="py-10 px-8 bg-gray-200">
+            <div id="admin-manage-articles" style="display: none;" class="py-10 px-8 bg-gray-200">
                 <!-- Articles En Attente -->
                 <div class="flex flex-col justify-center mb-10">
                     <h1 class="font-semibold text-2xl mb-6">Articles <span class="text-yellow-500">En Attente</span></h1>
@@ -303,9 +303,9 @@ if ($_SESSION['role'] !== 'Admin') {
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
-                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button>
-                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button>
+                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button></a>
+                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button></a>
+                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button></a>
                                                 </td>
                                             </tr>';
                                     }
@@ -347,8 +347,8 @@ if ($_SESSION['role'] !== 'Admin') {
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
-                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button>
+                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button></a>
+                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button></a>
                                                 </td>
                                             </tr>';
                                     }
@@ -390,8 +390,8 @@ if ($_SESSION['role'] !== 'Admin') {
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button>
-                                                    <button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button>
+                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button></a>
+                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button></a>
                                                 </td>
                                             </tr>';
                                     }
