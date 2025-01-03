@@ -45,31 +45,36 @@ if ($_SESSION['role'] !== 'Auteur') {
                 <div class="px-6 py-3">
                     <p class="text-xs uppercase text-purple-300">Menu Principal</p>
                 </div>
-                <a href="author-dashboard.html"
-                    class="flex items-center px-6 py-3 bg-purple-700 border-r-4 border-white">
+
+                <div id="author-statistics" class="cursor-pointer flex items-center px-6 py-3 bg-purple-700 border-r-4 border-white hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-chart-line mr-3"></i>
                     Dashboard
-                </a>
-                <a href="#" class="flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                </div>
+
+                <div id="author-articles" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-pencil-alt mr-3"></i>
                     Mes Articles
-                </a>
-                <a id="open-add-article"class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                </div>
+
+                <div id="open-add-article" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-plus-circle mr-3"></i>
                     Nouvel Article
-                </a>
+                </div>
+
                 <div class="px-6 py-3 mt-6">
                     <p class="text-xs uppercase text-purple-300">Paramètres</p>
                 </div>
-                <a href="#" class="flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+
+                <div id="author-profile" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-user-circle mr-3"></i>
                     Profil
-                </a>
-                <a href="../../actions/logout.php"
-                    class="flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                </div>
+
+                <div href="../../actions/logout.php"
+                    class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fas fa-sign-out-alt mr-3"></i>
                     Déconnexion
-                </a>
+                <div>
             </nav>
         </aside>
 
@@ -103,7 +108,7 @@ if ($_SESSION['role'] !== 'Auteur') {
             </nav>
 
             <!-- Dashboard -->
-            <div style="display:none;" class="p-8 bg-gray-200">
+            <div id="auth-stat" class="p-8 bg-gray-200">
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <div
@@ -170,7 +175,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                                 <p class="text-sm text-gray-500 mb-1">Refusés</p>
                                 <?php
                                 require_once '../../classes/article.php';
-                                $etat = 'En Attente';
+                                $etat = 'Refusé';
                                 $article = new Article();
                                 $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
                                 echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
@@ -226,7 +231,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                     <div class="bg-white rounded-xl shadow-sm p-6">
                         <div class="flex items-center justify-between mb-6">
                             <h3 class="text-lg font-semibold text-gray-800">Articles Récents</h3>
-                            <button class="text-purple-600 hover:text-purple-700">
+                            <button type="button" id="view-all-articles" class="text-purple-600 hover:text-purple-700">
                                 Voir tout <i class="fas fa-arrow-right ml-1"></i>
                             </button>
                         </div>
@@ -236,7 +241,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                             require_once '../../classes/auteur.php';
 
                             $auteur = new Auteur();
-                            $articles = $auteur->ownArticles((int) $_SESSION['id_user']);
+                            $articles = $auteur->recentArticles((int)$_SESSION['id_user']);
 
                             if (count($articles) > 0) {
                                 foreach ($articles as $article) {
@@ -270,7 +275,7 @@ if ($_SESSION['role'] !== 'Auteur') {
             </div>
 
             <!-- articles -->
-            <div style="display:none;" class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
+            <div style="display:none;" id="auth-art" class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
                 <?php
 
                 require_once '../../classes/auteur.php';
@@ -300,8 +305,15 @@ if ($_SESSION['role'] !== 'Auteur') {
                                     </a>
                                 </div>
                             </div>
-                            <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">' . $art['nom_categorie'] . '</p>
-                        </article>';
+                            <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">' . $art['nom_categorie'] . '</p>';
+                            if ($art['etat'] == 'Accepté') {
+                                echo '<span class="absolute top-2 left-2 text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $art['etat'] . '</span>';
+                            } else if ($art['etat'] == 'En Attente') {
+                                echo '<span class="absolute top-2 left-2 text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $art['etat'] . '</span>';
+                            } else {
+                                echo '<span class="absolute top-2 left-2 text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $art['etat'] . '</span>';
+                            }
+                        echo '</article>';
                 }
 
                 ?>
@@ -349,7 +361,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                             <button type="submit" name="add-article" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium  text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
                                 Enregister
                             </button>
-                            <button type="button" name="cancel-article" class="group relative w-full flex justify-center py-2 px-4 border border-gray-800 text-sm font-medium text-black bg-transparent duration-500 hover:bg-red-700 hover:border-none hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
+                            <button type="button" name="cancel-article" id="cancel-article" class="group relative w-full flex justify-center py-2 px-4 border border-gray-800 text-sm font-medium text-black bg-transparent duration-500 hover:bg-red-700 hover:border-none hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
                                 Annuler
                             </button>
                         </div>

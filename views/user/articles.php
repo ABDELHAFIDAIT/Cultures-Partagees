@@ -111,7 +111,7 @@
 
                     if($authors){
                         foreach($authors as $author){
-                            $articles = $auteur->ownArticles($author['id_user']);
+                            $articles = $auteur->acceptedArticles($author['id_user']);
                                 echo '
                                     <div>
                                         <h1 class="text-purple-900 font-semibold text-xl mb-4 ">'. $author['prenom'] . ' ' . $author['nom'] .'</h1>

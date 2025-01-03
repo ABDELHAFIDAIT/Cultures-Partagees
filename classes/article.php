@@ -66,9 +66,10 @@
         // SHOW ONE ARTICLE
         public function showArticle(int $id){
             try{
-                $query = "SELECT * FROM article A JOIN users U ON A.id_auteur = U.id_user JOIN categorie C ON A.id_categorie = C.id_categorie WHERE A.id_article = :id";
+                $query = "SELECT * FROM article A JOIN users U ON A.id_auteur = U.id_user JOIN categorie C ON A.id_categorie = C.id_categorie WHERE A.id_article = :id AND A.etat = :etat";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->bindValue(":id", (int)$id, PDO::PARAM_INT);
+                $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);

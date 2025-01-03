@@ -10,11 +10,11 @@
                 $sql = 'INSERT INTO article (titre, contenu, id_auteur, id_categorie) VALUES (:titre, :contenu, :id_auteur, :id_categorie)';
                 $stmt = $this->database->getConnection()->prepare($sql);
                 $stmt->bindParam(":titre", $titre, PDO::PARAM_STR);
-                $stmt->bindParam(":titre", $titre, PDO::PARAM_STR);
+                $stmt->bindParam(":contenu", $contenu, PDO::PARAM_STR);
                 $stmt->bindParam(":id_auteur", $id_auteur, PDO::PARAM_INT);
                 $stmt->bindParam(":id_categorie", $id_categorie, PDO::PARAM_INT);
                 $stmt->execute();
-                header("location: ../views/admin/dashboard.php");
+                header("location: ../views/auteur/dashboard.php");
             } catch (PDOException $e) {
                 return "Erreur lors de l'ajout de l'Article : " . $e->getMessage();
             }
@@ -55,9 +55,50 @@
         public function ownArticles(int $id_auteur){
             try{
                 $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
-                        JOIN users U ON U.id_user = A.id_auteur WHERE A.id_auteur = :id ORDER BY A.date_publication DESC";
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.id_auteur = :id ORDER BY A.date_publication DESC, A.id_article DESC";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->bindParam(":id", $id_auteur, PDO::PARAM_INT);
+                // $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur lors de la Récupération des Articles". $e->getMessage();
+            }
+        }
+
+        // SHOW RECENT ARTICLES
+        public function recentArticles(int $id_auteur){
+            try{
+                $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.id_auteur = :id ORDER BY A.date_publication DESC , A.id_article DESC LIMIT 3";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindParam(":id", $id_auteur, PDO::PARAM_INT);
+                // $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur lors de la Récupération des Articles". $e->getMessage();
+            }
+        }
+
+        // SHOW ACCEPTED ARTICLES
+        public function acceptedArticles(int $id_auteur){
+            try{
+                $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.id_auteur = :id AND A.etat = :etat ORDER BY A.date_publication DESC";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindParam(":id", $id_auteur, PDO::PARAM_INT);
+                $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
