@@ -80,4 +80,41 @@
                 return "Erreur lors de la Récupération de l'Article". $e->getMessage();
             }
         }
+
+        // COUNT ARTICLES OF A SPECIFIC AUTHOR
+        public function countArticles(int $id_auteur){
+            try{
+                $query = "SELECT COUNT(id_article) AS nbr_articles FROM article WHERE id_auteur = :id";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindValue(":id", (int)$id_auteur, PDO::PARAM_INT);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur lors de la Récupération de Nombre d'Article". $e->getMessage();
+            }
+        }
+
+        // COUNT ARTICLES OF A SPECIFIC AUTHOR BASING ON STATUS 
+        public function statusArticles(int $id_auteur, string $etat){
+            try{
+                $query = "SELECT COUNT(id_article) AS nbr_articles FROM article WHERE id_auteur = :id AND etat = :etat";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindParam(":id", $id_auteur, PDO::PARAM_INT);
+                $stmt->bindParam(":etat", $etat, PDO::PARAM_STR);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur lors de la Récupération de Nombre d'Article". $e->getMessage();
+            }
+        }
     }

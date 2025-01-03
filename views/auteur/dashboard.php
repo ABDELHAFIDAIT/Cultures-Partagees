@@ -102,7 +102,7 @@
             </nav>
 
             <!-- Dashboard -->
-            <div class="hidden p-8 bg-gray-200">
+            <div class="p-8 bg-gray-200">
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <div
@@ -110,7 +110,13 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">Total</p>
-                                <h3 class="text-2xl font-bold text-gray-800">24</h3>
+                                <?php
+                                    require_once '../../classes/article.php';
+
+                                    $article = new Article();
+                                    $nbr = $article->countArticles((int)$_SESSION['id_user']);
+                                    echo '<h3 class="text-2xl font-bold text-gray-800">'. $nbr['nbr_articles'] .'</h3>';
+                                ?>
                             </div>
                             <div class="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
                                 <i class="fas fa-newspaper text-purple-600 text-xl"></i>
@@ -123,7 +129,13 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">Approuvés</p>
-                                <h3 class="text-2xl font-bold text-gray-800">18</h3>
+                                <?php
+                                    require_once '../../classes/article.php';
+                                    $etat = 'Accepté';
+                                    $article = new Article();
+                                    $nbr = $article->statusArticles((int)$_SESSION['id_user'], $etat);
+                                    echo '<h3 class="text-2xl font-bold text-gray-800">'. $nbr['nbr_articles'] .'</h3>';
+                                ?>
                             </div>
                             <div class="h-12 w-12 rounded-full bg-green-100 flex items-center justify-center">
                                 <i class="fas fa-check-circle text-green-600 text-xl"></i>
@@ -136,7 +148,13 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">En Attente</p>
-                                <h3 class="text-2xl font-bold text-gray-800">6</h3>
+                                <?php
+                                    require_once '../../classes/article.php';
+                                    $etat = 'En Attente';
+                                    $article = new Article();
+                                    $nbr = $article->statusArticles((int)$_SESSION['id_user'], $etat);
+                                    echo '<h3 class="text-2xl font-bold text-gray-800">'. $nbr['nbr_articles'] .'</h3>';
+                                ?>
                             </div>
                             <div class="h-12 w-12 rounded-full bg-yellow-100 flex items-center justify-center">
                                 <i class="fas fa-hourglass-half text-yellow-600 text-xl"></i>
@@ -149,7 +167,13 @@
                         <div class="flex items-center justify-between">
                             <div>
                                 <p class="text-sm text-gray-500 mb-1">Refusés</p>
-                                <h3 class="text-2xl font-bold text-gray-800">6</h3>
+                                <?php
+                                    require_once '../../classes/article.php';
+                                    $etat = 'En Attente';
+                                    $article = new Article();
+                                    $nbr = $article->statusArticles((int)$_SESSION['id_user'], $etat);
+                                    echo '<h3 class="text-2xl font-bold text-gray-800">'. $nbr['nbr_articles'] .'</h3>';
+                                ?>
                             </div>
                             <div class="h-12 w-12 rounded-full bg-red-100 flex items-center justify-center">
                                 <i class="fa-solid fa-ban text-red-600 text-xl"></i>
@@ -167,57 +191,33 @@
                                 <h3 class="text-lg font-semibold text-gray-800">Distribution par Catégorie</h3>
                             </div>
                             <div class="flex flex-col gap-4">
-                                <div class="p-4 bg-gray-50 rounded-lg">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center">
-                                            <div
-                                                class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
-                                                <i class="fas fa-palette text-blue-600"></i>
-                                            </div>
-                                            <span class="ml-3 font-medium text-gray-700">Art</span>
-                                        </div>
-                                        <span class="text-sm text-gray-500">8 articles</span>
-                                    </div>
-                                </div>
 
-                                <div class="p-4 bg-gray-50 rounded-lg">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center">
-                                            <div
-                                                class="h-8 w-8 rounded-full bg-purple-100 flex items-center justify-center">
-                                                <i class="fas fa-music text-purple-600"></i>
-                                            </div>
-                                            <span class="ml-3 font-medium text-gray-700">Musique</span>
-                                        </div>
-                                        <span class="text-sm text-gray-500">6 articles</span>
-                                    </div>
-                                </div>
+                                <?php
+                                    require_once '../../classes/categorie.php';
 
-                                <div class="p-4 bg-gray-50 rounded-lg">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center">
-                                            <div
-                                                class="h-8 w-8 rounded-full bg-green-100 flex items-center justify-center">
-                                                <i class="fas fa-book text-green-600"></i>
-                                            </div>
-                                            <span class="ml-3 font-medium text-gray-700">Littérature</span>
-                                        </div>
-                                        <span class="text-sm text-gray-500">5 articles</span>
-                                    </div>
-                                </div>
+                                    $cat = new Categorie();
+                                    $result = $cat->distributeCategories((int)$_SESSION['id_user']);
 
-                                <div class="p-4 bg-gray-50 rounded-lg">
-                                    <div class="flex items-center justify-between">
-                                        <div class="flex items-center">
-                                            <div
-                                                class="h-8 w-8 rounded-full bg-red-100 flex items-center justify-center">
-                                                <i class="fas fa-film text-red-600"></i>
-                                            </div>
-                                            <span class="ml-3 font-medium text-gray-700">Cinéma</span>
-                                        </div>
-                                        <span class="text-sm text-gray-500">5 articles</span>
-                                    </div>
-                                </div>
+                                    if(count($result) > 0) {
+                                        foreach($result as $row) {
+                                            echo '
+                                                <div class="p-4 bg-gray-50 rounded-lg">
+                                                    <div class="flex items-center justify-between">
+                                                        <div class="flex items-center">
+                                                            <div
+                                                                class="h-8 w-8 rounded-full bg-blue-100 flex items-center justify-center">
+                                                                <i class="fa-solid fa-thumbtack text-blue-600"></i>
+                                                            </div>
+                                                            <span class="ml-3 font-medium text-gray-700">'. $row['nom_categorie'] .'</span>
+                                                        </div>
+                                                        <span class="text-sm text-gray-500">'. $row['nbr_articles'] .' articles</span>
+                                                    </div>
+                                                </div>
+                                            ';
+                                        }
+                                    }
+
+                                ?>
                             </div>
                         </div>
                     </div>
@@ -230,58 +230,46 @@
                             </button>
                         </div>
                         <div class="space-y-4">
-                            <div
-                                class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-                                <img src="https://images.unsplash.com/photo-1579783901586-d88db74b4fe4" alt="Article"
-                                    class="h-16 w-16 rounded-lg object-cover">
-                                <div class="ml-4 flex-1 flex flex-col justify-between">
-                                    <h4 class="text-sm font-semibold text-gray-800">L'Art Moderne au 21ème Siècle</h4>
-                                    <p class="text-sm text-gray-600">2025-01-01</p>
-                                    <div class="flex items-center mt-1">
-                                        <span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">Refusé
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <div
-                                class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-                                <img src="https://images.unsplash.com/photo-1511379938547-c1f69419868d" alt="Article"
-                                    class="h-16 w-16 rounded-lg object-cover">
-                                <div class="ml-4 flex-1">
-                                    <h4 class="text-sm font-semibold text-gray-800">La Renaissance de la Musique
-                                        Classique</h4>
-                                    <p class="text-sm text-gray-600">2025-01-01</p>
-                                    <div class="flex items-center mt-1">
-                                        <span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">En
-                                            attente
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                            <?php
+                                require_once '../../classes/auteur.php';
 
-                            <div
-                                class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
-                                <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Article"
-                                    class="h-16 w-16 rounded-lg object-cover">
-                                <div class="ml-4 flex-1">
-                                    <h4 class="text-sm font-semibold text-gray-800">Les Nouveaux Formats de la
-                                        Littérature</h4>
-                                    <p class="text-sm text-gray-600">2025-01-01</p>
-                                    <div class="flex items-center mt-1">
-                                        <span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">
-                                            Approuvé
-                                        </span>
-                                    </div>
-                                </div>
-                            </div>
+                                $auteur = new Auteur();
+                                $articles = $auteur->ownArticles((int)$_SESSION['id_user']);
+
+                                if(count($articles) > 0) {
+                                    foreach($articles as $article) {
+                                        echo '
+                                            <div
+                                                class="flex items-center p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition-colors duration-200">
+                                                <img src="../../assets/img/default-image.png" alt="Article"
+                                                    class="h-16 w-16 rounded-lg object-cover">
+                                                <div class="ml-4 flex-1 flex flex-col justify-between">
+                                                    <h4 class="text-sm font-semibold text-gray-800">'. $article['titre'] .'</h4>
+                                                    <p class="text-sm text-gray-600">'. $article['date_publication'] .'</p>
+                                                    <div class="flex items-center mt-1">';
+
+                                                    if($article['etat'] == 'Accepté') {
+                                                        echo '<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">'. $article['etat'] .'</span>';
+                                                    }else if($article['etat'] == 'En Attente') {
+                                                        echo '<span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">'. $article['etat'] .'</span>';
+                                                    }else{
+                                                        echo '<span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">'. $article['etat'] .'</span>';
+                                                    }
+                                                    echo '</div>
+                                                </div>
+                                            </div>
+                                        ';
+                                    }
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
             </div>
 
             <!-- articles -->
-            <div class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
+            <div style="display:none;" class="p-10 flex gap-8 flex-wrap lg:grid lg:grid-cols-2 bg-gray-200">
                 <?php
                 
                     require_once '../../classes/auteur.php';
