@@ -512,7 +512,7 @@ if ($_SESSION['role'] !== 'Admin') {
                             Nouvelle Catégorie
                         </h2>
                     </div>
-                    <form method="POST" action="../../actions/addArticle.php" id="addCategoryForm" class="mt-8 space-y-6">
+                    <form method="POST" action="../../actions/addCategory.php" id="addCategoryForm" class="mt-8 space-y-6">
                         <div class="rounded-md shadow-sm flex flex-col gap-5">
                             <div>
                                 <label for="nom-cat" class="sr-only">Nom</label>
