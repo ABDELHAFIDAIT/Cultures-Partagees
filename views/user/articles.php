@@ -116,11 +116,12 @@
                                     <div>
                                         <h1 class="text-purple-900 font-semibold text-xl mb-4 ">'. $author['prenom'] . ' ' . $author['nom'] .'</h1>
                                         <ul class="flex flex-col text-gray-700 font-medium text-sm gap-2">';
-                                        if(count($articles) == 0){
-                                            echo '<li>AUcun Article n\'est trouvé !</li>';
-                                        }
-                                        for ($i=0; $i < count($articles) ; $i++) { 
-                                             echo '<li>• '. $articles[$i]['titre'] .'</li>';
+                                        if(!$articles){
+                                            echo '<li class="text-red-600">Aucun Article n\'est trouvé !</li>';
+                                        }else{
+                                            for ($i=0; $i < count($articles) ; $i++) { 
+                                                echo '<li>• '. $articles[$i]['titre'] .'</li>';
+                                            }
                                         }
                                 echo '</ul>
                                     </div>

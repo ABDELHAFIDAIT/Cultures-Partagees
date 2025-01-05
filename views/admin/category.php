@@ -1,5 +1,9 @@
 <?php
     session_start();
+
+    if (empty($_SESSION['csrf_token'])) {
+        $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
 ?>
 
 <!DOCTYPE html>
@@ -35,6 +39,7 @@
                                 </h2>
                             </div>
                             <form method="POST" action="../../actions/updateCategory.php" class="mt-8 space-y-6">
+                                <input type="hidden" name="csrf_token" value="'. $_SESSION['csrf_token'] .'">
                                 <div class="rounded-md shadow-sm flex flex-col gap-5">
                                     <div>
                                         <label for="nom-cat" class="sr-only">Nom</label>
