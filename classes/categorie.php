@@ -72,7 +72,7 @@
                 $stmt->bindParam(":id", $id, PDO::PARAM_INT);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
-                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
                     return $result;
                 }else{
                     return false;
