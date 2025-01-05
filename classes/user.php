@@ -113,4 +113,27 @@ class User{
             return "Erreur lors de la Récupération des Données". $e->getMessage();
         }
     }
+
+    // GET ALL USERS
+    public function allUsers(string $role) {
+        try{
+            $query = "SELECT * FROM users WHERE role = :role";
+
+            $stmt = $this->database->getConnection()->prepare($query);
+        
+            $stmt->bindValue(":role", $role, PDO::PARAM_STR); 
+        
+            $stmt->execute();
+            
+            if($stmt->rowCount() > 0){
+                $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                return $result;
+            }else{
+                return false;
+            }
+            
+        } catch (PDOException $e) {
+            return "Erreur lors de la Récupération des Données". $e->getMessage();
+        }
+    }
 }

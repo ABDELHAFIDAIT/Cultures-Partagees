@@ -403,128 +403,60 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Authors -->
-            <div id="admin-manage-authors" style="display: none;" class="p-8 bg-gray-200 h-full">
+            <div id="admin-manage-authors" style="display: none;" class="p-8 bg-gray-200">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                                <p class="text-sm text-gray-600">Articles: 10</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                                <p class="text-sm text-gray-600">Articles: 10</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                                <p class="text-sm text-gray-600">Articles: 10</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                                <p class="text-sm text-gray-600">Articles: 10</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                                <p class="text-sm text-gray-600">Articles: 10</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                                <p class="text-sm text-gray-600">Articles: 10</p>
-                            </div>
-                        </div>
-                    </div>
+                    <?php
+                        require_once '../../classes/auteur.php';
+
+                        $auth = new Auteur() ;
+                        $auteurs = $auth->nbrArticles();
+                        if (is_array($auteurs)) {
+                            foreach ($auteurs as $auteur) {
+                                echo '
+                                <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                                    <div class="flex items-center justify-center">
+                                        <div class="flex flex-col items-center">
+                                            <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                            <p class="text-lg font-semibold text-gray-800">'. $auteur['prenom'] . ' ' . $auteur['nom'] .'</p>
+                                            <p class="text-sm text-gray-600">'. $auteur['email'] .'</p>
+                                            <p class="text-sm text-gray-600">Articles: '. $auteur['nbr_articles'] .'</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                ';
+                            }
+                        }
+                    ?>
                 </div>
             </div>
 
             <!-- Users -->
-            <div id="admin-manage-users" style="display: none;" class="p-8 bg-gray-200 h-full">
+            <div id="admin-manage-users" style="display: none;" class="p-8 bg-gray-200">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
-                        <div class="flex items-center justify-center">
-                            <div class="flex flex-col items-center">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
-                                <p class="text-lg font-semibold text-gray-800">John Doe</p>
-                                <p class="text-sm text-gray-600">john.doe@example.com</p>
-                            </div>
-                        </div>
-                    </div>
+                
+                    <?php
+                        require_once '../../classes/user.php';
+
+                        $user = new User();
+                        $users = $user->allUsers('Utilisateur');
+
+                        if (is_array($users)) {
+                            foreach ($users as $use) {
+                                echo '
+                                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                                        <div class="flex items-center justify-center">
+                                            <div class="flex flex-col items-center">
+                                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                                <p class="text-lg font-semibold text-gray-800">'. $use['prenom'] . ' ' . $use['nom'] .'</p>
+                                                <p class="text-sm text-gray-600">'. $use['email'] .'</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        }
+                    ?>
+                    
                 </div>
             </div>
 
