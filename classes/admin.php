@@ -7,7 +7,7 @@
         // SHOW ALL CATEGORIES METHOD
         public function showCategories(){
             try {
-                $sql = "SELECT * , COUNT(A.id_article) AS nbr_articles FROM categorie C LEFT JOIN article A ON C.id_categorie = A.id_categorie GROUP BY C.id_categorie";
+                $sql = "SELECT C.nom_categorie, C.id_categorie, C.description , COUNT(A.id_article) AS nbr_articles FROM categorie C LEFT JOIN article A ON C.id_categorie = A.id_categorie GROUP BY C.id_categorie";
                 $stmt = $this->database->getConnection()->prepare($sql);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){

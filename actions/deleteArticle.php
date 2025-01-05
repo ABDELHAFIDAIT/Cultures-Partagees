@@ -6,6 +6,4 @@
     $author = new Auteur();
     
     $author->deleteArticle($id);
-    
-    // header("Location: ../../views/dashboard_admin.php");
 ?>
