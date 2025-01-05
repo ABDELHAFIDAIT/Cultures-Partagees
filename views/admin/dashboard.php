@@ -19,7 +19,7 @@ if ($_SESSION['role'] !== 'Admin') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles</title>
+    <title>Dadhboard Admin</title>
     <link rel="icon" type="../../assets/img/logo.png" href="../../assets/img/logo.png">
     <link rel="stylesheet" href="../../assets/css/style.css">
     <link rel="stylesheet" href="../../assets/css/output.css">
@@ -304,7 +304,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button></a>
+                                                    <a href="./article.php?id='. $article['id_article'] .'"><button class="show-art py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button></a>
                                                     <a href="../../actions/approveArticle.php?id='. $article['id_article'] .'"><button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button></a>
                                                     <a href="../../actions/refuseArticle.php?id='. $article['id_article'] .'"><button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button></a>
                                                 </td>
@@ -348,7 +348,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button></a>
+                                                    <a href="./article.php?id='. $article['id_article'] .'"><button class="show-art py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button></a>
                                                     <a href="../../actions/approveArticle.php?id='. $article['id_article'] .'"><button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button></a>
                                                 </td>
                                             </tr>';
@@ -391,7 +391,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
-                                                    <a href="#"><button class="py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button></a>
+                                                    <a href="./article.php?id='. $article['id_article'] .'"><button class="show-art py-3 px-3 rounded-full border-none text-xl text-blue-500"><i class="fa-solid fa-eye"></i></button></a>
                                                     <a href="../../actions/refuseArticle.php?id='. $article['id_article'] .'"><button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button></a>
                                                 </td>
                                             </tr>';
@@ -537,12 +537,30 @@ if ($_SESSION['role'] !== 'Admin') {
                 </div>
             </div>
 
+            <!-- Show Article Details -->
+
 
         </section>
             
     </main>
 
     <script src="../../assets/js/admin.js"></script>
+
+    <!-- <script>
+        const showArticle = document.querySelectorAll('show-art');
+        const articleInfos =document.querySelector('#article-infos');
+        const closeArticle =document.querySelector('#close-art');
+
+        showArticle.forEach(article => {
+            article.addEventListener('click', function(){
+                articleInfos.style.display = 'flex';
+            });
+        });
+
+        closeArticle.addEventListener('click',function(){
+            articleInfos.style.display = 'none';
+        });
+    </script> -->
 </body>
 
 </html>
