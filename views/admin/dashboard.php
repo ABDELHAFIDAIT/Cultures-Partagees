@@ -250,9 +250,9 @@ if ($_SESSION['role'] !== 'Admin') {
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $categorie['nom_categorie'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $categorie['description'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $categorie['nbr_articles'] . '</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">
-                                                    <a href="./category.php?id='. $categorie['id_categorie'] .'"><button class="px-4 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Modifier</button></a>
-                                                    <a href="../../actions/deleteCategory.php?id='.$categorie['id_categorie'].'"><button class="ml-2 px-4 py-1 text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Supprimer</button></a>
+                                                <td class="px-6 py-4 whitespace-nowrap flex items-center gap-5">
+                                                    <a href="./category.php?id='. $categorie['id_categorie'] .'"><i class="fas fa-edit text-blue-600"></i></a>
+                                                    <a href="../../actions/deleteCategory.php?id='.$categorie['id_categorie'].'"><i class="fas fa-trash text-red-600"></i></a>
                                                 </td>
                                             </tr>';
                                     }
@@ -532,15 +532,16 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Authors -->
-            <div id="admin-manage-authors" style="display: none;" class="p-8 bg-gray-200">
+            <div id="admin-manage-authors" style="display:none ;" class="p-8 bg-gray-200">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <?php
                         require_once '../../classes/auteur.php';
 
                         $auth = new Auteur() ;
-                        $auteurs = $auth->nbrArticles();
+                        $auteurs = $auth->showAuthors();
                         if (is_array($auteurs)) {
                             foreach ($auteurs as $auteur) {
+                                $nbr = $auth->countArticles($auteur['id_user']);
                                 echo '
                                 <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
                                     <div class="flex items-center justify-center">
@@ -548,7 +549,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                             <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
                                             <p class="text-lg font-semibold text-gray-800">'. $auteur['prenom'] . ' ' . $auteur['nom'] .'</p>
                                             <p class="text-sm text-gray-600">'. $auteur['email'] .'</p>
-                                            <p class="text-sm text-gray-600">Articles: '. $auteur['nbr_articles'] .'</p>
+                                            <p class="text-sm text-gray-600">Articles: '. $nbr['nbr_articles'] .'</p>
                                         </div>
                                     </div>
                                 </div>

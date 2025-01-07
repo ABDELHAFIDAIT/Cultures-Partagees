@@ -131,14 +131,20 @@
         }
 
         // COUNT ARTICLES FOR AN AUTHOR
-        public function countArticles($id_author){
+        public function countArticles(int $id_author){
             try{
-                $query = "SELECT COUNT(A.id_articles) AS nbr_articles FROM article A WHERE A.id_auteur = :id";
+                $query = "SELECT COUNT(A.id_article) AS nbr_articles FROM article A WHERE A.id_auteur = :id";
                 $stmt = $this->database->getConnection()->prepare($query);
-                $stmt->bindValue(":id", "$id_author", PDO::PARAM_INT);
+                $stmt->bindValue(":id", $id_author, PDO::PARAM_INT);
                 $stmt->execute();
-                $result = $stmt->fetch(PDO::FETCH_ASSOC);
-                return $result;
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $result;
+                }
+                else{
+                    return 0;
+                }
+                
             }catch(PDOException $e){
                 return "Erreur lors de la Récupération des Données : ". $e->getMessage();
             }
@@ -148,9 +154,9 @@
         // SHOW ARTICLES OF AN AUTHOR
         public function nbrArticles(){
             try{
-                $query = "SELECT * , COUNT(A.id_article) AS nbr_articles FROM article A JOIN users U ON A.id_auteur = U.id_user GROUP BY A.id_auteur";
+                $query = "SELECT * , COUNT(A.id_article) AS nbr_articles FROM article A RIGHT JOIN users U ON A.id_auteur = U.id_user WHERE U.role = :role GROUP BY A.id_auteur";
                 $stmt = $this->database->getConnection()->prepare($query);
-                // $stmt->bindValue(":id", "$id_auteur", PDO::PARAM_INT);
+                $stmt->bindValue(":role", "Auteur", PDO::PARAM_INT);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
