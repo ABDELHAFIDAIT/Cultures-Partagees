@@ -111,7 +111,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                 <i class="fas fa-bell text-xl"></i>
                             </button>
                             <div class="relative">
-                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile"
+                                <img src="../../uploads/<?php echo $_SESSION['photo'] ?>" alt="Profile"
                                     class="h-10 w-10 rounded-full object-cover">
                                 <div
                                     class="absolute bottom-0 right-0 h-3 w-3 rounded-full bg-green-400 border-2 border-white">
@@ -413,7 +413,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                 if (is_array($articles)) {
                                     foreach ($articles as $article) {
                                         echo '<tr>
-                                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
+                                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../uploads/'. $article['couverture'] .'"></td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . substr($article['titre'], 0, 20) . '...</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . substr($article['contenu'], 0, 30) . '...</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['nom_categorie'] . '</td>
@@ -534,7 +534,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                 <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
                                     <div class="flex items-center justify-center">
                                         <div class="flex flex-col items-center">
-                                            <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                            <img src="../../uploads/'. $auteur['photo'] .'" alt="Profile" class="h-16 w-16 rounded-full object-cover mb-4">
                                             <p class="text-lg font-semibold text-gray-800">'. $auteur['prenom'] . ' ' . $auteur['nom'] .'</p>
                                             <p class="text-sm text-gray-600">'. $auteur['email'] .'</p>
                                             <p class="text-sm text-gray-600">Articles: '. $nbr['nbr_articles'] .'</p>
@@ -564,7 +564,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                     <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
                                         <div class="flex items-center justify-center">
                                             <div class="flex flex-col items-center">
-                                                <img src="https://cdn-icons-png.flaticon.com/128/64/64572.png" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                                <img src="../../uploads/'. $auteur['photo'] .'" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
                                                 <p class="text-lg font-semibold text-gray-800">'. $use['prenom'] . ' ' . $use['nom'] .'</p>
                                                 <p class="text-sm text-gray-600">'. $use['email'] .'</p>
                                             </div>

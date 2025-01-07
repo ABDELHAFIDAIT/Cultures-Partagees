@@ -9,6 +9,7 @@ class User{
     protected string $email;
     protected string $password;
     protected string $role;
+    protected string $photo;
     protected $database ;
 
 
@@ -39,6 +40,10 @@ class User{
     }
     public function getRole():string{
         return $this->role;
+    }
+
+    public function getPhoto():string{
+        return $this->photo;
     }
 
     
@@ -85,6 +90,7 @@ class User{
                     $this->email = $row['email'];
                     $this->telephone = $row['telephone'];
                     $this->role = $row['role'];
+                    $this->photo = $row['photo'];
 
                     return $this;
                 }
