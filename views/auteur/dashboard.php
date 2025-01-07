@@ -431,12 +431,14 @@ if ($_SESSION['role'] !== 'Auteur') {
                         </div>
                     </div>
                     <div class="bg-gray-50 px-6 py-4">
-                        <button class="w-full bg-purple-700 text-white py-2 rounded-lg font-semibold hover:bg-purple-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2">
+                        <button type="button" class="w-full bg-purple-700 text-white py-2 rounded-lg font-semibold hover:bg-purple-900 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-indigo-800 focus:ring-offset-2">
                             Modifier
                         </button>
                     </div>
                 </div>
             </div>
+
+            <!-- New Tag Form -->
 
         </section>
     </main>
