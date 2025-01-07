@@ -67,7 +67,7 @@
         // APPROVE ARTICLE METHOD
         public function approveArticle($id_article){
             try {
-                $sql = "UPDATE article SET etat = 'Accepté' WHERE id_article = :id";
+                $sql = "UPDATE article SET statut = 'Accepté' WHERE id_article = :id";
                 $stmt = $this->database->getConnection()->prepare($sql);
                 $stmt->bindParam(":id", $id_article, PDO::PARAM_INT);
                 $stmt->execute();
@@ -80,7 +80,7 @@
         // REJECT ARTICLE METHOD
         public function rejectArticle(int $id_article){
             try {
-                $sql = "UPDATE article SET etat = 'Refusé' WHERE id_article = :id";
+                $sql = "UPDATE article SET statut = 'Refusé' WHERE id_article = :id";
                 $stmt = $this->database->getConnection()->prepare($sql);
                 $stmt->bindParam(":id", $id_article, PDO::PARAM_INT);
                 $stmt->execute();

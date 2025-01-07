@@ -58,7 +58,7 @@
                         JOIN users U ON U.id_user = A.id_auteur WHERE A.id_auteur = :id ORDER BY A.date_publication DESC, A.id_article DESC";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->bindParam(":id", $id_auteur, PDO::PARAM_INT);
-                // $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
+                // $stmt->bindValue(":statut", 'Accepté', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -78,7 +78,7 @@
                         JOIN users U ON U.id_user = A.id_auteur WHERE A.id_auteur = :id ORDER BY A.date_publication DESC , A.id_article DESC LIMIT 3";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->bindParam(":id", $id_auteur, PDO::PARAM_INT);
-                // $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
+                // $stmt->bindValue(":statut", 'Accepté', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -95,10 +95,10 @@
         public function acceptedArticles(int $id_auteur){
             try{
                 $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
-                        JOIN users U ON U.id_user = A.id_auteur WHERE A.id_auteur = :id AND A.etat = :etat ORDER BY A.date_publication DESC";
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.id_auteur = :id AND A.statut = :statut ORDER BY A.date_publication DESC";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->bindParam(":id", $id_auteur, PDO::PARAM_INT);
-                $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
+                $stmt->bindValue(":statut", 'Accepté', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
