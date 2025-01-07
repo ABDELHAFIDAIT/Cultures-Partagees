@@ -56,6 +56,11 @@ if ($_SESSION['role'] !== 'Admin') {
                     Les Catégories
                 </div>
 
+                <div id="admin-tags" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                    <i class="fa-solid fa-tag mr-3"></i>
+                    Les Tags
+                </div>
+
                 <div id="admin-articles" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fa-solid fa-newspaper mr-3"></i>
                     Les Articles
@@ -128,7 +133,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                 <p class="text-sm text-gray-500 mb-1">Total</p>
                                 
                             </div>
-                            <div class="h-12 w-12 rounded-full bg-purple-100 flex items-center justify-center">
+                            <div class="h-12 w-12 rounded-full bg-yellow-100 flex grayc9nter justify-center">
                                 <i class="fas fa-newspaper text-purple-600 text-xl"></i>
                             </div>
                         </div>
@@ -266,6 +271,129 @@ if ($_SESSION['role'] !== 'Admin') {
                             </tr> -->
                         </tbody>
                     </table>
+                </div>
+            </div>
+
+            <!-- Tags -->
+            <div id="admin-manage-tags" style="display: none;" class="p-8 bg-gray-200">
+                <!-- add Tag button & search bar -->
+                <div class="flex justify-between items-center mb-10">
+                    <button type="button" id="open-add-tag" class="py-2 px-5 bg-purple-800 text-white hover:bg-purple-700 transition-colors duration-200">
+                        Ajouter un Tag
+                        <i class="fas fa-plus ml-1"></i>
+                    </button>
+                    <div class="relative">
+                        <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+                            <svg class="w-5 h-5 text-gray-400" viewBox="0 0 24 24" fill="none">
+                                <path d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+                            </svg>
+                        </span>
+
+                        <input type="text" class="w-full py-2 pl-10 pr-4 text-gray-700 bg-white border border-gray-300" placeholder="Search">
+                    </div>
+                </div>
+                <!-- Tags Cards -->
+                <div class="grid grid-cols-3 gap-5 flex-wrap">
+                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
+                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
+                            </div>
+                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
+                        </div>
+                        
+                        <div class="flex justify-end gap-2 mt-4">
+                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
+                                    title="Modifier">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
+                                    title="Supprimer">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
+                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
+                            </div>
+                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
+                        </div>
+                        
+                        <div class="flex justify-end gap-2 mt-4">
+                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
+                                    title="Modifier">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
+                                    title="Supprimer">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
+                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
+                            </div>
+                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
+                        </div>
+                        
+                        <div class="flex justify-end gap-2 mt-4">
+                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
+                                    title="Modifier">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
+                                    title="Supprimer">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
+                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
+                            </div>
+                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
+                        </div>
+                        
+                        <div class="flex justify-end gap-2 mt-4">
+                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
+                                    title="Modifier">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
+                                    title="Supprimer">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="flex-1 bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
+                        <div class="flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
+                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
+                            </div>
+                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
+                        </div>
+                        
+                        <div class="flex justify-end gap-2 mt-4">
+                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
+                                    title="Modifier">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
+                                    title="Supprimer">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -506,7 +634,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Add New Category -->
-            <div style="display:none;" class="z-10 fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center ">
+            <div style="display:none;" id="add-cat-form" class="z-10 fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center ">
                 <div class="max-w-md w-full space-y-8 bg-white px-8 py-5 rounded-lg shadow-lg animate__animated animate__fadeIn">
                     <div>
                         <h2 class="text-center text-3xl font-extrabold text-gray-900">
@@ -537,28 +665,40 @@ if ($_SESSION['role'] !== 'Admin') {
                 </div>
             </div>
 
+            <!-- Add New Tag -->
+            <div style="display: none;"  id="add-tag-form" class="z-10 fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center ">
+                <div class="max-w-md w-full space-y-8 bg-white px-8 py-5 rounded-lg shadow-lg animate__animated animate__fadeIn">
+                    <div>
+                        <h2 class="text-center text-2xl font-extrabold text-gray-900">
+                            Nouveau Tag
+                        </h2>
+                    </div>
+                    <form method="POST" action="../../actions/addTag.php" id="addTagForm" class="mt-8 space-y-6">
+                        <div class="rounded-md shadow-sm flex flex-col gap-5">
+                            <div>
+                                <label for="nom-tag" class="sr-only">Nom</label>
+                                <input id="nom-tag" name="nom-tag" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Nom du Tag">
+                            </div>
+                        </div>
+
+                        <div class="flex items-center gap-10">
+                            <button type="submit" name="add-tag" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium  text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">
+                                Enregister
+                            </button>
+                            <button type="button" name="cancel-tag" id="cancel-tag" class="group relative w-full flex justify-center py-2 px-4 border border-gray-800 text-sm font-medium text-black bg-transparent duration-500 hover:bg-red-700 hover:border-none hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-transparent">
+                                Annuler
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
 
         </section>
             
     </main>
 
     <script src="../../assets/js/admin.js"></script>
-
-    <!-- <script>
-        const showArticle = document.querySelectorAll('show-art');
-        const articleInfos =document.querySelector('#article-infos');
-        const closeArticle =document.querySelector('#close-art');
-
-        showArticle.forEach(article => {
-            article.addEventListener('click', function(){
-                articleInfos.style.display = 'flex';
-            });
-        });
-
-        closeArticle.addEventListener('click',function(){
-            articleInfos.style.display = 'none';
-        });
-    </script> -->
 </body>
 
 </html>
