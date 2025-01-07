@@ -19,11 +19,7 @@
 <body class="relative">
     <div id="article-infos" class="z-10 fixed inset-0 bg-black bg-opacity-90 flex justify-center items-center">
         <article class="bg-white rounded-md w-[70vw] h-[90vh] overflow-auto relative">
-            <div>
-                <img src="../../assets/img/default-image.png" class="rounded-t-md w-full" alt="Couverture de l'Article">
-            </div>
-            <div class="p-4">
-                <div class="pt-5">
+            
 
 
                     <?php
@@ -33,7 +29,13 @@
                         $result = $article->getArticle($id);
 
                         if($result){
-                            echo ' <div class="mb-5 flex items-center justify-between">
+                            echo ' 
+                            <div>
+                                <img src="../../uploads/'. $result['couverture'] .'" class="rounded-t-md w-full" alt="Couverture de l\'Article">
+                            </div>
+                            <div class="p-4">
+                                <div class="pt-5">
+                            <div class="mb-5 flex items-center justify-between">
                             <p class="text-gray-800 font-medium text-lg">' . $result['date_publication'] . ' •</p>
                             <p class="text-gray-800 font-medium text-lg">Par : ' . $result['prenom'] . ' ' . $result['nom']. '</p>
                             </div>';

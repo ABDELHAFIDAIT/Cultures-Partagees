@@ -245,7 +245,6 @@ if ($_SESSION['role'] !== 'Admin') {
 
                                 if (is_array($categories)) {
                                     foreach ($categories as $categorie) {
-                                        // $id_cat = $categorie['id_categorie'];
                                         echo '<tr>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $categorie['nom_categorie'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $categorie['description'] . '</td>
@@ -258,17 +257,6 @@ if ($_SESSION['role'] !== 'Admin') {
                                     }
                                 }
                             ?>
-
-
-                            <!-- <tr>
-                                <td class="px-6 py-4 whitespace-nowrap">Jane Doe</td>
-                                <td class="px-6 py-4 whitespace-nowrap">jane@example.com</td>
-                                <td class="px-6 py-4 whitespace-nowrap">Admin</td>
-                                <td class="px-6 py-4 whitespace-nowrap">
-                                    <button class="px-4 py-1 text-white bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:shadow-outline-blue active:bg-blue-600 transition duration-150 ease-in-out">Modifier</button>
-                                    <button class="ml-2 px-4 py-1 text-white bg-red-600 rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red active:bg-red-600 transition duration-150 ease-in-out">Supprimer</button>
-                                </td>
-                            </tr> -->
                         </tbody>
                     </table>
                 </div>
