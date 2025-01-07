@@ -5,14 +5,15 @@
     class Auteur extends Utilisateur{
 
         // ADD ARTICLE METHOD
-        public function addArticle(string $titre , string $contenu, int $id_auteur, int $id_categorie){
+        public function addArticle(string $titre , string $contenu, int $id_auteur, int $id_categorie, string $couverture){
             try{
-                $sql = 'INSERT INTO article (titre, contenu, id_auteur, id_categorie) VALUES (:titre, :contenu, :id_auteur, :id_categorie)';
+                $sql = 'INSERT INTO article (titre, contenu, id_auteur, id_categorie, couverture) VALUES (:titre, :contenu, :id_auteur, :id_categorie, :couverture)';
                 $stmt = $this->database->getConnection()->prepare($sql);
                 $stmt->bindParam(":titre", $titre, PDO::PARAM_STR);
                 $stmt->bindParam(":contenu", $contenu, PDO::PARAM_STR);
                 $stmt->bindParam(":id_auteur", $id_auteur, PDO::PARAM_INT);
                 $stmt->bindParam(":id_categorie", $id_categorie, PDO::PARAM_INT);
+                $stmt->bindParam(":couverture", $couverture, PDO::PARAM_STR);
                 $stmt->execute();
                 header("location: ../views/auteur/dashboard.php");
             } catch (PDOException $e) {

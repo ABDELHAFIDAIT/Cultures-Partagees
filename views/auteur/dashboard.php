@@ -298,7 +298,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                     foreach ($articles as $art) {
                         echo '<article class="relative bg-white shadow-md rounded-md">';
                         echo '<div>
-                                    <img src="../../assets/img/default-image.png" class="rounded-t-md" alt="Couverture de l\'Article">
+                                    <img src="../../uploads/'. $art['couverture'] .'" class="rounded-t-md" alt="Couverture de l\'Article">
                                 </div>';
                         echo '<div class="p-4">';
                         echo '<p class="text-gray-800 font-medium text-sm">' . $art['date_publication'] . ' •</p>';
@@ -341,7 +341,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                             Ajouter un Nouvel Article
                         </h2>
                     </div>
-                    <form method="POST" action="../../actions/addArticle.php" id="addArticleForm" class="mt-8 space-y-6">
+                    <form method="POST" action="../../actions/addArticle.php" id="addArticleForm" class="mt-8 space-y-6" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div class="rounded-md shadow-sm flex flex-col gap-5">
                             <div>
@@ -364,6 +364,17 @@ if ($_SESSION['role'] !== 'Auteur') {
                                         }
                                     ?>
                                 </select>
+                            </div>
+                            <div>
+                                <label for="image" class="sr-only">Photo</label>
+                                <input 
+                                    id="image" 
+                                    name="image" 
+                                    type="file" 
+                                    accept="image/*" 
+                                    required 
+                                    class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" 
+                                    placeholder="Télécharger une image">
                             </div>
                             <div>
                                 <label for="contenu" class="sr-only">Contenu</label>
