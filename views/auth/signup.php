@@ -18,8 +18,8 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body>
-    <main class="redirection flex justify-center items-center h-screen">
-        <div class="max-w-md w-full space-y-8 bg-white py-5 px-8 rounded-lg shadow-lg animate__animated animate__fadeIn">
+    <main class="redirection flex justify-center items-center">
+        <div class="max-w-md w-full space-y-8 bg-white my-20 py-5 px-8 rounded-lg shadow-lg animate__animated animate__fadeIn">
             <div>
                 <h2 class="mt-2 text-center text-3xl font-extrabold text-gray-900">
                     Créez votre compte
@@ -31,7 +31,7 @@
                     </a>
                 </p>
             </div>
-            <form method="POST" action="../../actions/register.php" id="registerForm" class="mt-8 space-y-6">
+            <form method="POST" action="../../actions/register.php" id="registerForm" class="mt-8 space-y-6" enctype="multipart/form-data">
                 <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
                 <div class="rounded-md shadow-sm flex flex-col gap-5">
                     <div>
@@ -52,6 +52,17 @@
                             <option>Utilisateur</option>
                             <option>Auteur</option>
                         </select>
+                    </div>
+                    <div>
+                        <label for="image" class="sr-only">Photo</label>
+                        <input 
+                            id="image" 
+                            name="image" 
+                            type="file" 
+                            accept="image/*" 
+                            required 
+                            class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" 
+                            placeholder="Télécharger une image">
                     </div>
                     <div>
                         <label for="email" class="sr-only">Adresse email</label>

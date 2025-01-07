@@ -40,12 +40,12 @@
                             echo '<h1 class="text-gray-900 font-semibold text-xl mb-3">'. $result['titre'] .'</h1>';
                             echo '<p class="text-gray-700 font-medium text-md text-justify">'. $result['contenu'] .'</p>';
                             echo '<p class="absolute top-5 left-5 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">' . $result['nom_categorie'] . '</p>';
-                            if ($result['etat'] == 'Accepté') {
-                                echo '<span class="absolute top-5 right-5 text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $result['etat'] . '</span>';
-                            } else if ($result['etat'] == 'En Attente') {
-                                echo '<span class="absolute top-5 right-5 text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $result['etat'] . '</span>';
+                            if ($result['statut'] == 'Accepté') {
+                                echo '<span class="absolute top-5 right-5 text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $result['statut'] . '</span>';
+                            } else if ($result['statut'] == 'En Attente') {
+                                echo '<span class="absolute top-5 right-5 text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $result['statut'] . '</span>';
                             } else {
-                                echo '<span class="absolute top-5 right-5 text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $result['etat'] . '</span>';
+                                echo '<span class="absolute top-5 right-5 text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $result['statut'] . '</span>';
                             }
                         }
                     ?>

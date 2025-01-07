@@ -11,7 +11,7 @@ class Database {
     
     public function __construct() {
         $this->host ='localhost';
-        $this->db ='culture_partagee';
+        $this->db ='culture_connect';
         $this->user = 'root';
         $this->pass = '';
         $this->charset ='utf8mb4';

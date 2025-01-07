@@ -48,9 +48,9 @@
         public function allArticles(){
             try{
                 $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
-                        JOIN users U ON U.id_user = A.id_auteur WHERE A.etat = :etat ORDER BY A.date_publication DESC";
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.statut = :statut ORDER BY A.date_publication DESC";
                 $stmt = $this->database->getConnection()->prepare($query);
-                $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
+                $stmt->bindValue(":statut", 'Accepté', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -67,9 +67,9 @@
         public function refusedArticles(){
             try{
                 $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
-                        JOIN users U ON U.id_user = A.id_auteur WHERE A.etat = :etat ORDER BY A.date_publication DESC";
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.statut = :statut ORDER BY A.date_publication DESC";
                 $stmt = $this->database->getConnection()->prepare($query);
-                $stmt->bindValue(":etat", 'Refusé', PDO::PARAM_STR);
+                $stmt->bindValue(":statut", 'Refusé', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -86,9 +86,9 @@
         public function pendingArticles(){
             try{
                 $query = "SELECT * FROM article A JOIN categorie C ON A.id_categorie = C.id_categorie
-                        JOIN users U ON U.id_user = A.id_auteur WHERE A.etat = :etat ORDER BY A.date_publication DESC";
+                        JOIN users U ON U.id_user = A.id_auteur WHERE A.statut = :statut ORDER BY A.date_publication DESC";
                 $stmt = $this->database->getConnection()->prepare($query);
-                $stmt->bindValue(":etat", 'En Attente', PDO::PARAM_STR);
+                $stmt->bindValue(":statut", 'En Attente', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -104,10 +104,10 @@
         // SHOW ONE ARTICLE
         public function showArticle(int $id){
             try{
-                $query = "SELECT * FROM article A JOIN users U ON A.id_auteur = U.id_user JOIN categorie C ON A.id_categorie = C.id_categorie WHERE A.id_article = :id AND A.etat = :etat";
+                $query = "SELECT * FROM article A JOIN users U ON A.id_auteur = U.id_user JOIN categorie C ON A.id_categorie = C.id_categorie WHERE A.id_article = :id AND A.statut = :statut";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->bindValue(":id", (int)$id, PDO::PARAM_INT);
-                $stmt->bindValue(":etat", 'Accepté', PDO::PARAM_STR);
+                $stmt->bindValue(":statut", 'Accepté', PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -139,12 +139,12 @@
         }
 
         // COUNT ARTICLES OF A SPECIFIC AUTHOR BASING ON STATUS 
-        public function statusArticles(int $id_auteur, string $etat){
+        public function statusArticles(int $id_auteur, string $statut){
             try{
-                $query = "SELECT COUNT(id_article) AS nbr_articles FROM article WHERE id_auteur = :id AND etat = :etat";
+                $query = "SELECT COUNT(id_article) AS nbr_articles FROM article WHERE id_auteur = :id AND statut = :statut";
                 $stmt = $this->database->getConnection()->prepare($query);
                 $stmt->bindParam(":id", $id_auteur, PDO::PARAM_INT);
-                $stmt->bindParam(":etat", $etat, PDO::PARAM_STR);
+                $stmt->bindParam(":statut", $statut, PDO::PARAM_STR);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);

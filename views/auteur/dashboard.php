@@ -143,9 +143,9 @@ if ($_SESSION['role'] !== 'Auteur') {
                                 <p class="text-sm text-gray-500 mb-1">Approuvés</p>
                                 <?php
                                 require_once '../../classes/article.php';
-                                $etat = 'Accepté';
+                                $statut = 'Accepté';
                                 $article = new Article();
-                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
+                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $statut);
                                 echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
                                 ?>
                             </div>
@@ -162,9 +162,9 @@ if ($_SESSION['role'] !== 'Auteur') {
                                 <p class="text-sm text-gray-500 mb-1">En Attente</p>
                                 <?php
                                 require_once '../../classes/article.php';
-                                $etat = 'En Attente';
+                                $statut = 'En Attente';
                                 $article = new Article();
-                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
+                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $statut);
                                 echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
                                 ?>
                             </div>
@@ -181,9 +181,9 @@ if ($_SESSION['role'] !== 'Auteur') {
                                 <p class="text-sm text-gray-500 mb-1">Refusés</p>
                                 <?php
                                 require_once '../../classes/article.php';
-                                $etat = 'Refusé';
+                                $statut = 'Refusé';
                                 $article = new Article();
-                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $etat);
+                                $nbr = $article->statusArticles((int) $_SESSION['id_user'], $statut);
                                 echo '<h3 class="text-2xl font-bold text-gray-800">' . $nbr['nbr_articles'] . '</h3>';
                                 ?>
                             </div>
@@ -263,12 +263,12 @@ if ($_SESSION['role'] !== 'Auteur') {
                                                     <p class="text-sm text-gray-600">' . $article['date_publication'] . '</p>
                                                     <div class="flex items-center mt-1">';
 
-                                    if ($article['etat'] == 'Accepté') {
-                                        echo '<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $article['etat'] . '</span>';
-                                    } else if ($article['etat'] == 'En Attente') {
-                                        echo '<span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $article['etat'] . '</span>';
+                                    if ($article['statut'] == 'Accepté') {
+                                        echo '<span class="text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $article['statut'] . '</span>';
+                                    } else if ($article['statut'] == 'En Attente') {
+                                        echo '<span class="text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $article['statut'] . '</span>';
                                     } else {
-                                        echo '<span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $article['etat'] . '</span>';
+                                        echo '<span class="text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $article['statut'] . '</span>';
                                     }
                                     echo '</div>
                                                 </div>
@@ -316,12 +316,12 @@ if ($_SESSION['role'] !== 'Auteur') {
                                     </div>
                                 </div>
                                 <p class="absolute top-2 right-2 bg-white bg-opacity-85 py-1 px-3 rounded-md text-xs">' . $art['nom_categorie'] . '</p>';
-                                if ($art['etat'] == 'Accepté') {
-                                    echo '<span class="absolute top-2 left-2 text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $art['etat'] . '</span>';
-                                } else if ($art['etat'] == 'En Attente') {
-                                    echo '<span class="absolute top-2 left-2 text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $art['etat'] . '</span>';
+                                if ($art['statut'] == 'Accepté') {
+                                    echo '<span class="absolute top-2 left-2 text-xs bg-green-100 text-green-600 px-2 py-1 rounded-full">' . $art['statut'] . '</span>';
+                                } else if ($art['statut'] == 'En Attente') {
+                                    echo '<span class="absolute top-2 left-2 text-xs bg-yellow-100 text-yellow-600 px-2 py-1 rounded-full">' . $art['statut'] . '</span>';
                                 } else {
-                                    echo '<span class="absolute top-2 left-2 text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $art['etat'] . '</span>';
+                                    echo '<span class="absolute top-2 left-2 text-xs bg-red-100 text-red-600 px-2 py-1 rounded-full">' . $art['statut'] . '</span>';
                                 }
                             echo '</article>';
                     }
@@ -394,7 +394,7 @@ if ($_SESSION['role'] !== 'Auteur') {
 
                     ?>
                     <div class="relative h-32 bg-gradient-to-r from-pink-600 to-purple-700">
-                        <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg" alt="<?php echo $auteur['prenom'] . ' ' . $auteur['nom']; ?>" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-24 h-24 rounded-full border-4 border-white transition-transform duration-300 hover:scale-105 z-0">
+                        <img src="../../uploads/<?php echo $auteur['photo'] ?>" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-24 h-24 rounded-full border-4 border-white transition-transform duration-300 hover:scale-105 z-0">
                     </div>
                     
                     <div class="pt-16 pb-6 px-6 text-center">
