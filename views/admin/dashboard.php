@@ -282,7 +282,44 @@ if ($_SESSION['role'] !== 'Admin') {
                 </div>
                 <!-- Tags Cards -->
                 <div class="grid grid-cols-3 gap-5 flex-wrap">
-                    <div class="bg-gray-100 rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
+
+                    <?php
+                        require_once '../../classes/tag.php';
+
+                        $tg = new Tag();
+                        $tags = $tg->allTags();
+
+                        if (is_array($tags)) {
+                            foreach ($tags as $tag) {
+                                echo '
+                                    <div class="bg-gray-100 rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
+                                        <div class="flex items-center justify-between">
+                                            <div class="flex items-center gap-3">
+                                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
+                                                <h3 class="text-md font-semibold text-purple-900">'. $tag['nom_tag'] .'</h3>
+                                            </div>
+                                            <span class="text-xs px-3 py-1 rounded-full bg-yellow-100 text-gray-900">'. $tag['nbr_articles'] .' articles</span>
+                                        </div>
+                                        
+                                        <div class="flex justify-end gap-2 mt-4">
+                                            <a href="../../actions/editTag.php?id='. $tag['id_tag'] .'"><button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
+                                                    title="Modifier">
+                                                <i class="fas fa-edit"></i>
+                                            </button></a>
+                                            <a href="../../actions/deleteTag.php?id='. $tag['id_tag'] .'"><button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
+                                                    title="Supprimer">
+                                                <i class="fas fa-trash"></i>
+                                            </button></a>
+                                        </div>
+                                    </div>
+                                ';
+                            }
+                        }else{
+                            echo '<h1 class="col-span-3 text-red-600 font-semibold text-2xl">Vous n\'avez pas ajouté AUCUN TAG !</h1>';
+                        }
+                    ?>
+
+                    <!-- <div class="bg-gray-100 rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-3">
                                 <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
@@ -301,87 +338,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                 <i class="fas fa-trash"></i>
                             </button>
                         </div>
-                    </div>
-                    <div class="flex-1 bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
-                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
-                            </div>
-                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
-                        </div>
-                        
-                        <div class="flex justify-end gap-2 mt-4">
-                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
-                                    title="Modifier">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
-                                    title="Supprimer">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex-1 bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
-                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
-                            </div>
-                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
-                        </div>
-                        
-                        <div class="flex justify-end gap-2 mt-4">
-                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
-                                    title="Modifier">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
-                                    title="Supprimer">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex-1 bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
-                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
-                            </div>
-                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
-                        </div>
-                        
-                        <div class="flex justify-end gap-2 mt-4">
-                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
-                                    title="Modifier">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
-                                    title="Supprimer">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="flex-1 bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
-                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
-                            </div>
-                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
-                        </div>
-                        
-                        <div class="flex justify-end gap-2 mt-4">
-                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
-                                    title="Modifier">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
-                                    title="Supprimer">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
 

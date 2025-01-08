@@ -1,6 +1,6 @@
 <?php
 
-    require_once '../config/db.php';
+    require_once __DIR__ . './../config/db.php';
     class Tag {
         private $id;
         private $nom;
@@ -31,7 +31,7 @@
         // SHOW ALL TAGS
         public function allTags() {
             try {
-                $sql = "SELECT * FROM tags";
+                $sql = "SELECT *, COUNT(TA.id_article) AS nbr_articles FROM tags T JOIN article_tag TA ON T.id_tag = TA.id_tag JOIN article A ON TA.id_article = A.id_article GROUP BY TA.id_tag ORDER BY T.nom_tag, nbr_articles";
                 $stmt = $this->database->getConnection()->prepare($sql);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
