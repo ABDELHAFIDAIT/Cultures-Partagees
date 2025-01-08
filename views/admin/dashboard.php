@@ -61,6 +61,11 @@ if ($_SESSION['role'] !== 'Admin') {
                     Les Tags
                 </div>
 
+                <div id="admin-comments" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
+                    <i class="fa-solid fa-comments mr-3"></i>
+                    Les Commentaires
+                </div>
+
                 <div id="admin-articles" class="cursor-pointer flex items-center px-6 py-3 hover:bg-purple-700 transition-colors duration-200">
                     <i class="fa-solid fa-newspaper mr-3"></i>
                     Les Articles
@@ -319,26 +324,90 @@ if ($_SESSION['role'] !== 'Admin') {
                         }
                     ?>
 
-                    <!-- <div class="bg-gray-100 rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
-                        <div class="flex items-center justify-between">
-                            <div class="flex items-center gap-3">
-                                <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
-                                <h3 class="text-lg font-semibold text-purple-900">test</h3>
-                            </div>
-                            <span class="text-sm px-3 py-1 rounded-full bg-yellow-100 text-gray-900">23 articles</span>
-                        </div>
-                        
-                        <div class="flex justify-end gap-2 mt-4">
-                            <button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
-                                    title="Modifier">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                            <button class="p-2 text-red-500 hover:bg-pink-50 rounded-lg transition duration-200 hover:scale-110"
-                                    title="Supprimer">
-                                <i class="fas fa-trash"></i>
-                            </button>
-                        </div>
-                    </div> -->
+                </div>
+            </div>
+
+            <!-- Commentaires -->
+            <div id="admin-manage-comments" style="display: none;" class="py-10 px-8 ">
+                <!-- Refused Comments -->
+                <div class="flex flex-col justify-center mb-10">
+                    <h1 class="font-semibold text-2xl mb-6">Commentaires <span class="text-red-500">Innapropriés</span></h1>
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                            <tr class="bg-purple-700 text-white">
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Commentaire</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Utilisateur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Article</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Soumission</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-gray-200 divide-y divide-gray-200 text-xs">
+
+                            <?php
+                                require_once '../../classes/comment.php';
+
+                                $cmt = new Comment();
+                                $comments = $cmt->statusComments(0);
+
+                                if (is_array($comments)) {
+                                    foreach ($comments as $comment) {
+                                        echo '<tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">'. $comment['comment'] .'</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['utilisateur'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['titre'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['auteur'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['date_soumission'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <a href="../../actions/approveComment.php?id='. $comment['id_comment'] .'"><button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button></a>
+                                                </td>
+                                            </tr>';
+                                    }
+                                }
+                            ?>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Approved Comments -->
+                <div class="flex flex-col justify-center mb-10">
+                    <h1 class="font-semibold text-2xl mb-6">Commentaires <span class="text-red-500">Innapropriés</span></h1>
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead>
+                            <tr class="bg-purple-700 text-white">
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Commentaire</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Utilisateur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Article</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Soumission</th>
+                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-gray-200 divide-y divide-gray-200 text-xs">
+
+                            <?php
+                                require_once '../../classes/comment.php';
+
+                                $cmt = new Comment();
+                                $comments = $cmt->statusComments(1);
+
+                                if (is_array($comments)) {
+                                    foreach ($comments as $comment) {
+                                        echo '<tr>
+                                                <td class="px-6 py-4 whitespace-nowrap">'. $comment['comment'] .'</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['utilisateur'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['titre'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['auteur'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['date_soumission'] . '</td>
+                                                <td class="px-6 py-4 whitespace-nowrap">
+                                                    <a href="../../actions/refuseComment.php?id='. $comment['id_comment'] .'"><button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button></a>
+                                                </td>
+                                            </tr>';
+                                    }
+                                }
+                            ?>
+                        </tbody>
+                    </table>
                 </div>
             </div>
 

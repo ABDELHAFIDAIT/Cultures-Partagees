@@ -5,6 +5,7 @@ const optionAdminCategories = document.querySelector('#admin-categories');
 const optionAdminProfile = document.querySelector('#admin-profile');
 const optionAdminUsers = document.querySelector('#admin-users');
 const optionAdminTags = document.querySelector('#admin-tags');
+const optionAdminComments = document.querySelector('#admin-comments');
 
 
 const manageAdminStatistics = document.querySelector('#admin-manage-statistics');
@@ -14,6 +15,28 @@ const manageAdminCategories = document.querySelector('#admin-manage-categories')
 const manageAdminProfile = document.querySelector('#admin-manage-profile');
 const manageAdminUsers = document.querySelector('#admin-manage-users');
 const manageAdminTags = document.querySelector('#admin-manage-tags');
+const manageAdminComments = document.querySelector('#admin-manage-comments');
+
+
+optionAdminComments.addEventListener('click', function() {
+    optionAdminStatistics.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminAuthors.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminArticles.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminCategories.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminProfile.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminUsers.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminComments.classList.add('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminTags.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+
+    manageAdminTags.style.display = 'none';
+    manageAdminStatistics.style.display = 'none';
+    manageAdminAuthors.style.display = 'none';
+    manageAdminArticles.style.display = 'none';
+    manageAdminCategories.style.display = 'none';
+    manageAdminProfile.style.display = 'none';
+    manageAdminUsers.style.display = 'none';
+    manageAdminComments.style.display = 'block';
+});
 
 
 optionAdminStatistics.addEventListener('click', function() {
@@ -23,6 +46,8 @@ optionAdminStatistics.addEventListener('click', function() {
     optionAdminCategories.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminProfile.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminUsers.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminComments.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminTags.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
 
     manageAdminTags.style.display = 'none';
     manageAdminStatistics.style.display = 'block';
@@ -31,6 +56,7 @@ optionAdminStatistics.addEventListener('click', function() {
     manageAdminCategories.style.display = 'none';
     manageAdminProfile.style.display = 'none';
     manageAdminUsers.style.display = 'none';
+    manageAdminComments.style.display = 'none';
 });
 
 optionAdminAuthors.addEventListener('click', function() {
@@ -40,6 +66,8 @@ optionAdminAuthors.addEventListener('click', function() {
     optionAdminCategories.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminProfile.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminUsers.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminComments.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminTags.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
 
     manageAdminTags.style.display = 'none';
     manageAdminStatistics.style.display = 'none';
@@ -48,6 +76,7 @@ optionAdminAuthors.addEventListener('click', function() {
     manageAdminCategories.style.display = 'none';
     manageAdminProfile.style.display = 'none';
     manageAdminUsers.style.display = 'none';
+    manageAdminComments.style.display = 'none';
 });
 
 optionAdminArticles.addEventListener('click', function() {
@@ -58,6 +87,7 @@ optionAdminArticles.addEventListener('click', function() {
     optionAdminCategories.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminProfile.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminUsers.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminComments.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
 
     manageAdminTags.style.display = 'none';
     manageAdminStatistics.style.display = 'none';
@@ -66,6 +96,7 @@ optionAdminArticles.addEventListener('click', function() {
     manageAdminCategories.style.display = 'none';
     manageAdminProfile.style.display = 'none';
     manageAdminUsers.style.display = 'none';
+    manageAdminComments.style.display = 'none';
 });
 
 optionAdminCategories.addEventListener('click', function() {
@@ -76,6 +107,7 @@ optionAdminCategories.addEventListener('click', function() {
     optionAdminArticles.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminProfile.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminUsers.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminComments.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
 
     manageAdminTags.style.display = 'none';
     manageAdminStatistics.style.display = 'none';
@@ -84,6 +116,7 @@ optionAdminCategories.addEventListener('click', function() {
     manageAdminCategories.style.display = 'block';
     manageAdminProfile.style.display = 'none';
     manageAdminUsers.style.display = 'none';
+    manageAdminComments.style.display = 'none';
 });
 
 optionAdminProfile.addEventListener('click', function() {
@@ -94,6 +127,7 @@ optionAdminProfile.addEventListener('click', function() {
     optionAdminArticles.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminCategories.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminUsers.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminComments.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
 
     manageAdminTags.style.display = 'none';
     manageAdminStatistics.style.display = 'none';
@@ -102,6 +136,7 @@ optionAdminProfile.addEventListener('click', function() {
     manageAdminCategories.style.display = 'none';
     manageAdminProfile.style.display = 'block';
     manageAdminUsers.style.display = 'none';
+    manageAdminComments.style.display = 'none';
 });
 
 optionAdminUsers.addEventListener('click', function() {
@@ -112,6 +147,7 @@ optionAdminUsers.addEventListener('click', function() {
     optionAdminArticles.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminCategories.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminProfile.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminComments.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
 
     manageAdminTags.style.display = 'none';
     manageAdminStatistics.style.display = 'none';
@@ -119,6 +155,7 @@ optionAdminUsers.addEventListener('click', function() {
     manageAdminArticles.style.display = 'none';
     manageAdminCategories.style.display = 'none';
     manageAdminProfile.style.display = 'none';
+    manageAdminComments.style.display = 'none';
     manageAdminUsers.style.display = 'block';
 });
 
@@ -130,6 +167,7 @@ optionAdminTags.addEventListener('click', function() {
     optionAdminArticles.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminCategories.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
     optionAdminProfile.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
+    optionAdminComments.classList.remove('bg-purple-700', 'border-r-4', 'border-white');
 
     manageAdminStatistics.style.display = 'none';
     manageAdminAuthors.style.display = 'none';
@@ -137,6 +175,7 @@ optionAdminTags.addEventListener('click', function() {
     manageAdminCategories.style.display = 'none';
     manageAdminProfile.style.display = 'none';
     manageAdminUsers.style.display = 'none';
+    manageAdminComments.style.display = 'none';
     manageAdminTags.style.display = 'block';
 });
 

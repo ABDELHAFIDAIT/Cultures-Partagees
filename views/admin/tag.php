@@ -45,7 +45,7 @@
                                         <label for="nom-cat" class="sr-only">Nom</label>
                                         <input value="'. $tag['nom_tag'] .'" id="nom-cat" name="nom-tag" type="text" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Nom de Catégorie">
                                     </div>
-                                    <div class="">
+                                    <div class="hidden">
                                         <label for="id" class="sr-only">id</label>
                                         <input value="'. $id .'" id="id" name="id_tag" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Entrer le Contenu de votre Article ici..">
                                     </div>

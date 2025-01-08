@@ -1,6 +1,6 @@
 <?php
 
-    require_once '../config/db.php';
+    require_once __DIR__ . './../config/db.php';
     class Comment {
         private $id;
         private $content;
@@ -38,10 +38,16 @@
         }
 
         // SHOW ALL COMMENTS
-        public function allComments() {
+        public function statusComments(int $etat) {
             try {
-                $sql = "SELECT * FROM users U JOIN commentaires C ON U.id_user = C.id_utilisateur JOIN article A ON C.id_article = A.id_article";
+                $sql = "SELECT C.contenu AS comment, C.id_comment, C.date_soumission, C.isApproved , CONCAT(US.prenom, ' ' , US.prenom) AS auteur, CONCAT(U.prenom, ' ' , U.prenom) AS utilisateur, A.titre
+                        FROM users U JOIN commentaires C ON U.id_user = C.id_utilisateur 
+                                    JOIN article A ON C.id_article = A.id_article 
+                                    JOIN users US ON A.id_auteur = US.id_user
+                        WHERE C.isApproved = :etat";
+
                 $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(":etat", $etat, PDO::PARAM_INT);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
                     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
