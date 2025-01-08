@@ -302,7 +302,7 @@ if ($_SESSION['role'] !== 'Admin') {
                                         </div>
                                         
                                         <div class="flex justify-end gap-2 mt-4">
-                                            <a href="../../actions/editTag.php?id='. $tag['id_tag'] .'"><button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
+                                            <a href="./tag.php?id='. $tag['id_tag'] .'"><button class="p-2 text-blue-600 hover:bg-purple-50 rounded-lg transition duration-200 hover:scale-110" 
                                                     title="Modifier">
                                                 <i class="fas fa-edit"></i>
                                             </button></a>
@@ -632,7 +632,6 @@ if ($_SESSION['role'] !== 'Admin') {
                     </form>
                 </div>
             </div>
-
 
         </section>
             

@@ -44,4 +44,22 @@
                 return "Erreur lors de la Récupération des Commentaires". $e->getMessage();
             }
         }
+
+        // SHOW ONE TAG
+        public function showTag(int $id){
+            try{
+                $query = "SELECT * FROM tags WHERE id_tag = :id";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "". $e->getMessage();
+            }
+        }
     }

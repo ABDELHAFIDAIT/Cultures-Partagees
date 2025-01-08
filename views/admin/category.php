@@ -51,7 +51,7 @@
                                     </div>
                                     <div class="hidden">
                                         <label for="id" class="sr-only">id</label>
-                                        <input disabled value="'. $categorie['id_categorie'].'" id="id" name="id" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Entrer le Contenu de votre Article ici..">
+                                        <input value="'. $categorie['id_categorie'].'" id="id" name="id" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Entrer le Contenu de votre Article ici..">
                                     </div>
                                 </div>
 

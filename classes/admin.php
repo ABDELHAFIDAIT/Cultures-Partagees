@@ -90,7 +90,6 @@
             }
         }
 
-
         // ADD TAG METHOD
         public function addTag(int $id_admin, string $nom){
             try {
@@ -101,7 +100,7 @@
                 $stmt->execute();
                 header("location: ../views/admin/dashboard.php");
             } catch (PDOException $e) {
-                return "Erreur lors de l'ajout de la catégorie : " . $e->getMessage();
+                return "Erreur lors de l'ajout du Tag : " . $e->getMessage();
             }
         }
 
@@ -114,7 +113,21 @@
                 $stmt->execute();
                 header("location: ../views/admin/dashboard.php");
             } catch (PDOException $e) {
-                return "Erreur lors de la suppression de la catégorie : " . $e->getMessage();
+                return "Erreur lors de la suppression du Tag : " . $e->getMessage();
+            }
+        }
+
+        // MODIFY CATEGORIE METHOD
+        public function editTag(int $id, string $nom){
+            try {
+                $sql = "UPDATE Tags SET nom_tag = :nom WHERE id_tag = :id";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(":nom", $nom, PDO::PARAM_STR);
+                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                $stmt->execute();
+                header("location: ../views/admin/dashboard.php");
+            } catch (PDOException $e) {
+                return "Erreur lors de Modification du Tag :". $e->getMessage();
             }
         }
 
