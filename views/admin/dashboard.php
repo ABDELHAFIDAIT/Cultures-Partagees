@@ -123,7 +123,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </nav>
 
             <!-- Dashboard -->
-            <div id="admin-manage-statistics" class="p-8 bg-gray-200">
+            <div id="admin-manage-statistics" class="p-8 ">
                 <!-- Stats Cards -->
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
                     <div
@@ -207,7 +207,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Categories -->
-            <div id="admin-manage-categories" style="display: none;" class="p-8 bg-gray-200">
+            <div id="admin-manage-categories" style="display: none;" class="p-8 ">
                 <!-- add category button & search bar -->
                 <div class="flex justify-between items-center mb-10">
                     <button type="button" id="open-add-cat" class="py-2 px-5 bg-purple-800 text-white hover:bg-purple-700 transition-colors duration-200">
@@ -229,13 +229,13 @@ if ($_SESSION['role'] !== 'Admin') {
                     <table class="divide-y divide-gray-200">
                         <thead>
                             <tr class="bg-gradient-to-r from-pink-600 to-purple-700 text-white">
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Description</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre Articles</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
+                                <th class="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
+                                <th class="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider">Description</th>
+                                <th class="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider w-5">Nombre Articles</th>
+                                <th class="px-5 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200">
+                        <tbody class="bg-gray-200 divide-y divide-gray-200">
                             
                             <?php
                                 require_once '../../classes/admin.php';
@@ -246,10 +246,10 @@ if ($_SESSION['role'] !== 'Admin') {
                                 if (is_array($categories)) {
                                     foreach ($categories as $categorie) {
                                         echo '<tr>
-                                                <td class="px-6 py-4 whitespace-nowrap">' . $categorie['nom_categorie'] . '</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">' . $categorie['description'] . '</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">' . $categorie['nbr_articles'] . '</td>
-                                                <td class="px-6 py-4 whitespace-nowrap flex items-center gap-5">
+                                                <td class="px-5 py-4 whitespace-nowrap">' . $categorie['nom_categorie'] . '</td>
+                                                <td class="px-5 py-4 whitespace-nowrap">' . $categorie['description'] . '</td>
+                                                <td class="px-5 py-4 whitespace-nowrap">' . $categorie['nbr_articles'] . '</td>
+                                                <td class="px-5 py-4 whitespace-nowrap flex items-center gap-5">
                                                     <a href="./category.php?id='. $categorie['id_categorie'] .'"><i class="fas fa-edit text-blue-600"></i></a>
                                                     <a href="../../actions/deleteCategory.php?id='.$categorie['id_categorie'].'"><i class="fas fa-trash text-red-600"></i></a>
                                                 </td>
@@ -263,7 +263,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Tags -->
-            <div id="admin-manage-tags" style="display: none;" class="p-8 bg-gray-200">
+            <div id="admin-manage-tags" style="display: none;" class="p-8 ">
                 <!-- add Tag button & search bar -->
                 <div class="flex justify-between items-center mb-10">
                     <button type="button" id="open-add-tag" class="py-2 px-5 bg-purple-800 text-white hover:bg-purple-700 transition-colors duration-200">
@@ -282,7 +282,7 @@ if ($_SESSION['role'] !== 'Admin') {
                 </div>
                 <!-- Tags Cards -->
                 <div class="grid grid-cols-3 gap-5 flex-wrap">
-                    <div class="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
+                    <div class="bg-gray-100 rounded-xl shadow-lg p-6 hover:shadow-xl transition duration-300 border border-purple-100 transform hover:-translate-y-1 animate-slideIn">
                         <div class="flex items-center justify-between">
                             <div class="flex items-center gap-3">
                                 <span class="w-3 h-3 rounded-full bg-gradient-to-r from-purple-500 to-pink-500"></span>
@@ -386,7 +386,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Articles -->
-            <div id="admin-manage-articles" style="display: none;" class="py-10 px-8 bg-gray-200">
+            <div id="admin-manage-articles" style="display: none;" class="py-10 px-8 ">
                 <!-- Articles En Attente -->
                 <div class="flex flex-col justify-center mb-10">
                     <h1 class="font-semibold text-2xl mb-6">Articles <span class="text-yellow-500">En Attente</span></h1>
@@ -395,14 +395,13 @@ if ($_SESSION['role'] !== 'Admin') {
                             <tr class="bg-purple-700 text-white">
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Couverture</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Titre</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contenu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Publication</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200 text-xs">
+                        <tbody class="bg-gray-200 divide-y divide-gray-200 text-xs">
 
                             <?php
                                 require_once '../../classes/article.php';
@@ -415,7 +414,6 @@ if ($_SESSION['role'] !== 'Admin') {
                                         echo '<tr>
                                                 <td class="px-6 py-4 whitespace-nowrap"><img src="../../uploads/'. $article['couverture'] .'"></td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . substr($article['titre'], 0, 20) . '...</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">' . substr($article['contenu'], 0, 30) . '...</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['nom_categorie'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
@@ -440,14 +438,13 @@ if ($_SESSION['role'] !== 'Admin') {
                         <tr class="bg-purple-700 text-white">
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Couverture</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Titre</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contenu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Publication</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200 text-xs">
+                        <tbody class="bg-gray-200 divide-y divide-gray-200 text-xs">
                             <?php
                                 require_once '../../classes/article.php';
 
@@ -457,9 +454,8 @@ if ($_SESSION['role'] !== 'Admin') {
                                 if (is_array($articles)) {
                                     foreach ($articles as $article) {
                                         echo '<tr>
-                                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
+                                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../uploads/'. $article['couverture'] .'" class="w-2/3"></td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . substr($article['titre'], 0, 20) . '...</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">' . substr($article['contenu'], 0, 30) . '...</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['nom_categorie'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
@@ -483,14 +479,13 @@ if ($_SESSION['role'] !== 'Admin') {
                         <tr class="bg-purple-700 text-white">
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Couverture</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Titre</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Contenu</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Catégorie</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Publication</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                             </tr>
                         </thead>
-                        <tbody class="bg-white divide-y divide-gray-200 text-xs">
+                        <tbody class="bg-gray-200 divide-y divide-gray-200 text-xs">
                             <?php
                                 require_once '../../classes/article.php';
 
@@ -500,9 +495,8 @@ if ($_SESSION['role'] !== 'Admin') {
                                 if (is_array($articles)) {
                                     foreach ($articles as $article) {
                                         echo '<tr>
-                                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../assets/img/default-image.png"></td>
+                                                <td class="px-6 py-4 whitespace-nowrap"><img src="../../uploads/'. $article['couverture'] .'" class="w-2/3"></td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . substr($article['titre'], 0, 20) . '...</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">' . substr($article['contenu'], 0, 30) . '...</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['nom_categorie'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['prenom'] . ' ' . $article['nom'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $article['date_publication'] . '</td>
@@ -520,7 +514,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Authors -->
-            <div id="admin-manage-authors" style="display:none ;" class="p-8 bg-gray-200">
+            <div id="admin-manage-authors" style="display:none ;" class="p-8 ">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     <?php
                         require_once '../../classes/auteur.php';
@@ -531,7 +525,7 @@ if ($_SESSION['role'] !== 'Admin') {
                             foreach ($auteurs as $auteur) {
                                 $nbr = $auth->countArticles($auteur['id_user']);
                                 echo '
-                                <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                                <div class="bg-purple-100 rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
                                     <div class="flex items-center justify-center">
                                         <div class="flex flex-col items-center">
                                             <img src="../../uploads/'. $auteur['photo'] .'" alt="Profile" class="h-16 w-16 rounded-full object-cover mb-4">
@@ -549,7 +543,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Users -->
-            <div id="admin-manage-users" style="display: none;" class="p-8 bg-gray-200">
+            <div id="admin-manage-users" style="display: none;" class="p-8 ">
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 
                     <?php
@@ -561,7 +555,7 @@ if ($_SESSION['role'] !== 'Admin') {
                         if (is_array($users)) {
                             foreach ($users as $use) {
                                 echo '
-                                    <div class="bg-white rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
+                                    <div class="bg-purple-100 rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
                                         <div class="flex items-center justify-center">
                                             <div class="flex flex-col items-center">
                                                 <img src="../../uploads/'. $auteur['photo'] .'" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
@@ -579,7 +573,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Profile Section -->
-            <div id="admin-manage-profile" style="display: none;" class="flex justify-center bg-gray-200 p-10">
+            <div id="admin-manage-profile" style="display: none;" class="flex justify-center  p-10">
                 <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full overflow-hidden transition-all duration-300 hover:shadow-indigo-500/50 ">
                     <?php
                         require_once '../../classes/user.php';
