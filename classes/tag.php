@@ -31,7 +31,7 @@
         // SHOW ALL TAGS
         public function allTags() {
             try {
-                $sql = "SELECT *, COUNT(TA.id_article) AS nbr_articles FROM tags T JOIN article_tag TA ON T.id_tag = TA.id_tag JOIN article A ON TA.id_article = A.id_article GROUP BY TA.id_tag ORDER BY T.nom_tag, nbr_articles";
+                $sql = "SELECT T.id_tag, T.nom_tag , COUNT(TA.id_article) AS nbr_articles FROM tags T LEFT JOIN article_tag TA ON T.id_tag = TA.id_tag GROUP BY T.id_tag ORDER BY nbr_articles DESC";
                 $stmt = $this->database->getConnection()->prepare($sql);
                 $stmt->execute();
                 if($stmt->rowCount() > 0){
