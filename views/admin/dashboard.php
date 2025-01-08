@@ -26,12 +26,18 @@ if ($_SESSION['role'] !== 'Admin') {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        .custom-scroll::-webkit-scrollbar {
+            width: 0px;
+        }
+    </style>
 </head>
 
-<body>
-    <main class="min-h-screen flex">
+<body class="custom-scroll">
+    <main class="min-h-screen flex custom-scroll">
         <!-- Sidebar -->
-        <aside class="w-64 bg-gradient-to-b from-purple-800 to-purple-900 text-white">
+        <aside class="custom-scroll w-64 h-screen fixed overflow-auto bg-gradient-to-b from-purple-800 to-purple-900 text-white">
             <div class="p-6">
                 <div class="flex items-center space-x-3">
                     <div>
@@ -99,7 +105,7 @@ if ($_SESSION['role'] !== 'Admin') {
         </aside>
 
         <!-- Main Content -->
-        <section style="" class="flex-1 overflow-auto">
+        <section style="" class="custom-scroll ml-64 flex-1 overflow-auto">
             <!-- Top Navigation -->
             <nav class="bg-white shadow-md">
                 <div class="mx-auto px-8 py-4">
