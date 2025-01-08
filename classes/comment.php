@@ -40,7 +40,7 @@
         // SHOW ALL COMMENTS
         public function statusComments(int $etat) {
             try {
-                $sql = "SELECT C.contenu AS comment, C.id_comment, C.date_soumission, C.isApproved , CONCAT(US.prenom, ' ' , US.prenom) AS auteur, CONCAT(U.prenom, ' ' , U.prenom) AS utilisateur, A.titre
+                $sql = "SELECT C.contenu AS comment, C.id_comment, C.date_soumission, C.isApproved , CONCAT(U.prenom, ' ' , U.prenom) AS utilisateur, A.titre
                         FROM users U JOIN commentaires C ON U.id_user = C.id_utilisateur 
                                     JOIN article A ON C.id_article = A.id_article 
                                     JOIN users US ON A.id_auteur = US.id_user

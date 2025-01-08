@@ -99,7 +99,7 @@ if ($_SESSION['role'] !== 'Admin') {
         </aside>
 
         <!-- Main Content -->
-        <section style="" class="flex-1">
+        <section style="" class="flex-1 overflow-auto">
             <!-- Top Navigation -->
             <nav class="bg-white shadow-md">
                 <div class="mx-auto px-8 py-4">
@@ -338,7 +338,6 @@ if ($_SESSION['role'] !== 'Admin') {
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Commentaire</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Utilisateur</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Article</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Soumission</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                             </tr>
@@ -357,7 +356,6 @@ if ($_SESSION['role'] !== 'Admin') {
                                                 <td class="px-6 py-4 whitespace-nowrap">'. $comment['comment'] .'</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $comment['utilisateur'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $comment['titre'] . '</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['auteur'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $comment['date_soumission'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <a href="../../actions/approveComment.php?id='. $comment['id_comment'] .'"><button class="py-3 px-3 rounded-full border-none text-xl text-green-500 "><i class="fa-solid fa-square-check"></i></button></a>
@@ -378,7 +376,6 @@ if ($_SESSION['role'] !== 'Admin') {
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Commentaire</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Utilisateur</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Article</th>
-                                <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Auteur</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Date de Soumission</th>
                                 <th class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Action</th>
                             </tr>
@@ -397,7 +394,6 @@ if ($_SESSION['role'] !== 'Admin') {
                                                 <td class="px-6 py-4 whitespace-nowrap">'. $comment['comment'] .'</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $comment['utilisateur'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $comment['titre'] . '</td>
-                                                <td class="px-6 py-4 whitespace-nowrap">' . $comment['auteur'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">' . $comment['date_soumission'] . '</td>
                                                 <td class="px-6 py-4 whitespace-nowrap">
                                                     <a href="../../actions/refuseComment.php?id='. $comment['id_comment'] .'"><button class="py-3 px-3 rounded-full border-none text-xl text-red-500 "><i class="fa-solid fa-ban"></i></button></a>

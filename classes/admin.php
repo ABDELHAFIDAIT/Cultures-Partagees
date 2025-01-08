@@ -131,4 +131,18 @@
             }
         }
 
+        // APPROVE COMMENT METHOD
+        public function changeStatusComment(int $id_comment, int $etat){
+            try {
+                $sql = "UPDATE commentaires SET isApproved = :etat WHERE id_comment = :id";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(":id", $id_comment, PDO::PARAM_INT);
+                $stmt->bindParam(":etat", $etat, PDO::PARAM_INT);
+                $stmt->execute();
+                header("location: ../views/admin/dashboard.php");
+            } catch (PDOException $e) {
+                return "Erreur lors de la confirmation d'Article : ". $e->getMessage();
+            }
+        }
+
     }
