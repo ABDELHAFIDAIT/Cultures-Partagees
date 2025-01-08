@@ -105,4 +105,17 @@
             }
         }
 
+        // DELETE CATEGORIE METHOD
+        public function deleteTag(int $id){
+            try {
+                $sql = "DELETE FROM tags WHERE id_tag = :id";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(":id", $id, PDO::PARAM_INT);
+                $stmt->execute();
+                header("location: ../views/admin/dashboard.php");
+            } catch (PDOException $e) {
+                return "Erreur lors de la suppression de la catégorie : " . $e->getMessage();
+            }
+        }
+
     }
