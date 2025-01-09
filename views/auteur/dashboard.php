@@ -31,13 +31,21 @@ if ($_SESSION['role'] !== 'Auteur') {
     <link rel="stylesheet" href="../../assets/css/output.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        .custom-scroll::-webkit-scrollbar {
+            width: 0px;
+        }
+    </style>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+
 </head>
 
-<body>
-    <main class="min-h-screen flex">
+<body class="custom-scroll">
+    <main class="min-h-screen flex custom-scroll">
         <!-- Sidebar -->
-        <aside class="w-64 bg-gradient-to-b from-purple-800 to-purple-900 text-white">
+        <aside class="custom-scroll w-64 h-screen fixed overflow-auto bg-gradient-to-b from-purple-800 to-purple-900 text-white">
             <div class="p-6">
                 <div class="flex items-center space-x-3">
                     <div>
@@ -85,7 +93,7 @@ if ($_SESSION['role'] !== 'Auteur') {
         </aside>
 
         <!-- Main Content -->
-        <section class="flex-1 overflow-x-hidden overflow-y-auto">
+        <section class="custom-scroll ml-64 flex-1 overflow-auto">
             <!-- Top Navigation -->
             <nav class="bg-white shadow-md">
                 <div class="mx-auto px-8 py-4">
@@ -334,14 +342,14 @@ if ($_SESSION['role'] !== 'Auteur') {
             </div>
 
             <!-- New Article Form -->
-            <div style="display:none;" class="z-10 fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center ">
-                <div class="max-w-4xl w-full space-y-8 bg-white px-8 py-5 rounded-lg shadow-lg animate__animated animate__fadeIn">
+            <div id="addArticleContainer" style="display:none;" class="z-10 fixed inset-0 bg-gray-900 bg-opacity-80 flex justify-center items-center ">
+                <div class="scale-[0.85] max-w-4xl w-full space-y-8 bg-white px-8 py-5 rounded-lg shadow-lg animate__animated animate__fadeIn">
                     <div>
-                        <h2 class="text-center text-3xl font-extrabold text-gray-900">
+                        <h2 class="text-center text-2xl font-bold text-gray-900">
                             Ajouter un Nouvel Article
                         </h2>
                     </div>
-                    <form method="POST" action="../../actions/addArticle.php" id="addArticleForm" class="mt-8 space-y-6" enctype="multipart/form-data">
+                    <form method="POST" action="../../actions/addArticle.php" id="addArticleForm" class="mt-4 space-y-6" enctype="multipart/form-data">
                         <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
                         <div class="rounded-md shadow-sm flex flex-col gap-5">
                             <div>
@@ -365,6 +373,25 @@ if ($_SESSION['role'] !== 'Auteur') {
                                     ?>
                                 </select>
                             </div>
+                            <div class="grid grid-cols-4">
+                                <?php 
+                                    require_once '../../classes/tag.php';
+
+                                    $tg = new Tag();
+                                    $tags = $tg->allTags();
+
+                                    if(is_array($tags) && count($tags) > 0) {
+                                        foreach ($tags as $tag) {
+                                            echo '
+                                                <div class="flex items-center gap-1">
+                                                    <input type="checkbox" id="tag" name="tags[]" value="'. $tag['id_tag'] .'">
+                                                    <label for="tag" class="mr-3">'. $tag['nom_tag'] .'</label>
+                                                </div>
+                                            ';
+                                        }
+                                    }
+                                ?>
+                            </div>
                             <div>
                                 <label for="image" class="sr-only">Photo</label>
                                 <input 
@@ -378,7 +405,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                             </div>
                             <div>
                                 <label for="contenu" class="sr-only">Contenu</label>
-                                <textarea id="contenu" name="contenu" required class="appearance-none rounded-none relative block w-full h-[45vh] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Entrer le Contenu de votre Article ici.."></textarea>
+                                <textarea id="contenu" name="contenu" required class="appearance-none rounded-none relative block w-full h-[25vh] px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" placeholder="Entrer le Contenu de votre Article ici.."></textarea>
                             </div>
                         </div>
 
@@ -437,8 +464,6 @@ if ($_SESSION['role'] !== 'Auteur') {
                     </div>
                 </div>
             </div>
-
-            <!-- New Tag Form -->
 
         </section>
     </main>

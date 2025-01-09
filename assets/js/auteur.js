@@ -1,5 +1,5 @@
 const cancelButton = document.querySelector('#cancel-article');
-const formContainer = document.querySelector('.fixed');
+const formContainer = document.querySelector('#addArticleContainer');
 const openForm = document.querySelector('#open-add-article');
 const form = document.querySelector('#addArticleForm');
 
