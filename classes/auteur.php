@@ -15,7 +15,6 @@
                 $stmt->bindParam(":id_categorie", $id_categorie, PDO::PARAM_INT);
                 $stmt->bindParam(":couverture", $couverture, PDO::PARAM_STR);
                 $stmt->execute();
-                header("location: ../views/auteur/dashboard.php");
             } catch (PDOException $e) {
                 return "Erreur lors de l'ajout de l'Article : " . $e->getMessage();
             }

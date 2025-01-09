@@ -19,6 +19,12 @@
             return $this->nom;
         }
 
+        public function getDatabase() {
+            return $this->database;
+        }
+
+
+
         // Setters
         public function setId($id) {
             $this->id = $id;
@@ -60,6 +66,19 @@
                 }
             }catch(PDOException $e){
                 return "". $e->getMessage();
+            }
+        }
+
+        // ASSIGN TAG TO ARTICLE
+        public function assignTag(int $id_tag, int $id_article){
+            try{
+                $query = "INSERT INTO article_tag(id_tag , id_article) VALUES (:id_tag , :id_article)";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindParam(":id_tag", $id_tag, PDO::PARAM_INT);
+                $stmt->bindParam(":id_article", $id_article, PDO::PARAM_INT);
+                $stmt->execute();
+            }catch(PDOException $e){
+                return "Erreur lors de l'insertion dans la Table article_tag". $e->getMessage();
             }
         }
     }

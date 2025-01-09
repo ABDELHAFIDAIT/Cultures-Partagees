@@ -174,4 +174,17 @@
                 return "Erreur lors de la Récupération de l'Article". $e->getMessage();
             }
         }
+
+        //SHOW LAST ARTICLE
+        public function lastArticle(){
+            try{
+                $query = "SELECT id_article FROM article ORDER BY id_article DESC LIMIT 1";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->execute();
+                $result = $stmt->fetchColumn();
+                return $result;
+            }catch(PDOException $e){
+                return "Erreur Lors de Récupération de l'ID Article". $e->getMessage();
+            }
+        }
     }
