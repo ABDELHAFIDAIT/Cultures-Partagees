@@ -562,9 +562,9 @@ if ($_SESSION['role'] !== 'Admin') {
                                             <a href="tel: '. $auteur['telephone'] .'"><p class="text-sm text-gray-600">'. $auteur['telephone'] .'</p></a>
                                             <p class="text-sm text-gray-600">Articles: '. $nbr['nbr_articles'] .'</p>';
                                             if($auteur['isBanned'] === 0){
-                                                echo '<a href="../../actions/banUser.php"><button class="duration-300 text-white bg-red-600 py-1 px-4 rounded-sm text-xs hover:bg-red-500">Banner <i class="ml-1 fa-solid fa-ban"></i></button></a>';
+                                                echo '<a href="../../actions/banUser.php?id='.$auteur['id_user'].'-'. $auteur['isBanned'] .'"><button class="duration-300 text-white bg-red-600 py-1 px-4 rounded-sm text-xs hover:bg-red-500">Banner <i class="ml-1 fa-solid fa-ban"></i></button></a>';
                                             }else{
-                                                echo '<a href="../../actions/banUser.php"><button class="duration-300 text-white bg-green-600 py-1 px-4 rounded-sm text-xs hover:bg-green-500">Activer <i class="ml-1 fa-solid fa-square-check"></i></button></a>';
+                                                echo '<a href="../../actions/banUser.php?id='.$auteur['id_user'].'-'. $auteur['isBanned'] .'"><button class="duration-300 text-white bg-green-600 py-1 px-4 rounded-sm text-xs hover:bg-green-500">Activer <i class="ml-1 fa-solid fa-square-check"></i></button></a>';
                                             }
                                         echo '</div>
                                     </div>
@@ -598,9 +598,9 @@ if ($_SESSION['role'] !== 'Admin') {
                                             <a href="tel: '. $use['telephone'] .'"><p class="text-sm text-gray-600">'. $use['telephone'] .'</p></a>
                                             <p class="text-sm text-gray-600">Articles: '. $nbr['nbr_articles'] .'</p>';
                                             if($use['isBanned'] === 0){
-                                                echo '<a href="../../actions/banUser.php"><button class="duration-300 text-white bg-red-600 py-1 px-4 rounded-sm text-xs hover:bg-red-500">Banner <i class="ml-1 fa-solid fa-ban"></i></button></a>';
+                                                echo '<a href="../../actions/banUser.php?id='.$use['id_user'].'-'. $use['isBanned'] .'"><button class="duration-300 text-white bg-red-600 py-1 px-4 rounded-sm text-xs hover:bg-red-500">Banner <i class="ml-1 fa-solid fa-ban"></i></button></a>';
                                             }else{
-                                                echo '<a href="../../actions/banUser.php"><button class="duration-300 text-white bg-green-600 py-1 px-4 rounded-sm text-xs hover:bg-green-500">Activer <i class="ml-1 fa-solid fa-square-check"></i></button></a>';
+                                                echo '<a href="../../actions/banUser.php?id='.$use['id_user'].'-'. $use['isBanned'] .'"><button class="duration-300 text-white bg-green-600 py-1 px-4 rounded-sm text-xs hover:bg-green-500">Activer <i class="ml-1 fa-solid fa-square-check"></i></button></a>';
                                             }
                                         echo '</div>
                                     </div>

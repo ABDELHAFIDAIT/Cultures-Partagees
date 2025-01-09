@@ -145,4 +145,18 @@
             }
         }
 
+        // CHANGE AUTHORS & USERS STATUS
+        public function changeStatus($id_user,$status){
+            try {
+                $sql = "UPDATE users SET isBanned = :statut WHERE id_user = :id";
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(":id", $id_user, PDO::PARAM_INT);
+                $stmt->bindParam(":statut", $status, PDO::PARAM_BOOL);
+                $stmt->execute();
+                // header("Location: ../views/admin/dashboard.php");
+            } catch (PDOException $e) {
+                return "Erreur lors de Modification du Status". $e->getMessage();
+            }
+        }
+
     }
