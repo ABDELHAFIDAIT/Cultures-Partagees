@@ -555,12 +555,18 @@ if ($_SESSION['role'] !== 'Admin') {
                                 echo '
                                 <div class="bg-purple-100 rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
                                     <div class="flex items-center justify-center">
-                                        <div class="flex flex-col items-center">
+                                        <div class="flex flex-col items-center gap-2">
                                             <img src="../../uploads/'. $auteur['photo'] .'" alt="Profile" class="h-16 w-16 rounded-full object-cover mb-4">
                                             <p class="text-lg font-semibold text-gray-800">'. $auteur['prenom'] . ' ' . $auteur['nom'] .'</p>
-                                            <p class="text-sm text-gray-600">'. $auteur['email'] .'</p>
-                                            <p class="text-sm text-gray-600">Articles: '. $nbr['nbr_articles'] .'</p>
-                                        </div>
+                                            <a href="mailto: '. $auteur['email'] .'"><p class="text-sm text-gray-600">'. $auteur['email'] .'</p></a>
+                                            <a href="tel: '. $auteur['telephone'] .'"><p class="text-sm text-gray-600">'. $auteur['telephone'] .'</p></a>
+                                            <p class="text-sm text-gray-600">Articles: '. $nbr['nbr_articles'] .'</p>';
+                                            if($auteur['isBanned'] === 0){
+                                                echo '<a href="../../actions/banUser.php"><button class="duration-300 text-white bg-red-600 py-1 px-4 rounded-sm text-xs hover:bg-red-500">Banner <i class="ml-1 fa-solid fa-ban"></i></button></a>';
+                                            }else{
+                                                echo '<a href="../../actions/banUser.php"><button class="duration-300 text-white bg-green-600 py-1 px-4 rounded-sm text-xs hover:bg-green-500">Activer <i class="ml-1 fa-solid fa-square-check"></i></button></a>';
+                                            }
+                                        echo '</div>
                                     </div>
                                 </div>
                                 ';
@@ -585,13 +591,20 @@ if ($_SESSION['role'] !== 'Admin') {
                                 echo '
                                     <div class="bg-purple-100 rounded-xl shadow-sm p-6 animate__animated animate__fadeIn hover:shadow-lg transition-shadow duration-300">
                                         <div class="flex items-center justify-center">
-                                            <div class="flex flex-col items-center">
-                                                <img src="../../uploads/'. $auteur['photo'] .'" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
+                                            <div class="flex flex-col items-center gap-2">
+                                                <img src="../../uploads/'. $use['photo'] .'" alt="Profile" class="h-12 w-12 rounded-full object-cover mb-4">
                                                 <p class="text-lg font-semibold text-gray-800">'. $use['prenom'] . ' ' . $use['nom'] .'</p>
-                                                <p class="text-sm text-gray-600">'. $use['email'] .'</p>
-                                            </div>
-                                        </div>
+                                                <a href="mailto: '. $use['email'] .'"><p class="text-sm text-gray-600">'. $use['email'] .'</p></a>
+                                            <a href="tel: '. $use['telephone'] .'"><p class="text-sm text-gray-600">'. $use['telephone'] .'</p></a>
+                                            <p class="text-sm text-gray-600">Articles: '. $nbr['nbr_articles'] .'</p>';
+                                            if($use['isBanned'] === 0){
+                                                echo '<a href="../../actions/banUser.php"><button class="duration-300 text-white bg-red-600 py-1 px-4 rounded-sm text-xs hover:bg-red-500">Banner <i class="ml-1 fa-solid fa-ban"></i></button></a>';
+                                            }else{
+                                                echo '<a href="../../actions/banUser.php"><button class="duration-300 text-white bg-green-600 py-1 px-4 rounded-sm text-xs hover:bg-green-500">Activer <i class="ml-1 fa-solid fa-square-check"></i></button></a>';
+                                            }
+                                        echo '</div>
                                     </div>
+                                </div>
                                 ';
                             }
                         }
