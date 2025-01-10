@@ -60,6 +60,31 @@
             }
         }
 
+        // SHOW COMMENTS OF AN ARTICLE
+        public function articleComments(int $etat, int $id_article) {
+            try {
+                $sql = "SELECT U.*, C.contenu AS comment, C.id_comment, C.date_soumission, C.isApproved , CONCAT(U.prenom, ' ' , U.prenom) AS utilisateur, A.titre
+                        FROM users U 
+                        JOIN commentaires C ON U.id_user = C.id_utilisateur 
+                        JOIN article A ON C.id_article = A.id_article 
+                        JOIN users US ON A.id_auteur = US.id_user
+                        WHERE C.isApproved = :etat AND C.id_article = :id";
+
+                $stmt = $this->database->getConnection()->prepare($sql);
+                $stmt->bindParam(":etat", $etat, PDO::PARAM_INT);
+                $stmt->bindParam(":id", $id_article, PDO::PARAM_INT);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur lors de la Récupération des Commentaires". $e->getMessage();
+            }
+        }
+
         // SHOW ONE COMMENT
         public function showComment(int $id){
             try{

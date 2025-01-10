@@ -120,18 +120,21 @@
                 <!-- Les Commentaires -->
 
                 <?php
-                    require_once '../../classes/auteur.php';
+                    require_once '../../classes/user.php';
 
-                    
+                    $use = new User();
+                    $id = $_SESSION['id_user'];
+
+                    $user = $use->profile($id);
                 ?>
                 
                 <div class="bg-white w-full px-8 py-4 shadow-md rounded-md">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
-                            <img src="../../assets/img/default-image.png" class="rounded-full w-12 h-12">
+                            <img src="../../uploads/<?php echo $user['photo']; ?>" alt="<?php echo $user['prenom'] . ' ' . $user['nom'];  ?>" class="rounded-full w-12 h-12">
                             <div>
-                                <h1 class="text-sm font-semibold">Jhon Doe</h1>
-                                <p class="text-sm text-gray-700">jhon.doe@gmail.com</p>
+                                <h1 class="text-sm font-semibold"><?php echo $user['prenom'] . ' ' . $user['nom'];  ?></h1>
+                                <p class="text-sm text-gray-700"><?php echo $user['email'];  ?></p>
                             </div>
                         </div>
                     </div>
@@ -147,7 +150,57 @@
                 <!-- Show Comments -->
                 <h1 class="ml-2 text-xl font-semibold">Commentaires</h1>
 
-                <div class="bg-white w-full px-8 py-4 shadow-md rounded-md">
+                <?php
+                
+                    require_once '../../classes/comment.php';
+
+                    $cmt = new Comment();
+
+                    $etat = 1;
+                    $article = $_GET['id'];
+
+                    $comments = $cmt->articleComments($etat, $article);
+
+                    if(is_array($comments)){
+                        foreach($comments as $comment){
+                            echo '
+                            <div class="bg-white w-full px-8 py-4 shadow-md rounded-md">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex items-center gap-3">
+                                        <img src="../../uploads/'. $comment['photo'] .'" alt="'. $comment['prenom']. ' ' . $comment['nom'] .'" class="rounded-full w-12 h-12">
+                                        <div>
+                                            <h1 class="text-sm font-semibold">'. $comment['prenom']. ' ' . $comment['nom'] .'</h1>
+                                            <p class="text-sm text-gray-700">Publié le '. $comment['date_soumission']. '</p>
+                                        </div>
+                                    </div>
+                                    <i class="fa-solid fa-ellipsis-vertical cursor-pointer"></i>
+                                </div>
+                                <div class="py-3">
+                                    <p class="text-md text-gray-700">'. $comment['comment']. '</p>
+                                </div>
+                                <div class="mb-1">
+                                    <p class="cursor-pointer font-semibold text-sm pt-2 text-gray-900">Afficher la Traduction</p>
+                                </div>
+                                <div class="flex items-center gap-4">
+                                    <div class="flex items-center gap-2 cursor-pointer text-blue-500">
+                                        <i class="fa-regular fa-thumbs-up"></i>Like
+                                    </div>
+                                    <div class="flex items-center gap-2 cursor-pointer text-purple-500">
+                                        <i class="fa-regular fa-comment-dots"></i>Répondre
+                                    </div>
+                                </div>
+                            </div>
+                            ';
+                        }
+                    }else{
+                        echo '<div class="bg-white w-full px-8 py-4 shadow-md rounded-md">
+                            <p class="text-md text-gray-700">Soyez le Premier à Commenter cet Article 🙂 </p>
+                        </div>';
+                    }
+                
+                ?>
+
+                <!-- <div class="bg-white w-full px-8 py-4 shadow-md rounded-md">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center gap-3">
                             <img src="../../assets/img/default-image.png" class="rounded-full w-12 h-12">
@@ -172,33 +225,7 @@
                             <i class="fa-regular fa-comment-dots"></i>Répondre
                         </div>
                     </div>
-                </div>
-                <div class="bg-white w-full px-8 py-4 shadow-md rounded-md">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <img src="../../assets/img/default-image.png" class="rounded-full w-12 h-12">
-                            <div>
-                                <h1 class="text-sm font-semibold">Jhon Doe</h1>
-                                <p class="text-sm text-gray-700">Publié le 10-01-2025</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer"></i>
-                    </div>
-                    <div class="py-3">
-                        <p class="text-md text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, molestias expedita! Nulla.</p>
-                    </div>
-                    <div class="mb-1">
-                        <p class="cursor-pointer font-semibold text-sm pt-2 text-gray-900">Afficher la Traduction</p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="flex items-center gap-2 cursor-pointer text-blue-500">
-                            <i class="fa-regular fa-thumbs-up"></i>Like
-                        </div>
-                        <div class="flex items-center gap-2 cursor-pointer text-purple-500">
-                            <i class="fa-regular fa-comment-dots"></i>Répondre
-                        </div>
-                    </div>
-                </div>
+                </div> -->
             </div>
         </div>
     </main>
