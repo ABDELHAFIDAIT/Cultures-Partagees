@@ -156,8 +156,13 @@
                 </div>
 
                 <!-- Show Comments -->
-                <h1 class="ml-2 text-xl font-semibold">Commentaires</h1>
+                <div class="w-full flex items-center justify-between">
+                    <h1 class="ml-2 text-xl font-semibold">Commentaires</h1>
+                    <i id="comments-arrow" class="fa-solid fa-chevron-down cursor-pointer text-xl mr-2 font-semibold"></i>
+                </div>
 
+                <div id="comments" class="hidden w-full">
+                
                 <?php
                 
                     require_once '../../classes/comment.php';
@@ -206,6 +211,7 @@
                         </div>';
                     }
                 ?>
+                </div>
             </div>
         </div>
     </main>
@@ -219,6 +225,30 @@
         icon_fav.addEventListener('click', function(){
             icon_fav.classList.remove('fa-regular');
             icon_fav.classList.add('fa-solid');
+        })
+
+        const arrow = document.getElementById('comments-arrow');
+        const comments = document.getElementById('comments');
+
+        arrow.addEventListener('click', function(){
+            if(arrow.classList.contains('fa-chevron-down')){
+                arrow.classList.remove('fa-chevron-down');
+                arrow.classList.add('fa-chevron-up');
+
+                comments.classList.remove('hidden');
+                comments.classList.add('animate__animated', 'animate__fadeInDown');
+                comments.classList.remove('animate__fadeOutUp');
+            }else if(arrow.classList.contains('fa-chevron-up')){
+                arrow.classList.remove('fa-chevron-up');
+                arrow.classList.add('fa-chevron-down');
+
+                comments.classList.add('animate__fadeOutUp');
+                comments.classList.remove('animate__fadeInDown');
+                setTimeout(() => {
+                    comments.classList.add('hidden');
+                    comments.classList.remove('animate__fadeOutUp');
+                }, 500);
+            }
         })
     </script>
 
