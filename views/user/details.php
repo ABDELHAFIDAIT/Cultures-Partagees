@@ -177,7 +177,7 @@
                     if(is_array($comments)){
                         foreach($comments as $comment){
                             echo '
-                            <div class="bg-white w-full px-8 py-4 shadow-md rounded-md">
+                            <div class="bg-white w-full px-8 py-4 shadow-md border-b border-gray-300">
                                 <div class="flex items-center justify-between">
                                     <div class="flex items-center gap-3">
                                         <img src="../../uploads/'. $comment['photo'] .'" alt="'. $comment['prenom']. ' ' . $comment['nom'] .'" class="rounded-full w-12 h-12">
