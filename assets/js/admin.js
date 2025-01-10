@@ -134,7 +134,7 @@ optionAdminProfile.addEventListener('click', function() {
     manageAdminAuthors.style.display = 'none';
     manageAdminArticles.style.display = 'none';
     manageAdminCategories.style.display = 'none';
-    manageAdminProfile.style.display = 'block';
+    manageAdminProfile.style.display = 'flex';
     manageAdminUsers.style.display = 'none';
     manageAdminComments.style.display = 'none';
 });

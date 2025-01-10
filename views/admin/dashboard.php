@@ -614,7 +614,7 @@ if ($_SESSION['role'] !== 'Admin') {
             </div>
 
             <!-- Profile Section -->
-            <div id="admin-manage-profile" style="display: none;" class="flex justify-center  p-10">
+            <div id="admin-manage-profile" style="display: none;" class="flex items-center justify-center p-10">
                 <div class="bg-white rounded-xl shadow-2xl max-w-sm w-full overflow-hidden transition-all duration-300 hover:shadow-indigo-500/50 ">
                     <?php
                         require_once '../../classes/user.php';
@@ -624,7 +624,7 @@ if ($_SESSION['role'] !== 'Admin') {
 
                     ?>
                     <div class="relative h-32 bg-gradient-to-r from-pink-600 to-purple-700">
-                        <img src="https://static.vecteezy.com/system/resources/previews/005/544/718/non_2x/profile-icon-design-free-vector.jpg" alt="<?php echo $auteur['prenom'] . ' ' . $auteur['nom']; ?>" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-24 h-24 rounded-full border-4 border-white transition-transform duration-300 hover:scale-105 z-0">
+                        <img src="../../uploads/<?php echo $auteur['photo']; ?>" alt="<?php echo $auteur['prenom'] . ' ' . $auteur['nom']; ?>" class="absolute bottom-0 left-1/2 transform -translate-x-1/2 translate-y-1/2 w-24 h-24 rounded-full border-4 border-white transition-transform duration-300 hover:scale-105 z-0">
                     </div>
                     
                     <div class="pt-16 pb-6 px-6 text-center">
