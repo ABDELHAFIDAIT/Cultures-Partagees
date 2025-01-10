@@ -107,10 +107,16 @@
                                     echo '</div>';
                                     echo '<h1 class="text-gray-900 font-semibold text-xl mb-3">'. $result['titre'] .'</h1>';
                                     echo '<p class="text-gray-700 font-medium text-md">'. $result['contenu'] .'</p>';
-                                    echo '<div class="flex items-center mt-3">
-                                            <i class="fa-regular fa-heart text-3xl text-red-500 cursor-pointer mr-5"></i>
+                                    echo '<div class="flex items-center justify-end mt-3">';
+                                    
+
+
+                                    echo'       <i id="favoris" class="fa-regular fa-heart text-3xl text-red-500 cursor-pointer mr-5"></i>
+                                            <i class="fa-solid fa-file-arrow-down text-3xl text-green-700 cursor-pointer mr-5"></i>
                                         </div>';
                                 }
+
+                                //fa-solid
                             ?>
 
                         </div>
@@ -206,6 +212,16 @@
 
     <!-- Footer -->
     <?php include_once '../../includes/footer.php' ?>
+
+    <script>
+        const icon_fav = document.getElementById('favoris');
+
+        icon_fav.addEventListener('click', function(){
+            icon_fav.classList.remove('fa-regular');
+            icon_fav.classList.add('fa-solid');
+        })
+    </script>
+
 </body>
 
 </html>
