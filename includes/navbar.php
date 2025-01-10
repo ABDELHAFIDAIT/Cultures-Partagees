@@ -3,12 +3,12 @@
         <a href="./articles.php" class="text-white text-2xl font-bold">
             Culture<span class="text-black">Connect</span>
         </a>
-        <div class="flex items-center gap-10">
-            <a href="../../actions/logout.php">
-                <button type="button" class="border border-white text-white py-1 px-4 text-sm duration-300 hover:border-none hover:bg-red-600 hover:scale-105">Favoris <i class="fa-solid fa-heart ml-3"></i></i></button>
+        <div class="flex items-center gap-5">
+            <a href="./favoris.php">
+                <i class="fa-solid fa-heart text-2xl text-pink-200"></i>
             </a>
             <a href="../../actions/logout.php">
-                <button type="button" class="border border-white text-white py-1 px-4 text-sm duration-300 hover:border-none hover:bg-black hover:scale-105">Déconnexion<i class="fa-solid fa-arrow-right-from-bracket text-white ml-3"></i></button>
+                <i class="fa-solid fa-arrow-right-from-bracket text-white text-2xl"></i>
             </a>
         </div>
     </div>
