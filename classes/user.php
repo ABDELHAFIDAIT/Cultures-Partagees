@@ -10,6 +10,7 @@ class User{
     protected string $password;
     protected string $role;
     protected string $photo;
+    protected bool $status;
     protected $database ;
 
 
@@ -44,6 +45,10 @@ class User{
 
     public function getPhoto():string{
         return $this->photo;
+    }
+
+    public function getStatus():bool{
+        return $this->status;
     }
 
     
@@ -91,6 +96,7 @@ class User{
                     $this->telephone = $row['telephone'];
                     $this->role = $row['role'];
                     $this->photo = $row['photo'];
+                    $this->status = $row['isBanned'];
 
                     return $this;
                 }

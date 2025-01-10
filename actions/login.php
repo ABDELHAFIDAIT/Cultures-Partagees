@@ -17,22 +17,26 @@
                 $loggedInUser = $user->login($email, $password);
     
                 if ($loggedInUser) {
-                    $_SESSION['id_user'] = htmlspecialchars($loggedInUser->getId(), ENT_QUOTES, 'UTF-8');
-                    $_SESSION['prenom'] = htmlspecialchars($loggedInUser->getPrenom(), ENT_QUOTES, 'UTF-8');
-                    $_SESSION['nom'] = htmlspecialchars($loggedInUser->getNom(), ENT_QUOTES, 'UTF-8');
-                    $_SESSION['email'] = htmlspecialchars($loggedInUser->getEmail(), ENT_QUOTES, 'UTF-8');
-                    $_SESSION['phone'] = htmlspecialchars($loggedInUser->getTelephone(), ENT_QUOTES, 'UTF-8');
-                    $_SESSION['role'] = htmlspecialchars($loggedInUser->getRole(), ENT_QUOTES, 'UTF-8');
-                    $_SESSION['photo'] = htmlspecialchars($loggedInUser->getPhoto(), ENT_QUOTES, 'UTF-8');
+                    if($loggedInUser->getStatus() == 0){
+                        $_SESSION['id_user'] = htmlspecialchars($loggedInUser->getId(), ENT_QUOTES, 'UTF-8');
+                        $_SESSION['prenom'] = htmlspecialchars($loggedInUser->getPrenom(), ENT_QUOTES, 'UTF-8');
+                        $_SESSION['nom'] = htmlspecialchars($loggedInUser->getNom(), ENT_QUOTES, 'UTF-8');
+                        $_SESSION['email'] = htmlspecialchars($loggedInUser->getEmail(), ENT_QUOTES, 'UTF-8');
+                        $_SESSION['phone'] = htmlspecialchars($loggedInUser->getTelephone(), ENT_QUOTES, 'UTF-8');
+                        $_SESSION['role'] = htmlspecialchars($loggedInUser->getRole(), ENT_QUOTES, 'UTF-8');
+                        $_SESSION['photo'] = htmlspecialchars($loggedInUser->getPhoto(), ENT_QUOTES, 'UTF-8');
 
-                    if($_SESSION['role'] === 'Admin'){
-                        header("Location: ../views/admin/dashboard.php");
-                    } else if($_SESSION['role'] === 'Auteur'){
-                        header("Location: ../views/auteur/dashboard.php");
-                    } else if($_SESSION['role'] === 'Utilisateur'){
-                        header("Location: ../views/user/articles.php");
+                        if($_SESSION['role'] === 'Admin'){
+                            header("Location: ../views/admin/dashboard.php");
+                        } else if($_SESSION['role'] === 'Auteur'){
+                            header("Location: ../views/auteur/dashboard.php");
+                        } else if($_SESSION['role'] === 'Utilisateur'){
+                            header("Location: ../views/user/articles.php");
+                        }
+                        exit;
+                    }else{
+                        echo 'Votre Compte est Banné !';
                     }
-                    exit;
                 } else {
                     echo "Identifiants incorrects.";
                 }
