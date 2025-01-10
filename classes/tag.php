@@ -85,7 +85,8 @@
         // SHOW TAGS OF A SPECIFIC ARTClE
         public function articleTag(int $id_article){
             try{
-                $query = "SELECT T.nom_tag FROM article A
+                $query = "SELECT T.nom_tag 
+                        FROM article A
                         JOIN article_tag TA ON A.id_article = TA.id_article
                         JOIN tags T ON TA.id_tag = T.id_tag
                         WHERE TA.id_article = :id";
