@@ -139,8 +139,10 @@
                         </div>
                     </div>
                     <!-- Add Comment -->
+                    <?php $id_article = $_GET['id']; ?>
                     <form method="POST" action="../../actions/addComment.php" class="flex flex-col py-4 gap-2">
                         <textarea class="bg-gray-100 appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-700 text-gray-900 focus:outline-none focus:ring-purple-500 focus:border-purple-500 focus:z-10 sm:text-sm" name="comment" id="comment" placeholder="Commenter Ici ..."></textarea>
+                        <input class="hidden" name="id" type="text" value="<?php echo $id_article; ?>">
                         <div class="flex items-center justify-end">
                             <button type="submit" name="publish" class="py-1 px-4 bg-blue-600 text-white">Publier</button>
                         </div>
@@ -197,35 +199,7 @@
                             <p class="text-md text-gray-700">Soyez le Premier à Commenter cet Article 🙂 </p>
                         </div>';
                     }
-                
                 ?>
-
-                <!-- <div class="bg-white w-full px-8 py-4 shadow-md rounded-md">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <img src="../../assets/img/default-image.png" class="rounded-full w-12 h-12">
-                            <div>
-                                <h1 class="text-sm font-semibold">Jhon Doe</h1>
-                                <p class="text-sm text-gray-700">Publié le 10-01-2025</p>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-ellipsis-vertical cursor-pointer"></i>
-                    </div>
-                    <div class="py-3">
-                        <p class="text-md text-gray-700">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ipsa, molestias expedita! Nulla.</p>
-                    </div>
-                    <div class="mb-1">
-                        <p class="cursor-pointer font-semibold text-sm pt-2 text-gray-900">Afficher la Traduction</p>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <div class="flex items-center gap-2 cursor-pointer text-blue-500">
-                            <i class="fa-regular fa-thumbs-up"></i>Like
-                        </div>
-                        <div class="flex items-center gap-2 cursor-pointer text-purple-500">
-                            <i class="fa-regular fa-comment-dots"></i>Répondre
-                        </div>
-                    </div>
-                </div> -->
             </div>
         </div>
     </main>

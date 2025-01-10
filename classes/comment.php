@@ -120,4 +120,24 @@
                 return "Erreur lors de Récupération des Données : ". $e->getMessage();
             }
         }
+
+        // ADD COMMENT
+        public function addComment(string $comment, int $id_article, int $id_user){
+            try{
+                $query = "INSERT INTO commentaires(contenu,id_article,id_utilisateur,isApproved)
+                        VALUES (:comment, :article, :user, 1)";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindParam(":comment", $comment, PDO::PARAM_STR);
+                $stmt->bindParam(":article", $id_article, PDO::PARAM_INT);
+                $stmt->bindParam(":user", $id_user, PDO::PARAM_INT);
+                $result = $stmt->execute();
+                if($result){
+                    return true;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "". $e->getMessage();
+            }
+        }
     }
