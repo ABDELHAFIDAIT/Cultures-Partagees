@@ -1,6 +1,19 @@
 <?php
+    session_start();
+    
     if (empty($_SESSION['csrf_token'])) {
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
+    }
+    
+    if (isset($_SESSION["role"])){
+        if($_SESSION['role'] === 'Admin'){
+            header("Location: ../admin/dashboard.php");
+        }else if($_SESSION['role'] === 'Auteur'){
+            header("Location: ../auteur/dashboard.php");
+        }else{
+            header("Location: ../user/articles.php");
+        }
+        exit;
     }
 ?>
 

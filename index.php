@@ -1,3 +1,18 @@
+<?php
+    session_start();
+
+    if (isset($_SESSION["role"])){
+        if($_SESSION['role'] === 'Admin'){
+            header("Location: ./views/admin/dashboard.php");
+        }else if($_SESSION['role'] === 'Auteur'){
+            header("Location: ./views/auteur/dashboard.php");
+        }else{
+            header("Location: ./views/user/articles.php");
+        }
+        exit;
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

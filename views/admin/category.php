@@ -4,6 +4,17 @@
     if (empty($_SESSION['csrf_token'])) {
         $_SESSION['csrf_token'] = bin2hex(random_bytes(32));
     }
+
+    if ($_SESSION['role'] !== 'Admin') {
+        if ($_SESSION['role'] === 'Auteur') {
+            header("Location: ../auteur/dashboard.php");
+        } else if ($_SESSION['role'] === 'Utilisateur') {
+            header("Location: ../user/articles.php");
+        } else {
+            header("Location: ../../index.php");
+        }
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
