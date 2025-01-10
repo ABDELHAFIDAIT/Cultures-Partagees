@@ -326,7 +326,7 @@ if ($_SESSION['role'] !== 'Auteur') {
                         }
                         echo '</div>';
                         echo '<div class="pt-5">
-                                        <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">' . $art['titre'] . '</h1></a>
+                                        <a href="./article.php?id='. $art['id_article'] .'"><h1 class="text-gray-900 font-semibold text-xl mb-3">' . $art['titre'] . '</h1></a>
                                         <p class="text-gray-700 font-medium text-md">' . substr($art['contenu'], 0, 100) . '...</p>
                                     </div>
                                     <div class="flex justify-end items-center gap-5 mt-5">
