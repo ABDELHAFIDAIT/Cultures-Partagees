@@ -52,12 +52,6 @@
                         }
                     }
                 ?>
-
-                <!-- <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Peinture</li>
-                <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Musique</li>
-                <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Littérature</li>
-                <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Théâtre</li>
-                <li class="bg-white text-purple-700 rounded-full py-2 px-5 duration-500 hover:bg-purple-700 hover:text-white cursor-pointer">Cinéma</li> -->
             </ul>
         </div>
         <div class="grid grid-cols-4 gap-5 mt-10">
