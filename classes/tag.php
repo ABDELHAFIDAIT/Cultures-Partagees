@@ -81,4 +81,25 @@
                 return "Erreur lors de l'insertion dans la Table article_tag". $e->getMessage();
             }
         }
+
+        // SHOW TAGS OF A SPECIFIC ARTClE
+        public function articleTag(int $id_article){
+            try{
+                $query = "SELECT T.nom_tag FROM article A
+                        JOIN article_tag TA ON A.id_article = TA.id_article
+                        JOIN tags T ON TA.id_tag = T.id_tag
+                        WHERE TA.id_article = :id";
+                $stmt = $this->database->getConnection()->prepare($query);
+                $stmt->bindParam(":id", $id_article, PDO::PARAM_INT);
+                $stmt->execute();
+                if($stmt->rowCount() > 0){
+                    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                    return $result;
+                }else{
+                    return false;
+                }
+            }catch(PDOException $e){
+                return "Erreur Lors de Récupération des Données : ". $e->getMessage();
+            }
+        }
     }

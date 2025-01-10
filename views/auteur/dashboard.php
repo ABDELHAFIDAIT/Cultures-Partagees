@@ -297,19 +297,34 @@ if ($_SESSION['role'] !== 'Auteur') {
                 <?php
 
                 require_once '../../classes/auteur.php';
+                require_once '../../classes/tag.php';
 
                 $auteur = new Auteur();
                 $articles = $auteur->ownArticles((int) $_SESSION['id_user']);
 
+                $tg = new Tag();
+
                 // print_r($articles);
                 if($articles){
                     foreach ($articles as $art) {
+                        $tags = $tg->articleTag((int)$art['id_article']);
                         echo '<article class="relative bg-white shadow-md rounded-md">';
                         echo '<div>
                                     <img src="../../uploads/'. $art['couverture'] .'" class="rounded-t-md" alt="Couverture de l\'Article">
                                 </div>';
                         echo '<div class="p-4">';
                         echo '<p class="text-gray-800 font-medium text-sm">' . $art['date_publication'] . ' •</p>';
+                        echo '<div class="flex items-center gap-1 mt-2 flex-wrap">';
+                        if(is_array($tags)){
+                            foreach ($tags as $tag) {
+                                if(is_array($tag)) {
+                                    echo '<div class="text-xs text-white bg-blue-700 rounded-full py-1 px-3">#  '. $tag['nom_tag'] .'</div>';
+                                }
+                            }
+                        }else{
+                            echo '<p class="text-xs font-extralight text-red-400"># Pas de Tags pour Cet Article !</p>';
+                        }
+                        echo '</div>';
                         echo '<div class="pt-5">
                                         <a href="#"><h1 class="text-gray-900 font-semibold text-xl mb-3">' . $art['titre'] . '</h1></a>
                                         <p class="text-gray-700 font-medium text-md">' . substr($art['contenu'], 0, 100) . '...</p>
